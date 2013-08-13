@@ -5,7 +5,9 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_rottest</sprite>
+  </sprites>
   <backgrounds name="background">
     <background>background\tex_bark</background>
     <background>background\tex_grass</background>
@@ -14,17 +16,21 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\initGame.gml</script>
+    <script>scripts\setCamStyle.gml</script>
+    <script>scripts\initViews.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_camera</object>
+    <object>objects\obj_rottest</object>
+    <object>objects\obj_viewtest</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\room_3d</room>
+    <room>rooms\room_test</room>
   </rooms>
-  <constants number="3">
-    <constant name="T_BARK">1</constant>
-    <constant name="T_GRASS">2</constant>
-    <constant name="T_SKY">3</constant>
+  <constants number="2">
+    <constant name="CAM_OCULUS">2</constant>
+    <constant name="CAM_REGULAR">1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

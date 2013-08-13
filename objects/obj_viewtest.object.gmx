@@ -26,21 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>initGame();
-
-d3d_start();
-d3d_set_perspective(1);
-d3d_set_hidden(1);
-
-//d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
-d3d_light_define_ambient(make_color_rgb(220,220,180));
-d3d_set_shading(true);
-
-draw_set_color(c_white);
-
-z = 180; //We want the Z in Centimeters. I am ~ 185 so i guess my eyes will be around 180cm from the floor.
-
-zdirection = 90;
-
 </string>
           </argument>
         </arguments>
@@ -63,40 +48,17 @@ zdirection = 90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Get the change of the mouse position
-change_x = (display_mouse_get_x()-display_get_width()/2);
-change_y = (display_mouse_get_y()-display_get_height()/2);
-
-direction -= change_x/10;
-zdirection -= change_y/10;
-
-//Reset the mouse
-display_mouse_set(display_get_width()/2,display_get_height()/2);
-
-// set the projection 
-xt=x+cos(degtorad(direction));
-yt=y-sin(degtorad(direction));
-zt=z+tan(degtorad(zdirection));
-
+            <string>draw_set_color(c_black);
 if (global.camera_style == CAM_REGULAR) {
-    // Regular camera
-    d3d_set_projection(x,y,z,    xt,yt,zt,   0,0,1);
-} else {
-    // Oculus camera
-    es = 0.01 //Eye seperation (in CM, from the nose)
-    if (view_current = 0) {
-        d3d_set_projection(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z, xt,yt,zt,   0,0,1);
-    }
-    if (view_current = 1) {
-        d3d_set_projection(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z, xt,yt,zt,   0,0,1);
-    }
+    draw_text(20,20,"Regular");
 }
 
-//Draw da flawr
-d3d_draw_floor(0,0,0,3200,3200,0,tex_grass,32,32); //3200 = 32 meters
-
-//Draw the sky
-d3d_draw_ellipsoid(x-1600,y-1600,z-800,x+1600,y+1600,z+800,tex_sky,1,1,36);
+if view_current==0 {
+    draw_text(30,30,"View0");
+}
+if view_current==1 {
+    draw_text(20,20,"View1");
+}
 </string>
           </argument>
         </arguments>
@@ -143,29 +105,6 @@ d3d_draw_ellipsoid(x-1600,y-1600,z-800,x+1600,y+1600,z+800,tex_sky,1,1,36);
           <argument>
             <kind>1</kind>
             <string>setCamStyle(CAM_OCULUS);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>game_end();
 </string>
           </argument>
         </arguments>
