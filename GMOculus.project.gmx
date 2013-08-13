@@ -6,7 +6,10 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites"/>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\tex_bark</background>
+    <background>background\tex_grass</background>
+  </backgrounds>
   <paths name="paths"/>
   <help>
     <rtf>help.rtf</rtf>
