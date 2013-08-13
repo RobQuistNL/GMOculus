@@ -25,22 +25,55 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>initGame();
+            <string>d3d_start();
+d3d_set_perspective(false);
+d3d_set_depth(false);
 
-d3d_start();
-d3d_set_perspective(1);
-d3d_set_hidden(1);
+
+draw_set_alpha_test(true);
+draw_enable_alphablend(true);
+draw_set_alpha_test_ref_value(254);
 
 //d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
 d3d_light_define_ambient(make_color_rgb(220,220,180));
-d3d_set_shading(true);
 
 draw_set_color(c_white);
 
 z = 180; //We want the Z in Centimeters. I am ~ 185 so i guess my eyes will be around 180cm from the floor.
 
-zdirection = 90;
+zdirection = 0;
 
+es = CAM_EYESEP; //Eye seperation (in CM, from the nose)
+field_of_view = CAM_FOV; // View angle
+cam_aspect = CAM_ASPECT;
+
+setCamStyle(CAM_REGULAR);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x=obj_player.x
+y=obj_player.y
+
+obj_player.direction = direction
 </string>
           </argument>
         </arguments>
@@ -86,8 +119,6 @@ if (global.camera_style == CAM_REGULAR) {
     
 } else {
     // Oculus camera
-    es = 0.01 //Eye seperation (in CM, from the nose)
-    
     if (view_current = 0) {
         draw_set_color(c_black);
         draw_rectangle(0,0,1920,1080,0);
@@ -96,18 +127,65 @@ if (global.camera_style == CAM_REGULAR) {
     }
     
     if (view_current = 1) {
-        d3d_set_projection(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1);
+        d3d_set_projection_ext(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1, field_of_view, cam_aspect, 1, 320000);
+        
     }
     if (view_current = 2) {
-        d3d_set_projection(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1);
+        d3d_set_projection_ext(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1, field_of_view, cam_aspect, 1, 320000);
     }
 }
 
 //Draw da flawr
-d3d_draw_floor(0,0,0,3200,3200,0,tex_grass,32,32); //3200 = 32 meters
+d3d_draw_floor(0,0,0,3200,3200,0,global.TEX[T_GRASS],32,32); //3200 = 32 meters
 
 //Draw the sky
-d3d_draw_ellipsoid(x-1600,y-1600,z-800,x+1600,y+1600,z+800,tex_sky,1,1,36);
+d3d_draw_ellipsoid(x-16000,y-16000,z-8000,x+16000,y+16000,z+8000,global.TEX[T_SKY],1,1,36);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="89">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>es -= 0.001
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="85">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>es += 0.001
 </string>
           </argument>
         </arguments>
@@ -159,6 +237,98 @@ d3d_draw_ellipsoid(x-1600,y-1600,z-800,x+1600,y+1600,z+800,tex_sky,1,1,36);
         </arguments>
       </action>
     </event>
+    <event eventtype="9" enumb="78">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cam_aspect -= 0.02
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="77">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cam_aspect += 0.02
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="74">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>field_of_view += 1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>field_of_view -= 1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="27">
       <action>
         <libid>1</libid>
@@ -177,6 +347,30 @@ d3d_draw_ellipsoid(x-1600,y-1600,z-800,x+1600,y+1600,z+800,tex_sky,1,1,36);
           <argument>
             <kind>1</kind>
             <string>game_end();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>show_message("es: "+string(es) + "# field_of_view = "+string(field_of_view)+ " - cam_aspect"+string(cam_aspect))
+
 </string>
           </argument>
         </arguments>
