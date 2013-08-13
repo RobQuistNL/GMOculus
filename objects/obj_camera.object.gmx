@@ -80,15 +80,26 @@ zt=z+tan(degtorad(zdirection));
 
 if (global.camera_style == CAM_REGULAR) {
     // Regular camera
-    d3d_set_projection(x,y,z,    xt,yt,zt,   0,0,1);
+    if (view_current = 0) {
+        d3d_set_projection(x,y,z,    xt,yt,zt,   0,0,1);
+    }
+    
 } else {
     // Oculus camera
     es = 0.01 //Eye seperation (in CM, from the nose)
+    
     if (view_current = 0) {
-        d3d_set_projection(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z, xt,yt,zt,   0,0,1);
+        draw_set_color(c_black);
+        draw_rectangle(0,0,1920,1080,0);
+        draw_sprite(spr_rottest,0,0,0);
+        draw_set_color(c_white);
     }
+    
     if (view_current = 1) {
-        d3d_set_projection(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z, xt,yt,zt,   0,0,1);
+        d3d_set_projection(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1);
+    }
+    if (view_current = 2) {
+        d3d_set_projection(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1);
     }
 }
 
