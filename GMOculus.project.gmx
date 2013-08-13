@@ -9,8 +9,23 @@
   <backgrounds name="background">
     <background>background\tex_bark</background>
     <background>background\tex_grass</background>
+    <background>background\tex_sky</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\initGame.gml</script>
+  </scripts>
+  <objects name="objects">
+    <object>objects\obj_camera</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
+  <constants number="3">
+    <constant name="T_BARK">1</constant>
+    <constant name="T_GRASS">2</constant>
+    <constant name="T_SKY">3</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
