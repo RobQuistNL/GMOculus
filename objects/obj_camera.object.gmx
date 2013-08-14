@@ -449,6 +449,11 @@ if (global.camera_style == CAM_REGULAR) {
             <kind>1</kind>
             <string>show_message("es: "+string(es) + "# field_of_view = "+string(field_of_view)+ " - cam_aspect"+string(cam_aspect))
 
+show_message("OVR_Initialize:" + string(OVR_Initialize()));
+show_message("OVR_GetSensorCount:" + string(OVR_GetSensorCount()));
+show_message("OVR_IsSensorPresent(0):" + string(OVR_IsSensorPresent(0)));
+show_message("OVR_IsSensorPresent(1):" + string(OVR_IsSensorPresent(1)));
+show_message("OVR_IsSensorPresent(2):" + string(OVR_IsSensorPresent(2)));
 </string>
           </argument>
         </arguments>

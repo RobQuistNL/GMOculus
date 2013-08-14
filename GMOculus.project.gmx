@@ -45,6 +45,14 @@
     <script>scripts\draw3DObjects.gml</script>
     <script>scripts\drawBarrelEffect.gml</script>
     <script>scripts\createLens.gml</script>
+    <scripts name="OculusPlugin">
+      <script>scripts\oc_initDll.gml</script>
+      <script>scripts\OVR_GetScreenResolution.gml</script>
+      <script>scripts\OVR_Initialize.gml</script>
+      <script>scripts\OVR_GetSensorCount.gml</script>
+      <script>scripts\OVR_IsHMDPresent.gml</script>
+      <script>scripts\OVR_IsSensorPresent.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\obj_camera</object>
