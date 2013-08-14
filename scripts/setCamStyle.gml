@@ -5,22 +5,11 @@
 switch (argument0) {
     case CAM_REGULAR:      
         // Make the left eye view fill the whole screen
-        
-        view_visible[0] = true;
-        view_visible[1] = false;
-        view_visible[2] = false;
-        
         global.camera_style = CAM_REGULAR;
         break;
         
-    case CAM_OCULUS:
-       
+    case CAM_OCULUS:       
         // Make the left eye view fill the left part of the screen
-      
-        view_visible[0] = true;
-        view_visible[1] = true;
-        view_visible[2] = true;
-        
         global.camera_style = CAM_OCULUS;
         break;
     

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-20</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -33,7 +33,7 @@ draw_set_alpha_test(true);
 draw_enable_alphablend(true);
 draw_set_alpha_test_ref_value(254);
 
-d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
+//d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
 d3d_light_define_ambient(make_color_rgb(220,220,180));
 
 draw_set_color(c_white);
@@ -112,33 +112,41 @@ zt=z+tan(degtorad(zdirection));
 
 if (global.camera_style == CAM_REGULAR) {
     // Regular camera
-    if (view_current = 0) {
-        d3d_set_projection(x,y,z,    xt,yt,zt,   0,0,1);
-    }
     
+    //Draw the sight on a surface
+    surface_set_target(global.SURFACE[SURF_REGULAR]);
+        draw_clear(c_black);
+        d3d_set_projection(x,y,z, xt,yt,zt, 0,0,1);
+        draw3DObjects();
+    surface_reset_target();
+    
+    //Draw the surface on the screen
+    d3d_set_projection_ortho(0,0,1920,1080,0);
+    //draw_surface(global.SURFACE[SURF_REGULAR],0,0);
+    draw_surface_ext(global.SURFACE[SURF_REGULAR],0,0,0.5,0.5,0,c_white,1);
+  
 } else {
     // Oculus camera
-    if (view_current = 0) {
-        draw_set_color(c_black);
-        draw_rectangle(0,0,1920,1080,0);
-        draw_sprite(spr_rottest,0,0,0);
-        draw_set_color(c_white);
-    }
     
-    if (view_current = 1) {
+    //Draw the left eye on a surface
+    surface_set_target(global.SURFACE[SURF_LEFT]);
+        draw_clear(c_black);
         d3d_set_projection_ext(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1, field_of_view, cam_aspect, 1, 320000);
-        
-    }
-    if (view_current = 2) {
+        draw3DObjects();
+
+    //Draw the right eye on a surface
+    surface_set_target(global.SURFACE[SURF_RIGHT]);        
+        draw_clear(c_black);
         d3d_set_projection_ext(x+lengthdir_x(es,direction-90),y+lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1, field_of_view, cam_aspect, 1, 320000);
-    }
+        draw3DObjects();
+
+    //Go back to regular drawing and show the surfaces
+    surface_reset_target();
+    d3d_set_projection_ortho(0,0,1920,1080,0);
+    // This is just a test drawing. We need to reshape the whole thing for the oculus.
+    draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.2,0.2,0,c_white,1);
+    draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.2,0.2,0,c_white,1);
 }
-
-//Draw da flawr
-d3d_draw_floor(0,0,0,3200,3200,0,global.TEX[T_GRASS],32,32); //3200 = 32 meters
-
-//Draw the sky
-d3d_draw_ellipsoid(x-16000,y-16000,z-8000,x+16000,y+16000,z+8000,global.TEX[T_SKY],1,1,36);
 </string>
           </argument>
         </arguments>

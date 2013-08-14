@@ -21,8 +21,9 @@
   <scripts name="scripts">
     <script>scripts\initGame.gml</script>
     <script>scripts\setCamStyle.gml</script>
-    <script>scripts\initViews.gml</script>
+    <script>scripts\initSurfaces.gml</script>
     <script>scripts\initTextures.gml</script>
+    <script>scripts\draw3DObjects.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_camera</object>
@@ -32,13 +33,15 @@
     <object>objects\obj_wall</object>
     <object>objects\obj_init</object>
     <object>objects\obj_player</object>
+    <object>objects\obj_skybox</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
     <room>rooms\room_3d</room>
     <room>rooms\room_test</room>
   </rooms>
-  <constants number="11">
+  <constants number="14">
+    <constant name="SURF_REGULAR">1</constant>
     <constant name="PLAYER_SPEED">10</constant>
     <constant name="T_BARK">1</constant>
     <constant name="CAM_ASPECT">0.6</constant>
@@ -50,6 +53,8 @@
     <constant name="T_SKY">3</constant>
     <constant name="T_PINE">4</constant>
     <constant name="T_BRICKS">5</constant>
+    <constant name="SURF_LEFT">2</constant>
+    <constant name="SURF_RIGHT">3</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
