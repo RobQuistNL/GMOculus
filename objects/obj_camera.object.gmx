@@ -123,7 +123,7 @@ if (global.camera_style == CAM_REGULAR) {
     //Draw the surface on the screen
     d3d_set_projection_ortho(0,0,1920,1080,0);
     //draw_surface(global.SURFACE[SURF_REGULAR],0,0);
-    draw_surface_ext(global.SURFACE[SURF_REGULAR],0,0,0.5,0.5,0,c_white,1);
+    draw_surface_ext(global.SURFACE[SURF_REGULAR],0,0,1,1,0,c_white,1);
   
 } else {
     // Oculus camera
@@ -144,8 +144,8 @@ if (global.camera_style == CAM_REGULAR) {
     surface_reset_target();
     d3d_set_projection_ortho(0,0,1920,1080,0);
     // This is just a test drawing. We need to reshape the whole thing for the oculus.
-    draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.2,0.2,0,c_white,1);
-    draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.2,0.2,0,c_white,1);
+    draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.5,1,0,c_white,1);
+    draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.5,1,0,c_white,1);
 }
 </string>
           </argument>
