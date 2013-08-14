@@ -29,12 +29,11 @@
 d3d_set_perspective(false);
 d3d_set_depth(false);
 
-
 draw_set_alpha_test(true);
 draw_enable_alphablend(true);
 draw_set_alpha_test_ref_value(254);
 
-//d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
+d3d_set_fog(true,c_teal,500,1200); //No fog ATM.
 d3d_light_define_ambient(make_color_rgb(220,220,180));
 
 draw_set_color(c_white);
