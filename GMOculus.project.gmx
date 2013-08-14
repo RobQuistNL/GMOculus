@@ -43,20 +43,27 @@
     <script>scripts\initSurfaces.gml</script>
     <script>scripts\initTextures.gml</script>
     <script>scripts\draw3DObjects.gml</script>
+    <script>scripts\drawBarrelEffect.gml</script>
+    <script>scripts\createLens.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_camera</object>
-    <object>objects\obj_rottest</object>
-    <object>objects\obj_viewtest</object>
     <object>objects\obj_tree</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_init</object>
     <object>objects\obj_player</object>
     <object>objects\obj_skybox</object>
+    <objects name="test">
+      <object>objects\obj_rottest</object>
+      <object>objects\obj_viewtest</object>
+      <object>objects\obj_barreltest</object>
+      <object>objects\obj_ripple</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
     <room>rooms\room_3d</room>
+    <room>rooms\room_barreltest</room>
     <room>rooms\room_test</room>
   </rooms>
   <constants number="14">

@@ -47,6 +47,7 @@ field_of_view = CAM_FOV; // View angle
 cam_aspect = CAM_ASPECT;
 
 setCamStyle(CAM_REGULAR);
+createLens(0.8,400);
 </string>
           </argument>
         </arguments>
@@ -133,7 +134,7 @@ if (global.camera_style == CAM_REGULAR) {
         draw_clear(c_black);
         d3d_set_projection_ext(x-lengthdir_x(es,direction-90),y-lengthdir_y(es,direction-90),z,    xt,yt,zt,   0,0,1, field_of_view, cam_aspect, 1, 320000);
         draw3DObjects();
-
+        
     //Draw the right eye on a surface
     surface_set_target(global.SURFACE[SURF_RIGHT]);        
         draw_clear(c_black);
@@ -143,9 +144,72 @@ if (global.camera_style == CAM_REGULAR) {
     //Go back to regular drawing and show the surfaces
     surface_reset_target();
     d3d_set_projection_ortho(0,0,1920,1080,0);
+    
+    // Clear the regular screen
+    surface_set_target(global.SURFACE[SURF_REGULAR]);
+    draw_clear(c_black);
+    
+    // WARP TESTING
+    /*
+    Uncomment this piece of code to make the oculus view a series of lines.
+    This was used to test the warp effect to compensate for the lenses.
+    
+    surface_set_target(global.SURFACE[SURF_LEFT]);
+    draw_clear(c_white);
+    i = 0;
+    while (i &lt; room_width) {
+        draw_set_color(c_black);
+        draw_line(i,0,i,room_height);
+        i+=32;
+    }
+    i = 0;
+    while (i &lt; room_height) {
+        draw_set_color(c_black);
+        draw_line(0,i,room_width,i);
+        i+=32
+    }
+    surface_reset_target();
+    surface_copy(global.SURFACE[SURF_RIGHT],0,0,global.SURFACE[SURF_LEFT]);
+    */
+    // WARP TESTING
+    
+    
+    
+    // Init lens vars
+    lensx = display_get_width()/2
+    lensy = display_get_height()/2
+    
+    // Warp the left eye
+    surface_set_target(lenssurface)
+    draw_clear_alpha(c_white,0)
+    draw_surface_part(global.SURFACE[SURF_LEFT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+        
+    // Draw the left eye to the regular surface   
+    surface_set_target(global.SURFACE[SURF_REGULAR]);
+    draw_set_color(c_white)
+    d3d_model_draw(lens,display_get_width()/2 - lensr,lensy,0,surface_get_texture(lenssurface))
+    
+    
+    // Warp the right eye
+    surface_set_target(lenssurface)
+    draw_clear_alpha(c_white,0)
+    draw_surface_part(global.SURFACE[SURF_RIGHT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+        
+    // Draw the right eye to the regular surface   
+    surface_set_target(global.SURFACE[SURF_REGULAR]);
+    draw_set_color(c_white)
+    d3d_model_draw(lens,display_get_width()/2 + lensr,lensy,0,surface_get_texture(lenssurface))
+    
+    // Draw the regular surface as a whole
+    surface_reset_target();
+    d3d_set_projection_ortho(0,0,1920,1080,0);
+    draw_clear(c_black);
+    //draw_surface_ext(global.SURFACE[SURF_REGULAR],100,100,0.8,0.8,0,c_white,1);
+    draw_surface(global.SURFACE[SURF_REGULAR],0,0);
+    
     // This is just a test drawing. We need to reshape the whole thing for the oculus.
-    draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.5,1,0,c_white,1);
-    draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.5,1,0,c_white,1);
+    //draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.5,1,0,c_white,1);
+    //draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.5,1,0,c_white,1);
 }
 </string>
           </argument>
