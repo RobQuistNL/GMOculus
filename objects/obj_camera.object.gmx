@@ -173,43 +173,50 @@ if (global.camera_style == CAM_REGULAR) {
     */
     // WARP TESTING
     
-    
-    
-    // Init lens vars
-    lensx = display_get_width()/2
-    lensy = display_get_height()/2
-    
-    // Warp the left eye
-    surface_set_target(lenssurface)
-    draw_clear_alpha(c_white,0)
-    draw_surface_part(global.SURFACE[SURF_LEFT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+    if (CAM_ENABLE_LENS_CORRECTION) {
+        //Warning - this is very crappy. It looks weird and makes me feel sick, i just don't know whats wrong yet.
+        // Init lens vars
+        lensx = display_get_width()/2
+        lensy = display_get_height()/2
         
-    // Draw the left eye to the regular surface   
-    surface_set_target(global.SURFACE[SURF_REGULAR]);
-    draw_set_color(c_white)
-    d3d_model_draw(lens,display_get_width()/2 - lensr,lensy,0,surface_get_texture(lenssurface))
-    
-    
-    // Warp the right eye
-    surface_set_target(lenssurface)
-    draw_clear_alpha(c_white,0)
-    draw_surface_part(global.SURFACE[SURF_RIGHT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+        // Warp the left eye
+        surface_set_target(lenssurface)
+        draw_clear_alpha(c_white,0)
+        draw_surface_part(global.SURFACE[SURF_LEFT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+            
+        // Draw the left eye to the regular surface   
+        surface_set_target(global.SURFACE[SURF_REGULAR]);
+        draw_set_color(c_white)
+        d3d_model_draw(lens,display_get_width()/2 - lensr,lensy,0,surface_get_texture(lenssurface))
         
-    // Draw the right eye to the regular surface   
-    surface_set_target(global.SURFACE[SURF_REGULAR]);
-    draw_set_color(c_white)
-    d3d_model_draw(lens,display_get_width()/2 + lensr,lensy,0,surface_get_texture(lenssurface))
-    
-    // Draw the regular surface as a whole
-    surface_reset_target();
-    d3d_set_projection_ortho(0,0,1920,1080,0);
-    draw_clear(c_black);
-    //draw_surface_ext(global.SURFACE[SURF_REGULAR],100,100,0.8,0.8,0,c_white,1);
-    draw_surface(global.SURFACE[SURF_REGULAR],0,0);
-    
-    // This is just a test drawing. We need to reshape the whole thing for the oculus.
-    //draw_surface_ext(global.SURFACE[SURF_LEFT],0,0,0.5,1,0,c_white,1);
-    //draw_surface_ext(global.SURFACE[SURF_RIGHT],display_get_width()/2,0,0.5,1,0,c_white,1);
+        
+        // Warp the right eye
+        surface_set_target(lenssurface)
+        draw_clear_alpha(c_white,0)
+        draw_surface_part(global.SURFACE[SURF_RIGHT],lensx-lensr,lensy-lensr,lensr*2,lensr*2,0,0)
+            
+        // Draw the right eye to the regular surface   
+        surface_set_target(global.SURFACE[SURF_REGULAR]);
+        draw_set_color(c_white)
+        d3d_model_draw(lens,display_get_width()/2 + lensr,lensy,0,surface_get_texture(lenssurface))
+        
+        // Draw the regular surface as a whole
+        surface_reset_target();
+        d3d_set_projection_ortho(0,0,1920,1080,0);
+        draw_clear(c_black);
+        //draw_surface_ext(global.SURFACE[SURF_REGULAR],100,100,0.8,0.8,0,c_white,1);
+        draw_surface(global.SURFACE[SURF_REGULAR],0,0);
+    } else {
+        
+        //This is the unwarped version.
+        
+        surface_reset_target();
+        d3d_set_projection_ortho(0,0,1920,1080,0);
+        draw_clear(c_black);
+        
+        draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],120,85,840,906,c_white,1);
+        draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],120+840,85,840,906,c_white,1);
+    }
 }
 </string>
           </argument>
