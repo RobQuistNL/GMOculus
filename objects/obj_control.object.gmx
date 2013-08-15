@@ -26,8 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>d3d_start();
-
-
 draw_set_color(c_white);
 </string>
           </argument>
@@ -52,10 +50,8 @@ draw_set_color(c_white);
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_gray)
-draw_text(5,5,"FPS: " + string(fps) +'#Wireframe: ' + string(obj_room.drawWire) + " (press E to toggle)#IPD: "+string(cam_fps.es))
+draw_text(5,5,"FPS: " + string(fps) +'#Wireframe: ' + string(obj_room.drawWire) + " (press E to toggle)#IPD: "+string(cam_fps.es) + "#wsize:" +string(cam_fps.wsize)+ "#hsize:" +string(cam_fps.hsize))
 draw_set_color(c_white)
-
-
 </string>
           </argument>
         </arguments>

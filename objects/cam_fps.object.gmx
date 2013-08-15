@@ -27,17 +27,21 @@
             <kind>1</kind>
             <string>OVR_Init();
 
+//wsize=170
+//hsize=100
+wsize=0
+hsize=0
+
 es = CAM_EYESEP; //Eye seperation (in CM, from the nose)
+
+//initShaderMatrixArray(3);
 
 passedTextureLeft = shader_get_sampler_index(hmdwarp_shader, "passedTextureLeft")
 passedTextureRight = shader_get_sampler_index(hmdwarp_shader, "passedTextureRight")
 
 event_user(0);
 
-angle = 111;
 aspect = view_wview/view_hview;
-znear = 1;
-zfar = 2048;
 
 yaw=0;
 pitch=0;
@@ -123,28 +127,6 @@ global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>  </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -163,8 +145,16 @@ global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
           <argument>
             <kind>1</kind>
             <string>
-es+=keyboard_check(vk_up)*.05
-es-=keyboard_check(vk_down)*.05
+//es+=keyboard_check(vk_up)*.1
+//es-=keyboard_check(vk_down)*.1
+
+hsize+=keyboard_check(vk_up)*5
+hsize-=keyboard_check(vk_down)*5
+
+wsize+=keyboard_check(vk_right)*5
+wsize-=keyboard_check(vk_left)*5
+
+
 
 yaw = OVR_Device_getYaw();
 player_fps.dir = yaw;
@@ -179,15 +169,15 @@ roll = OVR_Device_getRoll();
     surface_set_target(global.SURFACE[SURF_LEFT]);
         draw_clear(background_color);
         aspect = (view_wview/2)/view_hview;
-        xfrom = player_fps.x-lengthdir_x(es,player_fps.dir-90);
-        yfrom = player_fps.y-lengthdir_y(es,player_fps.dir-90);
+        xfrom = player_fps.x//-lengthdir_x(es,player_fps.dir-90);
+        yfrom = player_fps.y//-lengthdir_y(es,player_fps.dir-90);
         zfrom = player_fps.z + player_fps.height;
         
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
         
         shader_set(stereo_offset_left);//use this to offset everything for the current ee view
-        with obj_room{
-        event_perform(ev_draw,0);
+        with obj_room {
+            event_perform(ev_draw,0);
         }
         shader_reset();
         d3d_transform_set_identity()
@@ -196,14 +186,14 @@ roll = OVR_Device_getRoll();
     surface_set_target(global.SURFACE[SURF_RIGHT]);        
         draw_clear(background_color);
         aspect = (view_wview/2)/view_hview;
-        xfrom = player_fps.x+lengthdir_x(es,player_fps.dir-90);
-        yfrom = player_fps.y+lengthdir_y(es,player_fps.dir-90);
+        xfrom = player_fps.x//+lengthdir_x(es,player_fps.dir-90);
+        yfrom = player_fps.y//+lengthdir_y(es,player_fps.dir-90);
         zfrom = player_fps.z + player_fps.height;
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
        
         shader_set(stereo_offset_right);//use this to offset everything for the current ee view
-        with obj_room{
-        event_perform(ev_draw,0);
+        with obj_room {
+            event_perform(ev_draw,0);
         }
         shader_reset();
         d3d_transform_set_identity()
@@ -230,7 +220,8 @@ roll = OVR_Device_getRoll();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>surface_set_target(global.SURFACE[SURF_REGULAR]);
+            <string>// Draw everything on the regular surface
+surface_set_target(global.SURFACE[SURF_REGULAR]);
     draw_clear(c_black);
     d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
             
@@ -250,10 +241,12 @@ roll = OVR_Device_getRoll();
     shader_reset();
     
 surface_reset_target();
+
+// Now draw the regular surface
 d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
 draw_clear(c_black);
 
-draw_surface_stretched_ext(global.SURFACE[SURF_REGULAR], 100, 100, view_wview-200, view_hview-200,c_white,1);
+draw_surface_stretched_ext(global.SURFACE[SURF_REGULAR], wsize, hsize, view_wview-wsize*2, view_hview-hsize*2,c_white,1);
 </string>
           </argument>
         </arguments>
