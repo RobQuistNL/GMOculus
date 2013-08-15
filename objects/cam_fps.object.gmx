@@ -29,7 +29,7 @@
 
 //wsize=170
 //hsize=100
-wsize=0
+wsize=145
 hsize=0
 
 es = CAM_EYESEP; //Eye seperation (in CM, from the nose)

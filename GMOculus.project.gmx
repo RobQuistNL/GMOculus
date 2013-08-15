@@ -94,7 +94,7 @@
     <constant name="CAM_ZNEAR">1</constant>
     <constant name="CAM_ANGLE">111</constant>
     <constant name="SURF_RIGHT">1</constant>
-    <constant name="CAM_EYESEP">2</constant>
+    <constant name="CAM_EYESEP">0.1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>
     <constant name="CAM_ZFAR">2048</constant>
