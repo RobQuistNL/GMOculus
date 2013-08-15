@@ -76,6 +76,7 @@ event_user(0);
             <string>
 vleft=surface_create(sprite_get_width(test_spr),sprite_get_height(test_spr));
 vright=surface_create(sprite_get_width(test_spr),sprite_get_height(test_spr));
+wholesurface = surface_create(view_wview[0],view_hview[0]);
 
 surface_set_target(vleft)
 draw_sprite_ext(test_spr,0,0,0,1,1,0,c_white,1);
@@ -109,17 +110,23 @@ spr_TextureRight = surface_get_texture(vright);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if surface_exists(vleft)=false then event_user(0);
+            <string>surface_set_target(wholesurface);
+    draw_clear(c_black);
+    
+    if surface_exists(vleft)=false then event_user(0);
+    
+    shader_set(hmdwarp_shader);
+    
+    //draw_sprite_stretched(sprite_index,0,0,0,768,480)
+    
+    texture_set_stage(passedTextureLeft, spr_TextureLeft);
+    texture_set_stage(passedTextureRight, spr_TextureRight);
+    draw_sprite_stretched(blank_spr,0,0,0,view_wview,view_hview)
+    
+    shader_reset();
+surface_reset_target();
 
-shader_set(hmdwarp_shader);
-
-//draw_sprite_stretched(sprite_index,0,0,0,768,480)
-
-texture_set_stage(passedTextureLeft, spr_TextureLeft);
-texture_set_stage(passedTextureRight, spr_TextureRight);
-draw_sprite_stretched(blank_spr,0,0,0,view_wview,view_hview)
-
-shader_reset();
+draw_surface_ext(wholesurface,300,300,0.6,0.6,0,c_white,1);
 </string>
           </argument>
         </arguments>

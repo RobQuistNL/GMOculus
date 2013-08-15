@@ -27,9 +27,6 @@
             <kind>1</kind>
             <string>OVR_Init();
 
-SURF_RIGHT=0;
-SURF_LEFT=1;
-
 es = CAM_EYESEP; //Eye seperation (in CM, from the nose)
 
 passedTextureLeft = shader_get_sampler_index(hmdwarp_shader, "passedTextureLeft")
@@ -37,7 +34,7 @@ passedTextureRight = shader_get_sampler_index(hmdwarp_shader, "passedTextureRigh
 
 event_user(0);
 
-angle = 110;
+angle = 111;
 aspect = view_wview/view_hview;
 znear = 1;
 zfar = 2048;
@@ -120,7 +117,30 @@ leftMat[15] = 1; // GM Matrix has to have 0-15, can't be a 2-dimension array
             <kind>1</kind>
             <string>global.SURFACE[SURF_RIGHT]=surface_create(view_wview/2,view_hview);
 global.SURFACE[SURF_LEFT]=surface_create(view_wview/2,view_hview);
+global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>  </string>
           </argument>
         </arguments>
       </action>
@@ -151,20 +171,19 @@ player_fps.dir = yaw;
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();
 
-
-    if surface_exists(global.SURFACE[SURF_RIGHT])=false then event_user(0);
+    if (!surface_exists(global.SURFACE[SURF_RIGHT])) {
+        event_user(0);
+    }
 
     //Draw the left eye on a surface
     surface_set_target(global.SURFACE[SURF_LEFT]);
         draw_clear(background_color);
-        angle = 110;
         aspect = (view_wview/2)/view_hview;
-        znear = 1;
-        zfar = 2048;
-        xfrom = player_fps.x;
-        yfrom = player_fps.y;
+        xfrom = player_fps.x-lengthdir_x(es,player_fps.dir-90);
+        yfrom = player_fps.y-lengthdir_y(es,player_fps.dir-90);
         zfrom = player_fps.z + player_fps.height;
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, angle, aspect, znear, zfar);
+        
+        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
         
         shader_set(stereo_offset_left);//use this to offset everything for the current ee view
         with obj_room{
@@ -176,14 +195,11 @@ roll = OVR_Device_getRoll();
     //Draw the right eye on a surface
     surface_set_target(global.SURFACE[SURF_RIGHT]);        
         draw_clear(background_color);
-        angle = 110;
         aspect = (view_wview/2)/view_hview;
-        znear = 1;
-        zfar = 2048;
-        xfrom = player_fps.x;
-        yfrom = player_fps.y;
+        xfrom = player_fps.x+lengthdir_x(es,player_fps.dir-90);
+        yfrom = player_fps.y+lengthdir_y(es,player_fps.dir-90);
         zfrom = player_fps.z + player_fps.height;
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, angle, aspect, znear, zfar);
+        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
        
         shader_set(stereo_offset_right);//use this to offset everything for the current ee view
         with obj_room{
@@ -214,22 +230,30 @@ roll = OVR_Device_getRoll();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
-        
-//draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],0,0,view_wview/2,view_hview,c_white,1);
-//draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],120+840,85,840,906,c_white,1);
+            <string>surface_set_target(global.SURFACE[SURF_REGULAR]);
+    draw_clear(c_black);
+    d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
+            
+    //draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],0,0,view_wview/2,view_hview,c_white,1);
+    //draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],120+840,85,840,906,c_white,1);
+    
+    spr_TextureLeft = surface_get_texture(global.SURFACE[SURF_RIGHT]);
+    spr_TextureRight = surface_get_texture(global.SURFACE[SURF_LEFT]);
+    
+    shader_set(hmdwarp_shader);
+    //must use this shader to warp the image to counteract the fisheye lenses
+    
+    texture_set_stage(passedTextureLeft, spr_TextureLeft);
+    texture_set_stage(passedTextureRight, spr_TextureRight);
+    draw_sprite_stretched(blank_spr,0,0,0,view_wview,view_hview)
+    
+    shader_reset();
+    
+surface_reset_target();
+d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
+draw_clear(c_black);
 
-spr_TextureLeft = surface_get_texture(global.SURFACE[SURF_RIGHT]);
-spr_TextureRight = surface_get_texture(global.SURFACE[SURF_LEFT]);
-
-shader_set(hmdwarp_shader);
-//must use this shader to warp the image to counteract the fisheye lenses
-
-texture_set_stage(passedTextureLeft, spr_TextureLeft);
-texture_set_stage(passedTextureRight, spr_TextureRight);
-draw_sprite_stretched(blank_spr,0,0,0,view_wview,view_hview)
-
-shader_reset();
+draw_surface_stretched_ext(global.SURFACE[SURF_REGULAR], 100, 100, view_wview-200, view_hview-200,c_white,1);
 </string>
           </argument>
         </arguments>
