@@ -161,10 +161,11 @@ yaw = OVR_Device_getYaw();
 player_fps.dir = yaw;
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();
+nroll = lengthdir_y(90,-roll);
 
-xadd=lengthdir_x_3d(yaw+90,roll,es/2);
-yadd=lengthdir_y_3d(yaw+90,roll,es/2);
-zadd=lengthdir_z_3d(yaw+90,roll,es/2);
+xadd=lengthdir_x_3d(yaw+90,nroll,es/2);
+yadd=lengthdir_y_3d(yaw+90,nroll,es/2);
+zadd=lengthdir_z_3d(yaw+90,nroll,es/2);
 
 
     if (!surface_exists(global.SURFACE[SURF_RIGHT])) {

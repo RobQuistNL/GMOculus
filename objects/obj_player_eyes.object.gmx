@@ -58,14 +58,14 @@ onGround = true;
           <argument>
             <kind>1</kind>
             <string>// This is a testobject. You can see how the eyes move based on the oculus
-xfrom = x+lengthdir_x_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
-yfrom = y+lengthdir_y_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
-zfrom = height+lengthdir_z_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
+xfrom = x+lengthdir_x_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
+yfrom = y+lengthdir_y_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
+zfrom = height+lengthdir_z_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
 d3d_draw_ellipsoid(xfrom-2,yfrom-2,zfrom-2,xfrom+2,yfrom+2,zfrom+2,global.TEX[TEX_TEST],1,1,12);
 
-xfrom = x-lengthdir_x_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
-yfrom = y-lengthdir_y_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
-zfrom = height-lengthdir_z_3d(cam_fps.yaw+90,cam_fps.roll,cam_fps.es);
+xfrom = x-lengthdir_x_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
+yfrom = y-lengthdir_y_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
+zfrom = height-lengthdir_z_3d(cam_fps.yaw+90,cam_fps.nroll,cam_fps.es);
 d3d_draw_ellipsoid(xfrom-2,yfrom-2,zfrom-2,xfrom+2,yfrom+2,zfrom+2,global.TEX[TEX_TEST],1,1,12);
 </string>
           </argument>
