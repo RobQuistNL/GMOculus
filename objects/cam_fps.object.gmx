@@ -149,7 +149,7 @@ global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
 es-=keyboard_check(vk_down)*.1;
 
 yaw = OVR_Device_getYaw();
-player_fps.dir = yaw;
+yaw = yaw+player_fps.dir
 direction = yaw
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();

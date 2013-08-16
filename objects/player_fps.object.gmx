@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_3d_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -86,7 +86,7 @@ onGround = true;
           <argument>
             <kind>1</kind>
             <string>scr_playerMovement(5,3,4);
-//scr_mouseLook()
+scr_mouseLook()
 
 line = -1;
 onGround = false;
@@ -119,6 +119,37 @@ z += zspeed;
 zspeed -= zgravity
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>d3d_transform_set_identity();
+d3d_transform_add_scaling(3,3,3);
+d3d_transform_add_rotation_z(dir-90);
+d3d_transform_add_translation(x,y,z+5);
+
+d3d_set_culling(false)
+d3d_model_draw(global.MODEL[MOD_ARROW],0,0,0,global.TEX[TEX_ARROW]);
+d3d_set_culling(true)
+d3d_transform_set_identity();
 </string>
           </argument>
         </arguments>
