@@ -26,7 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>d3d_start();
+d3d_set_culling(false);
+d3d_set_hidden(true);
+d3d_set_shading(1);
+
+draw_set_alpha_test(true);
+draw_enable_alphablend(true);
+draw_set_alpha_test_ref_value(128);
+
 draw_set_color(c_white);
+
+loadTextures();
+loadModels();
 </string>
           </argument>
         </arguments>
@@ -50,7 +61,9 @@ draw_set_color(c_white);
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_gray)
-draw_text(5,5,"FPS: " + string(fps) +'#Wireframe: ' + string(obj_room.drawWire) + " (press E to toggle)#IPD: "+string(cam_fps.es) + "#wsize:" +string(cam_fps.wsize)+ "#hsize:" +string(cam_fps.hsize))
+draw_text(5,5,"FPS: " + string(fps) +'#Wireframe: ' + string(obj_room.drawWire) + " (press E to toggle)#IPD: "+string(cam_fps.es) + "#wsize:" +string(cam_fps.wsize)+ "#hsize:" +string(cam_fps.hsize) +
+ "XY: " + string(player_fps.x) + "x" + string(player_fps.y)
+)
 draw_set_color(c_white)
 </string>
           </argument>
