@@ -34,12 +34,10 @@ hsize=0
 
 es = CAM_EYESEP; //Eye seperation (in CM, from the nose)
 
-//initShaderMatrixArray(3);
-
 passedTextureLeft = shader_get_sampler_index(hmdwarp_shader, "passedTextureLeft")
 passedTextureRight = shader_get_sampler_index(hmdwarp_shader, "passedTextureRight")
 
-event_user(0);
+event_user(0); // Initialize the surfaces
 
 aspect = view_wview/view_hview;
 
@@ -50,6 +48,10 @@ roll=0;
 xfrom = player_fps.x;
 yfrom = player_fps.y;
 zfrom = player_fps.z + player_fps.height;
+
+// @todo 
+// Check out initShaderMatrixArray. I just don't know how to get those arrays into the shaders.
+// initShaderMatrixArray(3);
 
 //rightMat
 rightMat[0] = 1;
@@ -176,9 +178,11 @@ roll = OVR_Device_getRoll();
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
         
         shader_set(stereo_offset_left);//use this to offset everything for the current ee view
-        with obj_room {
+        with obj_3d_parent {
             event_perform(ev_draw,0);
         }
+        
+
         shader_reset();
         d3d_transform_set_identity()
         
@@ -190,9 +194,9 @@ roll = OVR_Device_getRoll();
         yfrom = player_fps.y//+lengthdir_y(es,player_fps.dir-90);
         zfrom = player_fps.z + player_fps.height;
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
-       
+
         shader_set(stereo_offset_right);//use this to offset everything for the current ee view
-        with obj_room {
+        with obj_3d_parent {
             event_perform(ev_draw,0);
         }
         shader_reset();

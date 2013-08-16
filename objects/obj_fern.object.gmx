@@ -25,38 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>model = d3d_model_create();
-
-d3d_model_load(model, "3rd_world.mod")
-
-list = ds_list_create()
-ds_list_copy(list,mod_to_triList("3rd_world.mod"))
-
-drawWire = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>
-if (keyboard_check_pressed(ord("E"))) drawWire = !drawWire;
+            <string>direction = random(360)
 </string>
           </argument>
         </arguments>
@@ -79,30 +48,14 @@ if (keyboard_check_pressed(ord("E"))) drawWire = !drawWire;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// must be at the origin or else the collision will not work.
-d3d_model_draw(model, 0, 0, 0, background_get_texture(bac_lightMap));
+            <string>//HOW DOES THIS NOT WORK
+// The model is drawn at 0,0..... But why???
+//show_message("Drawing fern :"+string(x)+" - "+string(y));
 
-draw_set_color(c_black)
-if(drawWire){
-    // draws the wireframe of the model
-    d3d_primitive_begin(pr_linelist);
-    for(var i =0; i&lt;ds_list_size(list);i++){
-        points = ds_list_find_value(list,i)
-        
-        d3d_vertex(ds_list_find_value(points,0), ds_list_find_value(points,1), ds_list_find_value(points,2));
-        d3d_vertex(ds_list_find_value(points,3), ds_list_find_value(points,4), ds_list_find_value(points,5));
-        
-        d3d_vertex(ds_list_find_value(points,3), ds_list_find_value(points,4), ds_list_find_value(points,5));
-        d3d_vertex(ds_list_find_value(points,6), ds_list_find_value(points,7), ds_list_find_value(points,8));
-         
-        d3d_vertex(ds_list_find_value(points,6), ds_list_find_value(points,7), ds_list_find_value(points,8));
-        d3d_vertex(ds_list_find_value(points,0), ds_list_find_value(points,1), ds_list_find_value(points,2));
-     }
-    d3d_primitive_end();
-}
-
-
-draw_set_color(c_white)
+d3d_transform_set_rotation_z(direction);
+d3d_transform_set_translation(x,y,0);
+d3d_model_draw(global.MODEL[MOD_FERN],0,0,0,global.TEX[TEX_FERN]);
+d3d_transform_set_identity();
 </string>
           </argument>
         </arguments>
