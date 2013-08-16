@@ -14,3 +14,14 @@ d3d_model_load(global.MODEL[MOD_TREE_LEAVES],working_directory + "\models\tree_l
 d3d_model_load(global.MODEL[MOD_TREE_TRUNK],working_directory + "\models\tree_trunk.d3d");
 d3d_model_load(global.MODEL[MOD_FERN],working_directory + "\models\fern.d3d");
 
+
+global.MODEL[MOD_FIRE] = d3d_model_create();
+global.MODEL[MOD_FIREHAY] = d3d_model_create();
+global.MODEL[MOD_FIREWOOD] = d3d_model_create();
+
+d3d_model_cone(global.MODEL[MOD_FIRE],-12,-12,0,12,12,30,1,1,1,18);
+
+//d3d_model_load(global.MODEL[MOD_FIRE],working_directory + "\models\fire.d3d");
+d3d_model_load(global.MODEL[MOD_FIREHAY],working_directory + "\models\firehay.d3d");
+d3d_model_load(global.MODEL[MOD_FIREWOOD],working_directory + "\models\firewood.d3d");
+
