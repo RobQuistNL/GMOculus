@@ -9,10 +9,13 @@ attribute vec2 in_TextureCoord;              // (u,v)
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-mat4 leftMat=mat4(1,0,0,-1,0,1,0,0,0,0,1,0,0,0,0,1);
-//mat4 leftMat=mat4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+uniform mat4 WorldMatrix;
 
-/*(1,0,0,-2),
+mat4 leftMat=mat4(1,0,0,-0.5,0,1,0,0,0,0,1,0,0,0,0,1);
+
+//mat4 viewMat=mat4(1,0,0,0.005,0,1,0,0,0,0,1,0,0,0,0,1);
+
+/*(1,0,0,1),
 (0,1,0,0),
 (0,0,1,0),
 (0,0,0,1);*/

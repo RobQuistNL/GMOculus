@@ -9,10 +9,13 @@ attribute vec2 in_TextureCoord;              // (u,v)
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-mat4 leftMat=mat4(1,0,0,1,0,1,0,0,0,0,1,0,0,0,0,1);
-//mat4 leftMat=mat4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+uniform mat4 WorldMatrix;
 
-/*(1,0,0,2),
+mat4 leftMat=mat4(1,0,0,0.5,0,1,0,0,0,0,1,0,0,0,0,1);
+
+//mat4 viewMat=mat4(1,0,0,-0.005,0,1,0,0,0,0,1,0,0,0,0,1);
+
+/*(1,0,0,1),
 (0,1,0,0),
 (0,0,1,0),
 (0,0,0,1);*/
@@ -21,8 +24,7 @@ void main()
 {
     vec4 object_space_pos = vec4( in_Position.x, in_Position.y, in_Position.z, 1.0);
     mat4 view_Off = gm_Matrices[MATRIX_VIEW]*leftMat;
-    gl_Position = ((gm_Matrices[MATRIX_WORLD]*gm_Matrices[MATRIX_PROJECTION])* view_Off ) * object_space_pos;
-
+    gl_Position = (((gm_Matrices[MATRIX_WORLD])*gm_Matrices[MATRIX_PROJECTION])* view_Off ) * object_space_pos;
     
     v_vColour = in_Colour;
     v_vTexcoord = in_TextureCoord;

@@ -26,8 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>direction=random(360);
-xx=x
-yy=y
+xx=x;
+yy=y;
+
 </string>
           </argument>
         </arguments>
@@ -54,8 +55,11 @@ yy=y
 // The model is drawn at 0,0..... But why???
 //show_message("Drawing tree :"+string(x)+" - "+string(y));
 
-d3d_transform_set_rotation_z(direction);
-d3d_transform_set_translation(x,y,0);
+d3d_transform_set_identity();
+d3d_transform_add_rotation_z(direction);
+d3d_transform_add_translation(x,y,0);
+//shader_set_uniform_matrix(shader_get_uniform(stereo_offset_left, "WorldMatrix"));
+//shader_set_uniform_matrix(shader_get_uniform(stereo_offset_right, "WorldMatrix"));
 d3d_set_culling(true);
 d3d_model_draw(global.MODEL[MOD_TREE_TRUNK],0,0,0,global.TEX[TEX_BARK]);
 d3d_set_culling(false);

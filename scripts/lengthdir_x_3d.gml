@@ -1,32 +1,10 @@
-/*===========================================*/
-//argument0 = x offset
-//argument1 = y offset
-//argument2 = z offset
-//argument3 = xdirection
-//argument4 = ydirection
-//argument5 = zdirection
+//lengthdir_x_3d(dir,zdir,dis);
+//Remember to replace this in this way to get a full working function...
+//argument0=direction
+//argument1=zdirection (must lie between -90 and 90.. )
+//argument2=Distance
+var _lm;
 
-//Returns X Spot
-/*===========================================*/
+_lm=lengthdir_x(1,argument1);
 
-//Load up temp vars
-X=argument0
-Y=argument0
-Z=argument0
-
-//X Rotate
-newy=(Y*cos(degtorad(-argument1)))-(Z*sin(degtorad(-argument1)))
-newz=(Z*cos(degtorad(-argument1)))+(Y*sin(degtorad(-argument1)))
-Y=newy
-Z=newz
-
-//Y Rotate
-newx=(X*cos(degtorad(-argument2)))+(Z*sin(degtorad(-argument2)))
-X=newx
-
-//Z Rotate
-newy=(Y*cos(degtorad(-argument3)))+(X*sin(degtorad(-argument3)))
-X=newx
-
-//Return X
-return(X)
+return (lengthdir_x(argument2*_lm,argument0));

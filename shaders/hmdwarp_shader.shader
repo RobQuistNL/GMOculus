@@ -39,7 +39,7 @@ float scaleFactor = 1.0;
 
 vec2 leftLensCenter      = vec2((w + 0.25 * 0.5)*0.5, h*0.5);
 vec2 Scale         = vec2((w/2.0) * scaleFactor, (h/2.0) * scaleFactor * as);
-vec2 ScaleIn      = vec2((1.78), (1.9) / as);
+vec2 ScaleIn      = vec2((1.6), (1.6) / as);
 vec4 HmdWarpParam   = vec4(1, 0.22, 0.24, 0);
 
 // right
@@ -65,9 +65,10 @@ void main()
      if (texcoord.x > 0.5) {
          texcoord.x -= 0.5;
       }
-      texcoord.x *= 2.0; 
+      texcoord.x *= 2.0;
 
       if (v_vTexcoord.x > 0.5) {
+        texcoord.x += 0.075;
          vec2 texcoord = HmdWarp(texcoord, rightLensCenter);
           if (any(bvec2(clamp(texcoord,screenCenter-vec2(0.5,0.5), screenCenter+vec2(0.5,0.5)) - texcoord)))
           {
@@ -83,6 +84,7 @@ void main()
          
          
       } else {
+        texcoord.x -= 0.075;
          vec2 texcoord = HmdWarp(texcoord, leftLensCenter);
           if (any(bvec2(clamp(texcoord,screenCenter-vec2(0.5,0.5), screenCenter+vec2(0.5,0.5)) - texcoord)))
           {

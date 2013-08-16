@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_start();
+            <string>global._X=0;
+global._Y=0;
+global._Z=0;
+
+d3d_start();
 d3d_set_culling(false);
 d3d_set_hidden(true);
 d3d_set_shading(1);

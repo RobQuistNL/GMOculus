@@ -180,6 +180,12 @@
       <script>scripts\loadModels.gml</script>
     </scripts>
     <script>scripts\script16.gml</script>
+    <scripts name="3d lengthdr">
+      <script>scripts\lengthdir_x_3d.gml</script>
+      <script>scripts\lengthdir_y_3d.gml</script>
+      <script>scripts\lengthdir_z_3d.gml</script>
+      <script>scripts\lengthdir_all_3d.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
