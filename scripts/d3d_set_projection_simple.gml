@@ -40,3 +40,7 @@ uy = ny
 uz = nz
 //setting_projection
 d3d_set_projection_ext(xx,yy,zz,xx+tx,yy+ty,zz+tz,ux,uy,uz,argument6, argument7, argument8, argument9)
+if (CAM_FRUSTUM) {
+frustum_culling_init  (xx,yy,zz,xx+tx,yy+ty,zz+tz,ux,uy,uz,argument6, argument7, argument8, argument9)
+}
+

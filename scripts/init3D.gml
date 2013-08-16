@@ -1,10 +1,12 @@
 d3d_start();
 
-display_reset(8,true) // Antialias 8x, Vertical Sync enabled
+display_reset(CAM_ANTIALIAS,CAM_VSYNC);
 d3d_set_culling(false); 
 d3d_set_hidden(true);
 d3d_set_shading(true);
 d3d_set_lighting(true);
+
+//d3d_set_fog(true,c_teal,CAM_ZNEAR,CAM_ZFAR) 
 
 draw_set_alpha_test(true);
 draw_enable_alphablend(true);

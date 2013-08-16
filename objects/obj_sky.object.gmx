@@ -48,10 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>range = 4096
-d3d_draw_ellipsoid(player_fps.x-range/2,player_fps.y-range/2,player_fps.z-range/2,player_fps.x+range/2,player_fps.y+range/2,player_fps.z+range/2,global.TEX[TEX_SKY],1,1,36);
-
-//light_Sunlight()
+            <string>d3d_set_culling(false);
+d3d_model_draw(global.MODEL[MOD_SKYBALL],player_fps.x,player_fps.y,player_fps.z,global.TEX[TEX_SKY]);
+d3d_set_culling(true);
 
 </string>
           </argument>
