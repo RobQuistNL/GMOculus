@@ -48,11 +48,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_transform_set_identity();
-d3d_transform_add_rotation_z(direction);
-d3d_transform_add_translation(x,y,0);
-d3d_model_draw(global.MODEL[MOD_FERN],0,0,0,global.TEX[TEX_FERN]);
-d3d_transform_set_identity();
+            <string>maydraw =1;
+if (CAM_FRUSTUM) {
+    maydraw = frustum_culling(x, y, 0, 30*sqrt(3));
+}
+
+if (maydraw) {
+    d3d_transform_set_identity();
+    d3d_transform_add_scaling(2,2,2);
+    d3d_transform_add_rotation_z(direction);
+    d3d_transform_add_translation(x,y,0);
+
+    d3d_set_culling(false)
+    d3d_model_draw(global.MODEL[MOD_FERN],0,0,0,global.TEX[TEX_FERN]);
+    d3d_set_culling(true)
+    d3d_transform_set_identity();
+}
 </string>
           </argument>
         </arguments>
