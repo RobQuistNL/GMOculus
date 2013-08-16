@@ -53,7 +53,8 @@ draw_text(5,5,"FPS: " + string(fps) +'#Wireframe: ' + string(obj_room.drawWire) 
  "XY: " + string(player_fps.x) + "x" + string(player_fps.y) +
  "##Yaw:" +string(cam_fps.yaw)+
  "#Pitch:" +string(cam_fps.pitch)+
- "#Roll:" +string(cam_fps.roll)
+ "#Roll:" +string(cam_fps.roll)+
+ "#Floors:" + string(obj_grass.floors)
  
 )
 draw_set_color(c_white)

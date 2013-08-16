@@ -172,6 +172,7 @@
       <sprite>sprites\spr_fern</sprite>
       <sprite>sprites\spr_tallgrass</sprite>
       <sprite>sprites\spr_master_outside_night</sprite>
+      <sprite>sprites\spr_lantern</sprite>
     </sprites>
     <sprites name="icons">
       <sprite>sprites\spr_cam</sprite>
@@ -180,6 +181,7 @@
   <backgrounds name="background">
     <background>background\bac_lightMap</background>
     <background>background\tex_sky</background>
+    <background>background\tex_test</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -197,8 +199,8 @@
     <scripts name="Initialisation">
       <script>scripts\loadModels.gml</script>
       <script>scripts\loadTextures.gml</script>
-      <script>scripts\init3D.gml</script>
       <script>scripts\initShaderMatrixArray.gml</script>
+      <script>scripts\init3D.gml</script>
       <script>scripts\initGame.gml</script>
     </scripts>
     <scripts name="calculation_functions">
@@ -219,6 +221,9 @@
       <script>scripts\light_Sunlight.gml</script>
       <script>scripts\light_Moonlight.gml</script>
     </scripts>
+    <scripts name="getters">
+      <script>scripts\getLightId.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
@@ -235,6 +240,7 @@
       <object>objects\obj_grass</object>
       <object>objects\obj_fern</object>
       <object>objects\obj_tree</object>
+      <object>objects\obj_lantern</object>
       <object>objects\obj_player_eyes</object>
       <object>objects\obj_room</object>
       <object>objects\obj_master_outside_night</object>
@@ -254,7 +260,7 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="15">
+  <constants number="16">
     <constant name="CAM_ZNEAR">1</constant>
     <constant name="CAM_ANGLE">110</constant>
     <constant name="SURF_RIGHT">1</constant>
@@ -269,6 +275,7 @@
     <constant name="TEX_FERN">2</constant>
     <constant name="TEX_LEAVES">3</constant>
     <constant name="TEX_SKY">4</constant>
+    <constant name="TEX_TEST">6</constant>
     <constant name="TEX_GRASS">5</constant>
   </constants>
   <help>

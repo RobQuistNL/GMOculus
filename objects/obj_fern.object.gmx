@@ -48,15 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//HOW DOES THIS NOT WORK
-// The model is drawn at 0,0..... But why???
-//show_message("Drawing fern :"+string(x)+" - "+string(y));
-
-d3d_transform_set_identity();
+            <string>d3d_transform_set_identity();
 d3d_transform_add_rotation_z(direction);
 d3d_transform_add_translation(x,y,0);
-//shader_set_uniform_matrix(shader_get_uniform(stereo_offset_left, "WorldMatrix"));
-//shader_set_uniform_matrix(shader_get_uniform(stereo_offset_right, "WorldMatrix"));
 d3d_model_draw(global.MODEL[MOD_FERN],0,0,0,global.TEX[TEX_FERN]);
 d3d_transform_set_identity();
 </string>
@@ -76,5 +70,8 @@ d3d_transform_set_identity();
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>8,8</point>
+    <point>8,8</point>
+  </PhysicsShapePoints>
 </object>

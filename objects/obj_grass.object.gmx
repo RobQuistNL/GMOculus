@@ -26,7 +26,21 @@
           <argument>
             <kind>1</kind>
             <string>range = 4096
-d3d_draw_floor(-range,-range,2,range,range,2,global.TEX[TEX_GRASS],range/51,range/51);
+tilesize = 128
+floors=0
+z = 2;
+
+d3d_draw_floor(-range,-range,z,range,range,z,global.TEX[TEX_GRASS],range/50,range/50);
+
+for (yy = 0; yy &lt; range; yy+=tilesize) {
+    for (xx = 0; xx &lt; range; xx+=tilesize) {
+        if (point_distance(xx,yy,player_fps.x,player_fps.y)&lt;2048) {  //This doesn't quite work yet
+            //Draw loose tiles for when the player is close (lighting)
+            d3d_draw_floor(xx-tilesize/2,yy-tilesize/2,z+1,xx+tilesize/2,yy+tilesize/2,z+1,global.TEX[TEX_GRASS],2,2);
+            floors++;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
