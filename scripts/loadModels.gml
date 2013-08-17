@@ -6,8 +6,10 @@ global.MODEL[MOD_ARROW] = d3d_model_create();
 global.MODEL[MOD_FIRE] = d3d_model_create();
 global.MODEL[MOD_FIREHAY] = d3d_model_create();
 global.MODEL[MOD_FIREWOOD] = d3d_model_create();
-
 global.MODEL[MOD_EFFECT_PLANE] = d3d_model_create();
+
+global.MODEL[MOD_WOODSTACK] = d3d_model_create();
+global.MODEL[MOD_BENCH] = d3d_model_create();
 
 
 /* Create on the fly */
@@ -29,4 +31,7 @@ d3d_model_load(global.MODEL[MOD_TREE_TRUNK],working_directory + "\models\tree_tr
 d3d_model_load(global.MODEL[MOD_FERN],working_directory + "\models\fern.d3d");
 d3d_model_load(global.MODEL[MOD_FIREHAY],working_directory + "\models\firehay.d3d");
 d3d_model_load(global.MODEL[MOD_FIREWOOD],working_directory + "\models\firewood.d3d");
+
+d3d_model_load(global.MODEL[MOD_BENCH],working_directory + "\models\1_bench.d3d");
+d3d_model_load(global.MODEL[MOD_WOODSTACK],working_directory + "\models\2_woodstack.d3d");
 

@@ -45,7 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instances = 50
+            <string>instances = 0
 
 repeat(instances) {
     instance_create(-500+random(1000),-500+random(1000),obj_tree);

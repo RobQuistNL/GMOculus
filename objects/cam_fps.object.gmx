@@ -149,8 +149,6 @@ global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
 es-=keyboard_check(vk_down)*.1;
 
 yaw = OVR_Device_getYaw();
-yaw = yaw+player_fps.dir
-direction = yaw
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();
 
@@ -158,21 +156,23 @@ xadd=lengthdir_x_3d(yaw+90,roll,es/2);
 yadd=lengthdir_y_3d(yaw+90,roll,es/2);
 zadd=lengthdir_z_3d(yaw+90,roll,es/2);
 
+direction = yaw+player_fps.dir //Direction the camera is facing (body direction + head direction)
 
     if (!surface_exists(global.SURFACE[SURF_RIGHT])) {
         event_user(0);
     }
 
+    
     //Draw the left eye on a surface
     surface_set_target(global.SURFACE[SURF_LEFT]);
         draw_clear_alpha(c_black,0);
         aspect = (view_wview/2)/view_hview;
-        //var c_roll=lengthdir_x(90,roll);
+        var c_roll=lengthdir_x(90,roll);
         xfrom = player_fps.x+xadd;
         yfrom = player_fps.y+yadd;
         zfrom = player_fps.z + player_fps.height+zadd;
         
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
+        d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
         
         //shader_set(stereo_offset_left);//use this to offset everything for the current ee view
         draw3DWorld();
@@ -188,7 +188,7 @@ zadd=lengthdir_z_3d(yaw+90,roll,es/2);
         xfrom = player_fps.x-xadd;
         yfrom = player_fps.y-yadd;
         zfrom = player_fps.z + player_fps.height-zadd;
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
+        d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
 
         //shader_set(stereo_offset_right);//use this to offset everything for the current ee view
         draw3DWorld();
