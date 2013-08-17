@@ -91,6 +91,11 @@ scr_mouseLook()
 line = -1;
 onGround = false;
 
+if z&lt;0 {
+    onGround = true;
+    zspeed=0
+}
+/*
 // hit the ground
 if(zspeed&lt;=0)
 {
@@ -113,7 +118,7 @@ if (zspeed&gt;0)
         zspeed = 0;
     }
 }
-
+*/
 // fall
 z += zspeed;
 zspeed -= zgravity

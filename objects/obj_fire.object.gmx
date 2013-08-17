@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fireloop=0
-firespeed=0.1
-
+            <string>instance_create(x,y,obj_fire_particle_emitter);
 randomfactor=0.2
 brighter=true;
 minbright=0.05
@@ -75,41 +73,8 @@ maydraw =1;
 if (CAM_FRUSTUM) {
     maydraw = frustum_culling(x, y, 0, 30*sqrt(3));
 }
-fireloop+=firespeed
-if (fireloop&gt;=37) { fireloop=0 }
 
-firetex = sprite_get_texture(spr_fire,fireloop);
 if (maydraw) {
-    
-    d3d_set_culling(false)    
-
-    d3d_transform_set_identity();
-    d3d_transform_add_scaling(0.6,0.6,0.6);
-    d3d_transform_add_translation(x,y,z);
-    d3d_model_draw(global.MODEL[MOD_FIRE],0,0,0,firetex);
-
-    d3d_transform_set_identity();
-    d3d_transform_set_rotation_z(-10*fireloop);
-    d3d_transform_add_scaling(1,1,1);
-    d3d_transform_add_translation(x,y,z);
-    d3d_model_draw(global.MODEL[MOD_FIRE],0,0,0,firetex);
-    
-    d3d_transform_set_identity();
-    d3d_transform_set_rotation_z(10*fireloop);
-    d3d_transform_add_scaling(1.5,1.5,1.5);
-    d3d_transform_add_translation(x,y,z);
-    d3d_model_draw(global.MODEL[MOD_FIRE],0,0,0,firetex);
-    
-    d3d_transform_set_identity();
-    d3d_transform_set_rotation_z(-10*fireloop);
-    d3d_transform_add_scaling(2,2,2);
-    d3d_transform_add_translation(x,y,z);
-    d3d_model_draw(global.MODEL[MOD_FIRE],0,0,0,firetex);
-    d3d_transform_set_identity();
-    d3d_transform_set_rotation_z(10*fireloop*2);
-    d3d_transform_add_scaling(2,2,2);
-    d3d_transform_add_translation(x,y,z);
-    d3d_model_draw(global.MODEL[MOD_FIRE],0,0,0,firetex);
     
     //Draw the hay and wood
     d3d_set_culling(true)
@@ -117,8 +82,13 @@ if (maydraw) {
     d3d_transform_add_scaling(4,4,4);
     d3d_transform_add_translation(x,y,z);    
     d3d_model_draw(global.MODEL[MOD_FIREHAY],0,0,0,global.TEX[TEX_HAY]);
+
+    d3d_transform_set_identity();
+    d3d_transform_add_scaling(2.5,2.5,2.5);
+    d3d_transform_add_translation(x,y,z);    
     d3d_model_draw(global.MODEL[MOD_FIREWOOD],0,0,0,global.TEX[TEX_FIREWOOD]);
     d3d_transform_set_identity();
+    
 }
 </string>
           </argument>

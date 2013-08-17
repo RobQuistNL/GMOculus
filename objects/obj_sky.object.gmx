@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>100000</depth>
   <persistent>0</persistent>
   <parentName>obj_3d_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>light_Moonlight()
+specialDistance = true;
+___dist = 100000;
 </string>
           </argument>
         </arguments>

@@ -175,9 +175,7 @@ zadd=lengthdir_z_3d(yaw+90,roll,es/2);
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
         
         //shader_set(stereo_offset_left);//use this to offset everything for the current ee view
-        with obj_3d_parent {
-            event_perform(ev_draw,0);
-        }
+        draw3DWorld();
         d3d_transform_set_identity();
         //shader_reset();
         //d3d_transform_set_identity()
@@ -193,9 +191,7 @@ zadd=lengthdir_z_3d(yaw+90,roll,es/2);
         d3d_set_projection_simple(xfrom,yfrom,zfrom,yaw,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
 
         //shader_set(stereo_offset_right);//use this to offset everything for the current ee view
-        with obj_3d_parent {
-            event_perform(ev_draw,0);
-        }
+        draw3DWorld();
         d3d_transform_set_identity();
         //shader_reset();
         //d3d_transform_set_identity()

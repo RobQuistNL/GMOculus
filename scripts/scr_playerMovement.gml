@@ -34,6 +34,7 @@ var y1 = y-5
 var y2 = y+5
 
 var ang = -1;
+/*
 for(var i=0;i<=360;i+=45){
 
     if (line_col(obj_room.list,x,y,z+hiz,x+lengthdir_x(16,i),y+lengthdir_y(16,i),z+hiz)>-1)
@@ -49,7 +50,7 @@ for(var i=0;i<=360;i+=45){
         x=x+lengthdir_x(16-dis,i+180)
         y=y+lengthdir_y(16-dis,i+180)
     }
-}
+}*/
 //(line_col(x,y,z+hiz,x+lengthdir_x(j,i),y+lengthdir_y(j,i),z+hiz)>-1)
 
 
