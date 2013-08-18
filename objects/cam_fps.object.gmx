@@ -163,7 +163,7 @@ zadd=lengthdir_z_3d(yaw+90,roll,es/2);
 direction = yaw+player_fps.dir //Direction the camera is facing (body direction + head direction)
 
 r = es/2
-hdir = direction;
+hdir = direction+90;
 vdir = roll;
 
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
