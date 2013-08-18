@@ -5,15 +5,15 @@ d3d_set_culling(false);
 d3d_set_hidden(true);
 d3d_set_shading(true);
 d3d_set_lighting(true);
-d3d_set_zwriteenable(true);
+enable_zbuffer();
 
-// ==== Use this code when d3d_set_zwriteenable is true.
-draw_set_alpha_test(true);
 draw_set_alpha_test_ref_value(20);
-draw_set_alpha_test(true);
 draw_enable_alphablend(true);
 texture_set_interpolation(true);
 texture_set_blending(true);
+
+// ==== Use this code when d3d_set_zwriteenable is true.
+
 // ==== Comment it out when you want our own drawing order code.
 
 

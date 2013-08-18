@@ -148,8 +148,9 @@ if (skytype=='go_to_day') {
     
         d3d_transform_set_identity();    
         d3d_transform_add_rotation_z(clouds_rotation)        
+         d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
         d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
-
+        
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
         d3d_transform_set_identity();
     
@@ -208,8 +209,9 @@ if (skytype=='go_to_night') {
         
     draw_set_alpha(count/timelength);
     d3d_set_lighting(1);
-    
+        
         d3d_transform_set_identity();
+        d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
         d3d_transform_add_rotation_z(clouds_rotation/2)
         d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
         

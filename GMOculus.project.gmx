@@ -423,6 +423,8 @@
       <script>scripts\light_Sunlight.gml</script>
       <script>scripts\light_Moonlight.gml</script>
       <script>scripts\draw3DWorld.gml</script>
+      <script>scripts\enable_zbuffer.gml</script>
+      <script>scripts\disable_zbuffer.gml</script>
     </scripts>
     <scripts name="getters">
       <script>scripts\getLightId.gml</script>
