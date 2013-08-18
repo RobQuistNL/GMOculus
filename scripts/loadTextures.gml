@@ -1,4 +1,5 @@
 global.TEX[TEX_SKY] = background_get_texture(tex_sky);
+global.TEX[TEX_SKY_DAY] = background_get_texture(tex_sky_day);
 global.TEX[TEX_TEST] = background_get_texture(tex_test);
 global.TEX[TEX_ARROW] = background_get_texture(tex_arrow);
 

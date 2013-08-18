@@ -374,6 +374,7 @@
     <background>background\tex_sky</background>
     <background>background\tex_test</background>
     <background>background\tex_arrow</background>
+    <background>background\tex_sky_day</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -465,7 +466,7 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="35">
+  <constants number="36">
     <constant name="GMOCULUS_VERSION">0.1 (non-stable)</constant>
     <constant name="CAM_VSYNC">1</constant>
     <constant name="CAM_FRUSTUM">1</constant>
@@ -501,6 +502,7 @@
     <constant name="TEX_FIRE">11</constant>
     <constant name="TEX_WOODSTACK">12</constant>
     <constant name="TEX_BENCH">13</constant>
+    <constant name="TEX_SKY_DAY">14</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

@@ -48,7 +48,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_gray)
+            <string>draw_set_alpha(1);
+draw_set_color(c_gray)
 draw_text(5,5,"FPS: " + string(fps) +"#IPD: "+string(cam_fps.es) + "#wsize:" +string(cam_fps.wsize)+ "#hsize:" +string(cam_fps.hsize) +
  "XY: " + string(player_fps.x) + "x" + string(player_fps.y) +
  "##Yaw:" +string(cam_fps.yaw)+

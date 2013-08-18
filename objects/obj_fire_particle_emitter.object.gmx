@@ -98,7 +98,7 @@ for (i=0; i&lt;smokeparticles; i++) {
         
         d3d_transform_set_identity();
         //d3d_transform_add_rotation_z(camdirection);
-        draw_set_alpha(1-(zz/smokeheight));
+        draw_set_alpha(1-(smokeheight/zz));
         //draw_set_alpha(0.5);
         d3d_transform_add_scaling(4+(zz/12),4+(zz/12),4+(zz/12));
         d3d_transform_add_translation(xx,yy,zz);   
