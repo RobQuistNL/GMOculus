@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_3d_parent</parentName>
+  <parentName>obj_3d_particle</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,24 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fireparticles = 40
+            <string>
+fireparticles = 40
 smokeparticles= 40
 
 fireheight = 40
-firelow = 0
+firelow = 4
 firespeed = 0.7
 
-smokeheight = 120
-smokelow = 20
-smokespeed = 0.5
+smokeheight = 190
+smokelow = 40
+smokespeed = 0.2
 
-wide = 12
+wide = 16
 
 for (i=0; i&lt;fireparticles; i++) {
     f_part[i,0] = x-wide/2+random(wide) //X
     f_part[i,1] = y-wide/2+random(wide) //Y
     f_part[i,2] = firelow+random(fireheight) //Z
     f_part[i,3] = random(360); //Direction
+    f_part[i,4] = 0.3+(random(70)/100); // Alpha
 }
 
 for (i=0; i&lt;smokeparticles; i++) {
@@ -74,21 +76,22 @@ for (i=0; i&lt;smokeparticles; i++) {
           <argument>
             <kind>1</kind>
             <string>d3d_set_culling(false)    
-    camdirection = cam_fps.direction //@TODO - Must... Make... Better..
-    d3d_set_lighting(0);
 
+    d3d_set_lighting(0);
+        d3d_set_zwriteenable(0)
     //Draw the particles
     for (i=0; i&lt;fireparticles; i++) {
         xx=f_part[i,0];
         yy=f_part[i,1];
         zz=f_part[i,2];
-        
+
         d3d_transform_set_identity();
-        //d3d_transform_add_rotation_z(camdirection);
+        draw_set_alpha(f_part[i,4]);
         d3d_transform_add_scaling(2-(zz/fireheight),2-(zz/fireheight),2-(zz/fireheight));
         d3d_transform_add_translation(xx,yy,zz);   
         d3d_model_draw(global.MODEL[MOD_EFFECT_PLANE],0,0,0,global.TEX[TEX_FIRE]);
         d3d_transform_set_identity();
+        draw_set_alpha(1);
     }
     d3d_set_lighting(1);    
     for (i=0; i&lt;smokeparticles; i++) {
@@ -97,29 +100,31 @@ for (i=0; i&lt;smokeparticles; i++) {
         zz=s_part[i,2];
         
         d3d_transform_set_identity();
-        //d3d_transform_add_rotation_z(camdirection);
-        draw_set_alpha(1-(smokeheight/zz));
-        //draw_set_alpha(0.5);
-        d3d_transform_add_scaling(4+(zz/12),4+(zz/12),4+(zz/12));
+
+        draw_set_alpha(1-(zz/smokeheight));
+        size = 1 + 16*(zz/smokeheight);
+        d3d_transform_add_scaling(size,size,size);
         d3d_transform_add_translation(xx,yy,zz);   
         d3d_model_draw(global.MODEL[MOD_EFFECT_PLANE],0,0,0,global.TEX[TEX_SMOKE]);
         d3d_transform_set_identity();
         draw_set_alpha(1);
     }
-
+        d3d_set_zwriteenable(1)
     // move the particles
     for (i=0; i&lt;fireparticles; i++) {
         f_part[i,2]+=firespeed; //Move up
-        
+
+        f_part[i,3] = point_direction(x,y,f_part[i,0],f_part[i,1]);
         //Move to direction
-        f_part[i,0]-=lengthdir_x(firespeed/2,f_part[i,3]); 
-        f_part[i,1]-=lengthdir_y(firespeed/2,f_part[i,3]);
+        f_part[i,0]-=lengthdir_x(firespeed/8,f_part[i,3]); 
+        f_part[i,1]-=lengthdir_y(firespeed/8,f_part[i,3]);
         
         if (f_part[i,2] &gt; fireheight) { //If they reach the limit, respawn them down
             f_part[i,0] = x-wide/2+random(wide) //X
             f_part[i,1] = y-wide/2+random(wide) //Y
             f_part[i,2] = firelow //Z
             f_part[i,3] = point_direction(x,y,f_part[i,0],f_part[i,1]); //We want fire to move to the center
+            f_part[i,4] = 0.3+(random(70)/100); // Alpha
         }
     }
         

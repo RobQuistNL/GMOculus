@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>z = 0;//the feet
-height = 32;
+height = 8;
 dir = 0
 pitch = 0;
 
@@ -58,15 +58,25 @@ onGround = true;
           <argument>
             <kind>1</kind>
             <string>// This is a testobject. You can see how the eyes move based on the oculus
-
+/*
 calcdir = cam_fps.direction+90
 if calcdir &gt; 360 {
     calcdir-=360
 }
+*/
+r = cam_fps.es/2
+hdir = cam_fps.direction+90;
+vdir = cam_fps.roll;
 
-xadd=lengthdir_x_3d(calcdir,cam_fps.roll,cam_fps.es/2);
+xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
+yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
+zadd = r*sin(degtorad(vdir));
+
+/*
+=lengthdir_x_3d(calcdir,cam_fps.roll,cam_fps.es/2);
 yadd=lengthdir_y_3d(calcdir,cam_fps.roll,cam_fps.es/2);
 zadd=lengthdir_z_3d(calcdir,cam_fps.roll,cam_fps.es/2);
+*/
 
 xfrom = x+xadd
 yfrom = y+yadd

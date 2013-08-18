@@ -48,6 +48,9 @@ xfrom = player_fps.x;
 yfrom = player_fps.y;
 zfrom = player_fps.z + player_fps.height;
 
+audio_listener_position(xfrom, yfrom, zfrom)
+audio_listener_orientation(0, 0, 0, 0, 0, 1)
+
 // @todo 
 // Check out initShaderMatrixArray. I just don't know how to get those arrays into the shaders.
 // initShaderMatrixArray(3);
@@ -151,53 +154,69 @@ es-=keyboard_check(vk_down)*.1;
 yaw = OVR_Device_getYaw();
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();
-
+/*
 xadd=lengthdir_x_3d(yaw+90,roll,es/2);
 yadd=lengthdir_y_3d(yaw+90,roll,es/2);
 zadd=lengthdir_z_3d(yaw+90,roll,es/2);
+*/
 
 direction = yaw+player_fps.dir //Direction the camera is facing (body direction + head direction)
 
-    if (!surface_exists(global.SURFACE[SURF_RIGHT])) {
-        event_user(0);
-    }
+r = es/2
+hdir = direction;
+vdir = roll;
 
+xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
+yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
+zadd = r*sin(degtorad(vdir));
+
+
+//Update the sound position
+audio_listener_position(player_fps.x,player_fps.y,player_fps.z+player_fps.height)
+audio_listener_orientation(-xadd*100,-yadd*100,zadd*100,0,0,40);
+//updateAudioListener(player_fps.x,player_fps.y,player_fps.z+player_fps.height,direction,0);
+//audio_listener_orientation(xt, yt, zt, 0, 0, 0)
+// The orientation should be fixed together with the eyes.
+
+if (!surface_exists(global.SURFACE[SURF_RIGHT])) {
+    event_user(0);
+}
+
+//Draw the left eye on a surface
+surface_set_target(global.SURFACE[SURF_LEFT]);
+    draw_clear_alpha(c_black,0);
+    aspect = (view_wview/2)/view_hview;
+    var c_roll=lengthdir_x(90,roll);
+    xfrom = player_fps.x+xadd;
+    yfrom = player_fps.y+yadd;
+    zfrom = player_fps.z + player_fps.height+zadd;
     
-    //Draw the left eye on a surface
-    surface_set_target(global.SURFACE[SURF_LEFT]);
-        draw_clear_alpha(c_black,0);
-        aspect = (view_wview/2)/view_hview;
-        var c_roll=lengthdir_x(90,roll);
-        xfrom = player_fps.x+xadd;
-        yfrom = player_fps.y+yadd;
-        zfrom = player_fps.z + player_fps.height+zadd;
-        
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
-        
-        //shader_set(stereo_offset_left);//use this to offset everything for the current ee view
-        draw3DWorld();
-        d3d_transform_set_identity();
-        //shader_reset();
-        //d3d_transform_set_identity()
-        
-    //Draw the right eye on a surface
-    surface_set_target(global.SURFACE[SURF_RIGHT]);  
-        draw_clear_alpha(c_black,0);
-        aspect = (view_wview/2)/view_hview;
-        var c_roll=lengthdir_x(90,roll);
-        xfrom = player_fps.x-xadd;
-        yfrom = player_fps.y-yadd;
-        zfrom = player_fps.z + player_fps.height-zadd;
-        d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
+    d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
+    
+    //shader_set(stereo_offset_left);//use this to offset everything for the current ee view
+    draw3DWorld();
+    d3d_transform_set_identity();
+    //shader_reset();
+    //d3d_transform_set_identity()
+    
+//Draw the right eye on a surface
+surface_set_target(global.SURFACE[SURF_RIGHT]);  
+    draw_clear_alpha(c_black,0);
+    aspect = (view_wview/2)/view_hview;
+    var c_roll=lengthdir_x(90,roll);
+    xfrom = player_fps.x-xadd;
+    yfrom = player_fps.y-yadd;
+    zfrom = player_fps.z + player_fps.height-zadd;
+    d3d_set_projection_simple(xfrom,yfrom,zfrom,direction,pitch,roll, CAM_ANGLE, aspect, CAM_ZNEAR, CAM_ZFAR);
 
-        //shader_set(stereo_offset_right);//use this to offset everything for the current ee view
-        draw3DWorld();
-        d3d_transform_set_identity();
-        //shader_reset();
-        //d3d_transform_set_identity()
+    //shader_set(stereo_offset_right);//use this to offset everything for the current ee view
+    draw3DWorld();
+    d3d_transform_set_identity();
+    //shader_reset();
+    //d3d_transform_set_identity()
 
-    //Go back to regular drawing and show the surfaces
-    surface_reset_target();
+//Go back to regular drawing and show the surfaces
+surface_reset_target();
 </string>
           </argument>
         </arguments>

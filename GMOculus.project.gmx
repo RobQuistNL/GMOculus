@@ -354,7 +354,12 @@
     </datafiles>
   </datafiles>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_fire</sound>
+    <sound>sound\snd_crickets</sound>
+    <sound>sound\snd_rain</sound>
+    <sound>sound\snd_birds</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\blank_spr</sprite>
@@ -412,6 +417,7 @@
       <script>scripts\inCamera.gml</script>
       <script>scripts\frustum_culling_init.gml</script>
       <script>scripts\frustum_culling.gml</script>
+      <script>scripts\updateAudioListener.gml</script>
     </scripts>
     <scripts name="visual">
       <script>scripts\light_Sunlight.gml</script>
@@ -454,6 +460,7 @@
     <objects name="controllers">
       <object>objects\obj_control</object>
       <object>objects\obj_3d_parent</object>
+      <object>objects\obj_3d_particle</object>
     </objects>
     <objects name="unused">
       <object>objects\warp_test_obj</object>

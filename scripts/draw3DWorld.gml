@@ -4,6 +4,11 @@ with obj_3d_parent {
     event_perform(ev_draw,0);
 }
 
+with obj_3d_particle {
+    //depth=point_distance(x,y,cam_fps.x,cam_fps.y);
+    event_perform(ev_draw,0);
+}
+
 /*
 This is a test-way of drawing. It kinda works, but not good.
 

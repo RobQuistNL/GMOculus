@@ -25,17 +25,54 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x,y,obj_fire_particle_emitter);
+            <string>z = 3
+
+//Configure the light
 randomfactor=0.2
 brighter=true;
 minbright=0.05
 maxbright=0.7
 brightspeed=random(100)/10000
-
-z = 3
+//Create the light
 light = getLightId();
 d3d_light_define_point(light,x,y,z,z*1.5,make_color_rgb(255,255,100));
 d3d_light_enable(light, true);
+
+//Create the sound emitter
+s_emit = audio_emitter_create();
+audio_emitter_position(s_emit, x, y, z);
+audio_emitter_falloff(s_emit, 30, 300, 1);
+audio_falloff_set_model(audio_falloff_inverse_distance);
+audio_play_sound_on(s_emit, snd_fire, true, 1);
+
+//Create the particle emitter
+p_emit = instance_create(x,y,obj_fire_particle_emitter);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>audio_emitter_free(s_emit);
+with (p_emit) {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
