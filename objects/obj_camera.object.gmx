@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>GMO_initCamera();
+GMO_setResolution(display_get_width(), display_get_height());
 </string>
           </argument>
         </arguments>
