@@ -388,6 +388,12 @@
           <script>scripts\GMO_initCamera.gml</script>
           <script>scripts\GMO_followObject.gml</script>
           <script>scripts\GMO_getCameraSurface.gml</script>
+          <script>scripts\GMO_drawCameraSurface.gml</script>
+          <scripts name="Rendering">
+            <script>scripts\GMO_renderCamera.gml</script>
+            <script>scripts\GMO_renderRegular.gml</script>
+            <script>scripts\GMO_renderOculus.gml</script>
+          </scripts>
           <scripts name="Getters and Setters">
             <script>scripts\GMO_getCameraZFar.gml</script>
             <script>scripts\GMO_getCameraZNear.gml</script>
@@ -397,12 +403,6 @@
             <script>scripts\GMO_getCameraMode.gml</script>
             <script>scripts\GMO_setCameraMode.gml</script>
           </scripts>
-          <scripts name="Rendering">
-            <script>scripts\GMO_renderCamera.gml</script>
-            <script>scripts\GMO_renderRegular.gml</script>
-            <script>scripts\GMO_renderOculus.gml</script>
-          </scripts>
-          <script>scripts\GMO_drawCameraSurface.gml</script>
         </scripts>
         <scripts name="Audio">
           <script>scripts\GMO_setUse3DSound.gml</script>
