@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>range = CAM_ZFAR
-tilesize = 256+128
+tilesize = 256
 floors=0
 z = 2;
 d3d_set_culling(false);
@@ -35,7 +35,8 @@ d3d_set_culling(false);
 //Draw regular floor
 for (yy = -range; yy &lt; range; yy+=tilesize*4) {
     for (xx = -range; xx &lt; range; xx+=tilesize*4) {
-        if (CAM_FRUSTUM) {
+        //if (CAM_FRUSTUM) {
+        if (0) {
             maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
         } else {
             maydraw = (point_distance(xx,yy,player_fps.x,player_fps.y)&lt;CAM_ZFAR)
@@ -50,7 +51,8 @@ for (yy = -range; yy &lt; range; yy+=tilesize*4) {
 
 for (yy = -range; yy &lt; range; yy+=tilesize) {
     for (xx = -range; xx &lt; range; xx+=tilesize) {
-        if (CAM_FRUSTUM) {
+        //if (CAM_FRUSTUM) {
+        if (0) {
             maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
         } else {
             maydraw = (point_distance(xx,yy,player_fps.x,player_fps.y)&lt;CAM_ZFAR/3)

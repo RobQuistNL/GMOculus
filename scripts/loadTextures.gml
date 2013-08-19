@@ -1,7 +1,21 @@
 global.TEX[TEX_SKY] = background_get_texture(tex_sky);
+global.TEX[TEX_SKY_DAY] = background_get_texture(tex_sky_day);
 global.TEX[TEX_TEST] = background_get_texture(tex_test);
-global.TEX[TEX_LEAVES] = background_get_texture(background_add(working_directory + "\gfx\leaves.png",1,0));
-global.TEX[TEX_BARK] = background_get_texture(background_add(working_directory + "\gfx\bark.png",0,0));
-global.TEX[TEX_FERN] = background_get_texture(background_add(working_directory + "\gfx\fern.png",1,0));
-global.TEX[TEX_GRASS] = background_get_texture(background_add(working_directory + "\gfx\grass_hires.png",0,0));
+global.TEX[TEX_ARROW] = background_get_texture(tex_arrow);
 
+global.TEX[TEX_LEAVES]   = getTexture("leaves.png",0);
+global.TEX[TEX_BARK]     = getTexture("bark.png",0);
+global.TEX[TEX_FERN]     = getTexture("fern.png",0);
+global.TEX[TEX_GRASS]    = getTexture("grass_hires.png",0);
+global.TEX[TEX_HAY]      = getTexture("hay.png",0);
+global.TEX[TEX_FIREWOOD] = getTexture("firewood.png",0);
+
+global.TEX[TEX_FIRE]    = getEffectTexture("fire_32.png");
+global.TEX[TEX_SMOKE]    = getEffectTexture("smoke_32.png");
+//global.TEX[TEX_SMOKE] = background_get_texture(tex_alphasmoke);
+//global.TEX[TEX_FIRE]    = getEffectTextureAlpha("fire1.png","fire1_alpha.png");
+//global.TEX[TEX_SMOKE]   = getEffectTextureAlpha("smoke1.png","smoke1_alpha.png");
+
+
+global.TEX[TEX_WOODSTACK] = getTexture("woodstack.png",0);
+global.TEX[TEX_BENCH] = getTexture("1_bench.png",0);

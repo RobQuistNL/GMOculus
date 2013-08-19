@@ -5,6 +5,7 @@
 //arg3 - yaw (looking at)
 //arg4 - pitch (0=looking forward, 90=looking straight up, -90=looking straight down)
 //arg5 - roll (0 = Normal, 90 = Leaning Right, 180 = Upside down, 270/-90 = Leaning Left)
+
 var xx, yy, zz, tx, ty, tz, ux, uy, uz, nx, ny, nz, ax, ay, az;
 xx = argument0
 yy = argument1
@@ -38,6 +39,7 @@ nz = vector_rotate(ux,uy,uz,tx,ty,tz,-argument5*(pi/180),2)
 ux = nx
 uy = ny
 uz = nz
+
 //setting_projection
 d3d_set_projection_ext(xx,yy,zz,xx+tx,yy+ty,zz+tz,ux,uy,uz,argument6, argument7, argument8, argument9)
 if (CAM_FRUSTUM) {

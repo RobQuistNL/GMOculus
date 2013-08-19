@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>100000</depth>
   <persistent>0</persistent>
   <parentName>obj_3d_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,48 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_Moonlight()
+            <string>clouds_rotation=0
+clouds_speed=0.02
+
+specialDistance = true;
+___dist = 100000;
+count = 0;
+skyspeed = 0.1;
+skytype = 'night'
+timelength = 100;
+
+xdir1 = 2.7;
+ydir1 = 0.88;
+zdir1 = 1.44;
+
+xdir2 = 0.7;
+ydir2 = 1.46;
+zdir2 = -1.3;
+
+soundfadespeed = 1000
+
+cricketSound = audio_play_sound(snd_crickets,2,true);
+rainSound = audio_play_sound(snd_rain,3,true);
+birdSound = audio_play_sound(snd_birds,4,true);
+
+audio_sound_gain(cricketSound,0.0,0);
+audio_sound_gain(rainSound,0.0,0);
+audio_sound_gain(birdSound,0.0,0);
+audio_sound_gain(cricketSound,1,soundfadespeed);
+
+
+//Create my light
+generallight = getLightId();
+d3d_light_define_direction(generallight,0,0,1,c_dkgray)
+d3d_light_enable(generallight,true)
+
+light1 = getLightId();
+d3d_light_define_direction(light1,1,0,-1,make_color_rgb(50,50,75))
+d3d_light_enable(light1,true)
+
+light2 = getLightId();
+d3d_light_define_direction(light2,0,1,-1,make_color_rgb(40,30,72))
+d3d_light_enable(light2,true)
 </string>
           </argument>
         </arguments>
@@ -48,10 +89,154 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_set_culling(false);
-d3d_model_draw(global.MODEL[MOD_SKYBALL],player_fps.x,player_fps.y,player_fps.z,global.TEX[TEX_SKY]);
-d3d_set_culling(true);
+            <string>/*xdir1+=keyboard_check(ord("Y"))*.01;
+xdir1-=keyboard_check(ord("U"))*.01;
+ydir1+=keyboard_check(ord("H"))*.01;
+ydir1-=keyboard_check(ord("J"))*.01;
+zdir1+=keyboard_check(ord("N"))*.01;
+zdir1-=keyboard_check(ord("M"))*.01;
+xdir2+=keyboard_check(ord("R"))*.01;
+xdir2-=keyboard_check(ord("T"))*.01;
+ydir2+=keyboard_check(ord("F"))*.01;
+ydir2-=keyboard_check(ord("G"))*.01;
+zdir2+=keyboard_check(ord("V"))*.01;
+zdir2-=keyboard_check(ord("B"))*.01;*/
 
+count+=skyspeed
+
+if (skytype=='night') {
+    d3d_set_culling(false);
+    d3d_set_fog(0,0,0,0);
+    d3d_set_lighting(1);
+    
+        d3d_transform_set_identity();
+        d3d_transform_add_rotation_z(clouds_rotation/2)
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
+        d3d_transform_set_identity();
+        
+    d3d_set_fog(1,c_black,50,1000);
+    
+    d3d_set_culling(true);
+    draw_set_alpha(1);  
+    d3d_set_lighting(true);
+    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(20,20,75))
+    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(10,0,72))
+    if (count &gt; timelength) {
+        skytype='go_to_day'
+        count = 0.001
+        audio_sound_gain(cricketSound,0,soundfadespeed/4);
+        audio_sound_gain(birdSound,1,soundfadespeed);
+    }
+}
+    
+if (skytype=='go_to_day') {
+    d3d_set_culling(false);
+    d3d_set_fog(0,0,0,0);
+    d3d_set_lighting(1);
+        
+        d3d_transform_set_identity();
+        d3d_transform_add_rotation_z(clouds_rotation/2);        
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
+        d3d_transform_set_identity();
+        
+    draw_set_alpha(count/timelength);
+    d3d_set_lighting(0);
+    
+        d3d_transform_set_identity();    
+        d3d_transform_add_rotation_z(clouds_rotation)        
+         d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
+        d3d_transform_set_identity();
+    
+    d3d_set_fog(1,c_black,50+(4000*(count/timelength)),1000+(2000*(count/timelength)));
+    draw_set_alpha(1);  
+    d3d_set_lighting(true);
+    d3d_set_culling(true);
+
+    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(20+(180*(count/timelength)),20+(180*(count/timelength)),75+(75*(count/timelength))))
+    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(10+(180*(count/timelength)),0+(180*(count/timelength)),72+(75*(count/timelength))))
+        
+
+    if count &gt; timelength {
+        skytype='day'
+        count = 0.001 
+    }
+}
+
+if (skytype=='day') {
+    d3d_set_fog(0,0,0,0);
+    d3d_set_lighting(0);
+    
+    d3d_set_culling(false);
+        
+        d3d_transform_set_identity();
+        d3d_transform_add_rotation_z(clouds_rotation)        
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
+        d3d_transform_set_identity();
+        
+    draw_set_alpha(1);  
+    d3d_set_lighting(true);
+    d3d_set_culling(true);
+    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(200,200,150))
+    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(190,180,148))
+    
+    if (count &gt; timelength) {
+        skytype='go_to_night'
+        count = 0.001
+        audio_sound_gain(cricketSound,1,soundfadespeed);
+        audio_sound_gain(birdSound,0,soundfadespeed/4);
+    }
+}
+if (skytype=='go_to_night') {
+    d3d_set_culling(false);
+    d3d_set_fog(0,0,0,0);
+    d3d_set_lighting(0);
+    
+        d3d_transform_set_identity();
+        d3d_transform_add_rotation_z(clouds_rotation)
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
+        d3d_transform_set_identity();
+        
+    draw_set_alpha(count/timelength);
+    d3d_set_lighting(1);
+        
+        d3d_transform_set_identity();
+        d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
+        d3d_transform_add_rotation_z(clouds_rotation/2)
+        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        
+        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
+        d3d_transform_set_identity();
+        
+    draw_set_alpha(1);  
+    d3d_set_lighting(true);
+    d3d_set_fog(1,c_black,4050-(4000*(count/timelength)),2000-(1000*(count/timelength)));
+    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(200-(180*(count/timelength)),200-(180*(count/timelength)),150-(75*(count/timelength))))
+    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(190-(180*(count/timelength)),180-(180*(count/timelength)),148-(75*(count/timelength))))
+    d3d_set_culling(true);
+    
+
+    
+    if count &gt; timelength {
+        skytype='night'
+        count = 0.001
+    }
+}
+clouds_rotation+=clouds_speed
+if (clouds_rotation&gt;360*2) {
+    clouds_rotation=0;
+}
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>
