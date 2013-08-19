@@ -380,6 +380,7 @@
     <background>background\tex_test</background>
     <background>background\tex_arrow</background>
     <background>background\tex_sky_day</background>
+    <background>background\newGrass</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -479,7 +480,7 @@
     <constant name="GMOCULUS_VERSION">0.1 (non-stable)</constant>
     <constant name="CAM_VSYNC">1</constant>
     <constant name="CAM_FRUSTUM">1</constant>
-    <constant name="CAM_ANTIALIAS">2</constant>
+    <constant name="CAM_ANTIALIAS">8</constant>
     <constant name="CAM_ZNEAR">1</constant>
     <constant name="CAM_ZFAR">2048</constant>
     <constant name="CAM_ANGLE">110</constant>

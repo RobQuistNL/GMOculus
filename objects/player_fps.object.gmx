@@ -85,7 +85,7 @@ onGround = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_playerMovement(5,3,4);
+            <string>scr_playerMovement(2,2,2);
 scr_mouseLook()
 
 line = -1;
