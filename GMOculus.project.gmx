@@ -438,8 +438,8 @@
         <scripts name="Initialisation">
           <script>scripts\GMO_initShaders.gml</script>
           <script>scripts\GMO_initSurfaces.gml</script>
-          <script>scripts\GMO_resetSurfaces.gml</script>
           <script>scripts\GMO_initDefaults.gml</script>
+          <script>scripts\GMO_resetSurfaces.gml</script>
         </scripts>
         <scripts name="DLL">
           <script>scripts\OVR_Init.gml</script>
