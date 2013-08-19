@@ -18,3 +18,6 @@ global._GMO_DLL_LOADED = false;
 global._GMO_DLL_FILENAME = 'lib\RiftSharpDll.dll'
 
 
+GMO_initSurfaces(); //Create surfaces
+
+
