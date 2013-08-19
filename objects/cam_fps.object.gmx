@@ -154,22 +154,22 @@ es-=keyboard_check(vk_down)*.1;
 yaw = OVR_Device_getYaw();
 pitch = OVR_Device_getPitch();
 roll = OVR_Device_getRoll();
-/*
-xadd=lengthdir_x_3d(yaw+90,roll,es/2);
-yadd=lengthdir_y_3d(yaw+90,roll,es/2);
-zadd=lengthdir_z_3d(yaw+90,roll,es/2);
-*/
 
 direction = yaw+player_fps.dir //Direction the camera is facing (body direction + head direction)
 
 r = es/2
-hdir = direction;
+hdir = direction+90;
 vdir = roll;
 
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
 yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
 zadd = r*sin(degtorad(vdir));
 
+/*
+xadd=lengthdir_x_3d(yaw+90,roll,r);
+yadd=lengthdir_y_3d(yaw+90,roll,r);
+zadd=lengthdir_z_3d(yaw+90,roll,r);
+*/
 
 //Update the sound position
 audio_listener_position(player_fps.x,player_fps.y,player_fps.z+player_fps.height)
