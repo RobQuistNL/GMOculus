@@ -1,2 +1,2 @@
-return global._LIGHTS;
 global._LIGHTS++;
+return global._LIGHTS-1;

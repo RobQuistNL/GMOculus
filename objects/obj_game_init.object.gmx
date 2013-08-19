@@ -2,12 +2,44 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_3d_parent</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Initialize GMOculus
+GMO_init(); 
+
+// Load external files
+loadTextures();
+loadModels();
+
+// Preload lights
+initLights();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,48 +57,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>range = GMO_getCameraZFar();
-tilesize = 128
-floors=0
-z = 2;
-d3d_set_culling(false);
-
-//Draw big tiles
-for (yy = -range; yy &lt; range; yy+=tilesize*4) {
-    for (xx = -range; xx &lt; range; xx+=tilesize*4) {
-        //if (CAM_FRUSTUM) {
-        if (0) {
-            maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
-        } else {
-            maydraw = (point_distance(xx,yy,obj_camera.x,obj_camera.y)&lt;GMO_getCameraZFar())
-        }
-        if maydraw { 
-            //Draw loose tiles for when the player is close (lighting)
-            d3d_draw_floor(xx+tilesize*8/2,yy+tilesize*8/2,z,xx-tilesize*8/2,yy-tilesize*8/2,z,global.TEX[TEX_GRASS],4,4);
-            floors++;
-        }
-    }
-}
-
-for (yy = -range; yy &lt; range; yy+=tilesize) {
-    for (xx = -range; xx &lt; range; xx+=tilesize) {
-        //if (CAM_FRUSTUM) {
-        if (0) {
-            maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
-        } else {
-            maydraw = (point_distance(xx,yy,obj_camera.x,obj_camera.y)&lt;GMO_getCameraZFar()/4)
-        }
-        if maydraw { 
-            //Draw loose tiles for when the player is close (lighting)
-            d3d_draw_floor(xx+tilesize/2,yy+tilesize/2,z+1,xx-tilesize/2,yy-tilesize/2,z+1,global.TEX[TEX_GRASS],1,1);
-            floors++;
-        }
-    }
-}
-d3d_set_culling(true);
+            <string>draw_text(10,10,"GMOculus demo!##Press space to start 3D world.");
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>222</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_next_room</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

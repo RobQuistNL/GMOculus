@@ -33,99 +33,14 @@ hsize=0
 
 es = CAM_EYESEP; //Eye seperation (in CM, from the nose)
 
-passedTextureLeft = shader_get_sampler_index(hmdwarp_shader, "passedTextureLeft")
-passedTextureRight = shader_get_sampler_index(hmdwarp_shader, "passedTextureRight")
 
 event_user(0); // Initialize the surfaces
 
 aspect = view_wview/view_hview;
 
-yaw=0;
-pitch=0;
-roll=0;
 
-xfrom = player_fps.x;
-yfrom = player_fps.y;
-zfrom = player_fps.z + player_fps.height;
 
-audio_listener_position(xfrom, yfrom, zfrom)
-audio_listener_orientation(0, 0, 0, 0, 0, 1)
 
-// @todo 
-// Check out initShaderMatrixArray. I just don't know how to get those arrays into the shaders.
-// initShaderMatrixArray(3);
-
-//rightMat
-rightMat[0] = 1;
-rightMat[1] = 0;
-rightMat[2] = 0;
-rightMat[3] = -1;
-
-rightMat[4] = 0;
-rightMat[5] = 1;
-rightMat[6] = 0;
-rightMat[7] = 0;
-
-rightMat[8] = 0;
-rightMat[9] = 0;
-rightMat[10] = 1;
-rightMat[11] = 0;
-
-rightMat[12] = 0;
-rightMat[13] = 0;
-rightMat[14] = 0;
-rightMat[15] = 1; // GM Matrix has to have 0-15, can't be a 2-dimension array
-
-//rmat = shader_get_uniform(stereo_offset_right, "rightMat");
-
-//leftMat
-leftMat[0] = 1;
-leftMat[1] = 0;
-leftMat[2] = 0;
-leftMat[3] = 0;
-
-leftMat[4] = 0;
-leftMat[5] = 1;
-leftMat[6] = 0;
-leftMat[7] = 0;
-
-leftMat[8] = 0;
-leftMat[9] = 0;
-leftMat[10] = 1;
-leftMat[11] = 0;
-
-leftMat[12] = 0;
-leftMat[13] = 0;
-leftMat[14] = 0;
-leftMat[15] = 1; // GM Matrix has to have 0-15, can't be a 2-dimension array
-
-//lmat = shader_get_uniform(stereo_offset_left, "leftMat");
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.SURFACE[SURF_RIGHT]=surface_create(view_wview/2,view_hview);
-global.SURFACE[SURF_LEFT]=surface_create(view_wview/2,view_hview);
-global.SURFACE[SURF_REGULAR]=surface_create(view_wview,view_hview);
 </string>
           </argument>
         </arguments>
@@ -163,7 +78,7 @@ zadd=lengthdir_z_3d(yaw+90,roll,es/2);
 direction = yaw+player_fps.dir //Direction the camera is facing (body direction + head direction)
 
 r = es/2
-hdir = direction+90;
+hdir = direction;
 vdir = roll;
 
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
@@ -265,8 +180,9 @@ d3d_set_projection_ortho(0,0,view_wview,view_hview,0);
 draw_clear(c_black);
 
 //draw_sprite_stretched(blank_spr,0,0,50,view_wview,view_hview-100)
+*/
 
-draw_surface_stretched_ext(global.SURFACE[SURF_REGULAR],0,50,view_wview,view_hview-100,c_white,1);
+//draw_surface_stretched_ext(global.SURFACE[SURF_LEFT],0,50,view_wview,view_hview-100,c_white,1);
 </string>
           </argument>
         </arguments>

@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>600</speed>
   <persistent>0</persistent>
-  <colour>16777215</colour>
+  <colour>255</colour>
   <showcolour>-1</showcolour>
   <code></code>
   <enableViews>-1</enableViews>

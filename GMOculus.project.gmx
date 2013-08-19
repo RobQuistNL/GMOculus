@@ -3,42 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="70" name="datafiles">
-    <datafile>
-      <name>3rd_world.mod</name>
-      <exists>-1</exists>
-      <size>15453</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename></filename>
-    </datafile>
-    <datafile>
-      <name>RiftSharpDll.dll</name>
-      <exists>-1</exists>
-      <size>142848</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename></filename>
-    </datafile>
-    <datafiles number="70" name="models">
+  <datafiles number="72" name="datafiles">
+    <datafiles number="72" name="models">
       <datafile>
         <name>fern.d3d</name>
         <exists>-1</exists>
@@ -176,8 +142,8 @@
         <filename></filename>
       </datafile>
     </datafiles>
-    <datafiles number="70" name="gfx">
-      <datafiles number="70" name="textures">
+    <datafiles number="72" name="gfx">
+      <datafiles number="72" name="textures">
         <datafile>
           <name>firewood.png</name>
           <exists>-1</exists>
@@ -315,7 +281,7 @@
           <filename></filename>
         </datafile>
       </datafiles>
-      <datafiles number="70" name="effects">
+      <datafiles number="72" name="effects">
         <datafile>
           <name>fire_32.png</name>
           <exists>-1</exists>
@@ -352,6 +318,25 @@
         </datafile>
       </datafiles>
     </datafiles>
+    <datafiles number="72" name="lib">
+      <datafile>
+        <name>RiftSharpDll.dll</name>
+        <exists>-1</exists>
+        <size>142848</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename></filename>
+      </datafile>
+    </datafiles>
   </datafiles>
   <NewExtensions/>
   <sounds name="sound">
@@ -383,107 +368,153 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="player">
-      <script>scripts\scr_playerMovement.gml</script>
-      <script>scripts\scr_mouseLook.gml</script>
+    <scripts name="Oculus Support">
+      <script>scripts\setCameraMode.gml</script>
+      <script>scripts\getCameraMode.gml</script>
     </scripts>
-    <scripts name="Oculus Dll">
-      <script>scripts\OVR_Device_getPitch.gml</script>
-      <script>scripts\OVR_Device_getRoll.gml</script>
-      <script>scripts\OVR_Device_getYaw.gml</script>
-      <script>scripts\OVR_Device_init.gml</script>
-      <script>scripts\OVR_Init.gml</script>
-    </scripts>
-    <scripts name="Initialisation">
-      <script>scripts\loadModels.gml</script>
-      <script>scripts\loadTextures.gml</script>
-      <script>scripts\initShaderMatrixArray.gml</script>
-      <script>scripts\init3D.gml</script>
-      <script>scripts\initGame.gml</script>
-    </scripts>
-    <scripts name="calculation_functions">
-      <script>scripts\d3d_set_projection_simple.gml</script>
-      <script>scripts\vector_rotate.gml</script>
-      <script>scripts\find_height.gml</script>
-      <script>scripts\mod_to_triList.gml</script>
-      <script>scripts\line_col.gml</script>
-      <script>scripts\ray_coll.gml</script>
-      <scripts name="3d lengthdr">
-        <script>scripts\lengthdir_x_3d.gml</script>
-        <script>scripts\lengthdir_y_3d.gml</script>
-        <script>scripts\lengthdir_z_3d.gml</script>
-        <script>scripts\lengthdir_all_3d.gml</script>
+    <scripts name="GMOculus">
+      <scripts name="Functions">
+        <script>scripts\GMO_init.gml</script>
+        <scripts name="EyeSeperation">
+          <script>scripts\GMO_setES.gml</script>
+          <script>scripts\GMO_getES.gml</script>
+        </scripts>
+        <scripts name="Resolution">
+          <script>scripts\GMO_setResolution.gml</script>
+          <script>scripts\GMO_getResolutionHeight.gml</script>
+          <script>scripts\GMO_getResolutionWidth.gml</script>
+        </scripts>
+        <scripts name="Camera">
+          <script>scripts\GMO_initCamera.gml</script>
+          <script>scripts\GMO_followObject.gml</script>
+          <script>scripts\GMO_getCameraSurface.gml</script>
+          <scripts name="Getters and Setters">
+            <script>scripts\GMO_getCameraZFar.gml</script>
+            <script>scripts\GMO_getCameraZNear.gml</script>
+            <script>scripts\GMO_setCameraRange.gml</script>
+            <script>scripts\GMO_getCameraAngle.gml</script>
+            <script>scripts\GMO_setCameraAngle.gml</script>
+            <script>scripts\GMO_getCameraMode.gml</script>
+            <script>scripts\GMO_setCameraMode.gml</script>
+          </scripts>
+          <scripts name="Rendering">
+            <script>scripts\GMO_renderCamera.gml</script>
+            <script>scripts\GMO_renderRegular.gml</script>
+            <script>scripts\GMO_renderOculus.gml</script>
+          </scripts>
+          <script>scripts\GMO_drawCameraSurface.gml</script>
+        </scripts>
+        <scripts name="Audio">
+          <script>scripts\GMO_setUse3DSound.gml</script>
+          <script>scripts\GMO_getUse3DSound.gml</script>
+          <script>scripts\GMO_updateListener.gml</script>
+        </scripts>
       </scripts>
-      <script>scripts\inCamera.gml</script>
-      <script>scripts\frustum_culling_init.gml</script>
-      <script>scripts\frustum_culling.gml</script>
-      <script>scripts\updateAudioListener.gml</script>
+      <scripts name="System">
+        <script>scripts\GMO_getSurface.gml</script>
+        <script>scripts\GMO_draw3DInstances.gml</script>
+        <script>scripts\GMO_enableZBuffer.gml</script>
+        <script>scripts\GMO_disableZBuffer.gml</script>
+        <script>scripts\GMO_getVersion.gml</script>
+        <script>scripts\GMO_getVersionString.gml</script>
+        <scripts name="Calculation Functions">
+          <script>scripts\d3d_set_projection_simple.gml</script>
+          <script>scripts\vector_rotate.gml</script>
+          <script>scripts\find_height.gml</script>
+          <script>scripts\mod_to_triList.gml</script>
+          <script>scripts\line_col.gml</script>
+          <script>scripts\ray_coll.gml</script>
+          <scripts name="3d lengthdr">
+            <script>scripts\lengthdir_x_3d.gml</script>
+            <script>scripts\lengthdir_y_3d.gml</script>
+            <script>scripts\lengthdir_z_3d.gml</script>
+            <script>scripts\lengthdir_all_3d.gml</script>
+          </scripts>
+          <script>scripts\inCamera.gml</script>
+          <script>scripts\frustum_culling_init.gml</script>
+          <script>scripts\frustum_culling.gml</script>
+          <script>scripts\updateAudioListener.gml</script>
+        </scripts>
+        <scripts name="Initialisation">
+          <script>scripts\GMO_initShaders.gml</script>
+          <script>scripts\GMO_initSurfaces.gml</script>
+          <script>scripts\GMO_initDefaults.gml</script>
+        </scripts>
+        <scripts name="DLL">
+          <script>scripts\OVR_Init.gml</script>
+          <script>scripts\OVR_Device_init.gml</script>
+          <script>scripts\OVR_Device_getYaw.gml</script>
+          <script>scripts\OVR_Device_getRoll.gml</script>
+          <script>scripts\OVR_Device_getPitch.gml</script>
+        </scripts>
+      </scripts>
     </scripts>
-    <scripts name="visual">
-      <script>scripts\light_Sunlight.gml</script>
-      <script>scripts\light_Moonlight.gml</script>
-      <script>scripts\draw3DWorld.gml</script>
-      <script>scripts\enable_zbuffer.gml</script>
-      <script>scripts\disable_zbuffer.gml</script>
+    <scripts name="Demo">
+      <script>scripts\init3D.gml</script>
+      <scripts name="Loaders">
+        <script>scripts\loadTextures.gml</script>
+        <script>scripts\loadModels.gml</script>
+        <script>scripts\getEffectTextureAlpha.gml</script>
+        <script>scripts\getTexture.gml</script>
+        <script>scripts\getEffectTexture.gml</script>
+      </scripts>
+      <scripts name="Player">
+        <script>scripts\playerMovement.gml</script>
+        <script>scripts\playerMouselook.gml</script>
+      </scripts>
+      <scripts name="Light">
+        <script>scripts\getLightId.gml</script>
+        <script>scripts\initLights.gml</script>
+        <script>scripts\setGeneralLight.gml</script>
+        <script>scripts\disableLights.gml</script>
+        <script>scripts\enableLights.gml</script>
+      </scripts>
     </scripts>
-    <scripts name="getters">
-      <script>scripts\getLightId.gml</script>
-    </scripts>
-    <scripts name="loaders">
-      <script>scripts\getEffectTextureAlpha.gml</script>
-      <script>scripts\getTexture.gml</script>
-      <script>scripts\getEffectTexture.gml</script>
+    <scripts name="FPS_Based_Speed">
+      <script>scripts\FPSController_create.gml</script>
+      <script>scripts\FPSController_alarm0.gml</script>
+      <script>scripts\FPSController_step.gml</script>
+      <script>scripts\F_Speed.gml</script>
     </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
-    <shader type="GLSLES">shaders\stereo_offset_left.shader</shader>
-    <shader type="GLSLES">shaders\stereo_offset_right.shader</shader>
   </shaders>
   <objects name="objects">
-    <objects name="fps">
-      <object>objects\cam_fps</object>
-      <object>objects\player_fps</object>
-    </objects>
-    <objects name="environment">
-      <object>objects\obj_sky</object>
-      <object>objects\obj_grass</object>
-      <object>objects\obj_fern</object>
-      <object>objects\obj_fire</object>
-      <object>objects\obj_tree</object>
-      <object>objects\obj_bench</object>
-      <object>objects\obj_woodstack</object>
-      <object>objects\obj_lantern</object>
-      <object>objects\obj_player_eyes</object>
-      <object>objects\obj_room</object>
-      <object>objects\obj_master_outside_night</object>
-      <object>objects\obj_fire_particle_emitter</object>
-    </objects>
-    <objects name="controllers">
-      <object>objects\obj_control</object>
-      <object>objects\obj_3d_parent</object>
-      <object>objects\obj_3d_particle</object>
-    </objects>
-    <objects name="unused">
-      <object>objects\warp_test_obj</object>
-      <objects name="3rd">
-        <object>objects\cam_3rd</object>
-        <object>objects\player_3rd</object>
+    <objects name="GMOculus">
+      <objects name="Test objects">
+        <object>objects\obj_player_eyes</object>
       </objects>
+      <objects name="Controllers">
+        <object>objects\obj_3d_particle</object>
+        <object>objects\obj_3d_parent</object>
+        <object>objects\obj_control</object>
+        <object>objects\obj_game_init</object>
+      </objects>
+    </objects>
+    <objects name="Demo">
+      <objects name="Environment">
+        <object>objects\obj_sky</object>
+        <object>objects\obj_grass</object>
+        <object>objects\obj_fern</object>
+        <object>objects\obj_fire</object>
+        <object>objects\obj_tree</object>
+        <object>objects\obj_bench</object>
+        <object>objects\obj_woodstack</object>
+        <object>objects\obj_lantern</object>
+        <object>objects\obj_master_outside_night</object>
+        <object>objects\obj_fire_particle_emitter</object>
+      </objects>
+      <object>objects\obj_camera</object>
+      <object>objects\obj_player</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test</room>
+    <room>rooms\room_menu</room>
+    <room>rooms\rm_fps</room>
   </rooms>
-  <constants number="36">
-    <constant name="GMOCULUS_VERSION">0.1 (non-stable)</constant>
-    <constant name="CAM_VSYNC">1</constant>
+  <constants number="29">
     <constant name="CAM_FRUSTUM">1</constant>
-    <constant name="CAM_ANTIALIAS">2</constant>
-    <constant name="CAM_ZNEAR">1</constant>
-    <constant name="CAM_ZFAR">2048</constant>
-    <constant name="CAM_ANGLE">110</constant>
-    <constant name="CAM_EYESEP">0.4</constant>
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>

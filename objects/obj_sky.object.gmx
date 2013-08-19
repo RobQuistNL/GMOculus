@@ -104,25 +104,22 @@ zdir2-=keyboard_check(ord("B"))*.01;*/
 
 count+=skyspeed
 
+d3d_set_culling(false);
+    
 if (skytype=='night') {
-    d3d_set_culling(false);
-    d3d_set_fog(0,0,0,0);
-    d3d_set_lighting(1);
     
-        d3d_transform_set_identity();
-        d3d_transform_add_rotation_z(clouds_rotation/2)
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+    // Skybox model    
+    d3d_transform_set_identity();
+    d3d_transform_add_rotation_z(clouds_rotation/2)
+    d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
 
-        d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
-        d3d_transform_set_identity();
-        
-    d3d_set_fog(1,c_black,50,1000);
+    d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
+    d3d_transform_set_identity();
+   
+    // Light
+    setGeneralLight(0);
     
-    d3d_set_culling(true);
-    draw_set_alpha(1);  
-    d3d_set_lighting(true);
-    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(20,20,75))
-    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(10,0,72))
+    // Counter
     if (count &gt; timelength) {
         skytype='go_to_day'
         count = 0.001
@@ -132,36 +129,30 @@ if (skytype=='night') {
 }
     
 if (skytype=='go_to_day') {
-    d3d_set_culling(false);
-    d3d_set_fog(0,0,0,0);
-    d3d_set_lighting(1);
         
         d3d_transform_set_identity();
         d3d_transform_add_rotation_z(clouds_rotation/2);        
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
 
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
         d3d_transform_set_identity();
         
     draw_set_alpha(count/timelength);
-    d3d_set_lighting(0);
+
+    disableLights(); //We want the skies to be clear blue.
     
         d3d_transform_set_identity();    
         d3d_transform_add_rotation_z(clouds_rotation)        
-         d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        d3d_transform_add_scaling(1-(count/timelength)/4,1-(count/timelength)/4,1-(count/timelength)/4);
+        d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
         
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
         d3d_transform_set_identity();
     
-    d3d_set_fog(1,c_black,50+(4000*(count/timelength)),1000+(2000*(count/timelength)));
     draw_set_alpha(1);  
-    d3d_set_lighting(true);
-    d3d_set_culling(true);
-
-    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(20+(180*(count/timelength)),20+(180*(count/timelength)),75+(75*(count/timelength))))
-    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(10+(180*(count/timelength)),0+(180*(count/timelength)),72+(75*(count/timelength))))
-        
+    enableLights();
+    
+    setGeneralLight(count/timelength);
 
     if count &gt; timelength {
         skytype='day'
@@ -170,23 +161,18 @@ if (skytype=='go_to_day') {
 }
 
 if (skytype=='day') {
-    d3d_set_fog(0,0,0,0);
-    d3d_set_lighting(0);
     
-    d3d_set_culling(false);
-        
+    disableLights(); //We want the skies to be clear blue.
         d3d_transform_set_identity();
         d3d_transform_add_rotation_z(clouds_rotation)        
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
 
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
         d3d_transform_set_identity();
         
     draw_set_alpha(1);  
-    d3d_set_lighting(true);
-    d3d_set_culling(true);
-    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(200,200,150))
-    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(190,180,148))
+    enableLights();
+    setGeneralLight(1);
     
     if (count &gt; timelength) {
         skytype='go_to_night'
@@ -196,37 +182,30 @@ if (skytype=='day') {
     }
 }
 if (skytype=='go_to_night') {
-    d3d_set_culling(false);
-    d3d_set_fog(0,0,0,0);
-    d3d_set_lighting(0);
-    
+
+    disableLights(); //We want the skies to be clear blue.   
         d3d_transform_set_identity();
         d3d_transform_add_rotation_z(clouds_rotation)
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
         
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY_DAY]);
         d3d_transform_set_identity();
         
     draw_set_alpha(count/timelength);
-    d3d_set_lighting(1);
+    enableLights();
         
         d3d_transform_set_identity();
-        d3d_transform_add_scaling(1-(count/timelength)/5,1-(count/timelength)/5,1-(count/timelength)/5);
+        d3d_transform_add_scaling(1-(count/timelength)/4,1-(count/timelength)/4,1-(count/timelength)/4);
         d3d_transform_add_rotation_z(clouds_rotation/2)
-        d3d_transform_add_translation(player_fps.x,player_fps.y,player_fps.z);
+        d3d_transform_add_translation(obj_camera.x,obj_camera.y,obj_camera.z);
         
         d3d_model_draw(global.MODEL[MOD_SKYBALL],0,0,0,global.TEX[TEX_SKY]);
         d3d_transform_set_identity();
         
     draw_set_alpha(1);  
     d3d_set_lighting(true);
-    d3d_set_fog(1,c_black,4050-(4000*(count/timelength)),2000-(1000*(count/timelength)));
-    d3d_light_define_direction(light1,xdir1,ydir1,zdir1,make_color_rgb(200-(180*(count/timelength)),200-(180*(count/timelength)),150-(75*(count/timelength))))
-    d3d_light_define_direction(light2,xdir2,ydir2,zdir2,make_color_rgb(190-(180*(count/timelength)),180-(180*(count/timelength)),148-(75*(count/timelength))))
-    d3d_set_culling(true);
-    
+    setGeneralLight(1-(count/timelength));
 
-    
     if count &gt; timelength {
         skytype='night'
         count = 0.001
@@ -236,7 +215,9 @@ clouds_rotation+=clouds_speed
 if (clouds_rotation&gt;360*2) {
     clouds_rotation=0;
 }
-draw_set_alpha(1);
+d3d_transform_set_identity();
+d3d_set_culling(true);
+
 </string>
           </argument>
         </arguments>
