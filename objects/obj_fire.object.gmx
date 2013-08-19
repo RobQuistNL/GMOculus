@@ -28,14 +28,14 @@
             <string>z = 3
 
 //Configure the light
-randomfactor=0.2
+randomfactor=0.5
 brighter=true;
-minbright=0.05
-maxbright=0.7
+minbright=0.1
+maxbright=0.9
 brightspeed=random(100)/10000
 //Create the light
 light = getLightId();
-d3d_light_define_point(light,x,y,z,z*1.5,make_color_rgb(255,255,100));
+d3d_light_define_point(light,x,y,40,200,make_color_rgb(255,255,100));
 d3d_light_enable(light, true);
 
 //Create the sound emitter
@@ -103,8 +103,10 @@ if (brighter) {
     randomfactor-=brightspeed
     if (randomfactor &lt; minbright) { brighter = true }
 }
+randomfactor = 0.2+(random(1));
+if (randomfactor &gt; 1) { randomfactor = 1 }
 
-d3d_light_define_point(light,x,y,20,200,make_color_rgb(255*randomfactor,255*randomfactor,100*randomfactor));
+d3d_light_define_point(light,x,y,20,60,make_color_rgb(255*randomfactor,255*randomfactor,200*randomfactor));
 
 maydraw =1;
 if (CAM_FRUSTUM) {
@@ -112,9 +114,7 @@ if (CAM_FRUSTUM) {
 }
 
 if (maydraw) {
-    
     //Draw the hay and wood
-    d3d_set_culling(true)
     d3d_transform_set_identity();
     d3d_transform_add_scaling(4,4,4);
     d3d_transform_add_translation(x,y,z);    
@@ -125,7 +125,6 @@ if (maydraw) {
     d3d_transform_add_translation(x,y,z);    
     d3d_model_draw(global.MODEL[MOD_FIREWOOD],0,0,0,global.TEX[TEX_FIREWOOD]);
     d3d_transform_set_identity();
-    
 }
 </string>
           </argument>

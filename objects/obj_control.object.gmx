@@ -3,12 +3,12 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-200</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,7 +25,57 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>initGame();  
+            <string>FPSController_alarm0();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FPSController_step();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Start our 3D engine
+init3D();
+
+// Make the FPS controller (for speeds based on FPS)
+FPSController_create();
 </string>
           </argument>
         </arguments>
@@ -48,20 +98,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_transform_set_identity();
-d3d_set_lighting(0);
-d3d_set_fog(0,0,0,0);
-draw_set_alpha(1);
+            <string>/// Draw some debugging text
 draw_set_color(c_gray)
-draw_text(5,5,"FPS: " + string(fps) +"#IPD: "+string(cam_fps.es) + "#wsize:" +string(cam_fps.wsize)+ "#hsize:" +string(cam_fps.hsize) +
- "XY: " + string(player_fps.x) + "x" + string(player_fps.y) +
- "##Yaw:" +string(cam_fps.yaw)+
- "#Pitch:" +string(cam_fps.pitch)+
- "#Roll:" +string(cam_fps.roll)+
- "#Floors:" + string(obj_grass.floors)
- 
+draw_text(5,5,"GMOculus version " + string(GMO_getVersionString())+
+ "##FPS: " + string(fps) +"#IPD: "+string(GMO_getES()) +
+ "#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
+ "##Yaw:" +string(obj_camera.yaw)+
+ "#Pitch:" +string(obj_camera.pitch)+
+ "#Roll:" +string(obj_camera.roll)
 )
-draw_set_color(c_white)
+
 </string>
           </argument>
         </arguments>

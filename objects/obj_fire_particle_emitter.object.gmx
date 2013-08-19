@@ -77,8 +77,7 @@ for (i=0; i&lt;smokeparticles; i++) {
             <kind>1</kind>
             <string>d3d_set_culling(false)    
 
-    d3d_set_lighting(0);
-        d3d_set_zwriteenable(0)
+    disableLights();
     //Draw the particles
     for (i=0; i&lt;fireparticles; i++) {
         xx=f_part[i,0];
@@ -93,7 +92,9 @@ for (i=0; i&lt;smokeparticles; i++) {
         d3d_transform_set_identity();
         draw_set_alpha(1);
     }
-    d3d_set_lighting(1);    
+    
+    enableLights();   
+    
     for (i=0; i&lt;smokeparticles; i++) {
         xx=s_part[i,0];
         yy=s_part[i,1];
@@ -109,7 +110,7 @@ for (i=0; i&lt;smokeparticles; i++) {
         d3d_transform_set_identity();
         draw_set_alpha(1);
     }
-        d3d_set_zwriteenable(1)
+    
     // move the particles
     for (i=0; i&lt;fireparticles; i++) {
         f_part[i,2]+=firespeed; //Move up

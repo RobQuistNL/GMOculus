@@ -25,25 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>range = CAM_ZFAR
-tilesize = 256
+            <string>range = GMO_getCameraZFar();
+tilesize = 128
 floors=0
 z = 2;
 d3d_set_culling(false);
-//d3d_draw_floor(range,range,z,-range,-range,z,global.TEX[TEX_GRASS],range/20,range/20);
 
-//Draw regular floor
+//Draw big tiles
 for (yy = -range; yy &lt; range; yy+=tilesize*4) {
     for (xx = -range; xx &lt; range; xx+=tilesize*4) {
         //if (CAM_FRUSTUM) {
         if (0) {
             maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
         } else {
-            maydraw = (point_distance(xx,yy,player_fps.x,player_fps.y)&lt;CAM_ZFAR)
+            maydraw = (point_distance(xx,yy,obj_camera.x,obj_camera.y)&lt;GMO_getCameraZFar())
         }
         if maydraw { 
             //Draw loose tiles for when the player is close (lighting)
-            d3d_draw_floor(xx+tilesize*8/2,yy+tilesize*8/2,z,xx-tilesize*8/2,yy-tilesize*8/2,z,global.TEX[TEX_GRASS],16,16);
+            d3d_draw_floor(xx+tilesize*8/2,yy+tilesize*8/2,z,xx-tilesize*8/2,yy-tilesize*8/2,z,global.TEX[TEX_GRASS],4,4);
             floors++;
         }
     }
@@ -55,11 +54,11 @@ for (yy = -range; yy &lt; range; yy+=tilesize) {
         if (0) {
             maydraw = frustum_culling(xx, yy, z+1, tilesize*sqrt(2));
         } else {
-            maydraw = (point_distance(xx,yy,player_fps.x,player_fps.y)&lt;CAM_ZFAR/3)
+            maydraw = (point_distance(xx,yy,obj_camera.x,obj_camera.y)&lt;GMO_getCameraZFar()/4)
         }
         if maydraw { 
             //Draw loose tiles for when the player is close (lighting)
-            d3d_draw_floor(xx+tilesize/2,yy+tilesize/2,z+1,xx-tilesize/2,yy-tilesize/2,z+1,global.TEX[TEX_GRASS],2,2);
+            d3d_draw_floor(xx+tilesize/2,yy+tilesize/2,z+1,xx-tilesize/2,yy-tilesize/2,z+1,global.TEX[TEX_GRASS],1,1);
             floors++;
         }
     }
