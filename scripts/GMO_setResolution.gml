@@ -4,3 +4,6 @@
 // arg1 int   height in pixels
 global._GMO_WRES = argument0;
 global._GMO_HRES = argument1;
+
+//Also reset the surfaces
+GMO_resetSurfaces();
