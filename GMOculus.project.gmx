@@ -385,10 +385,6 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="Oculus Support">
-      <script>scripts\setCameraMode.gml</script>
-      <script>scripts\getCameraMode.gml</script>
-    </scripts>
     <scripts name="GMOculus">
       <scripts name="Functions">
         <script>scripts\GMO_init.gml</script>
