@@ -22,6 +22,7 @@ if (global._GMO_DLL_LOADED == false) {
         return false;
     } else {
         show_debug_message("Oculus Rift DLL loaded and initialized!");
+        global._GMO_DLL_LOADED = true;
         return true;
     }
 } else {
