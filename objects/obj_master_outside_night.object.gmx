@@ -54,6 +54,8 @@ repeat(instances) {
 repeat(instances) {
     instance_create(-500+random(1000),-500+random(1000),obj_fern);
 }
+
+instance_create(0,0,obj_fuzzies);
 </string>
           </argument>
         </arguments>
