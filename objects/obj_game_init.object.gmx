@@ -57,8 +57,8 @@ initLights();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(10,10,"Press space to start 3D world.");
-draw_sprite(logo_spr,0,room_width/2,room_height/2);
+            <string>draw_text(10,10,"Press space to start 3D world.##CONTROLS:##Walk with WASD#Use mouse to look around#P - Regular view#O - Oculus view");
+draw_sprite(spr_logo,0,room_width/2,room_height/2);
 </string>
           </argument>
         </arguments>
