@@ -412,7 +412,6 @@
     <sprite>sprites\spr_logo</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bac_lightMap</background>
     <background>background\tex_sky</background>
     <background>background\tex_test</background>
     <background>background\tex_arrow</background>
