@@ -389,9 +389,9 @@
     <scripts name="GMOculus">
       <scripts name="Functions">
         <script>scripts\GMO_init.gml</script>
-        <scripts name="EyeSeperation">
-          <script>scripts\GMO_setES.gml</script>
-          <script>scripts\GMO_getES.gml</script>
+        <scripts name="Interpupillary Distance">
+          <script>scripts\GMO_setIPD.gml</script>
+          <script>scripts\GMO_getIPD.gml</script>
         </scripts>
         <scripts name="Resolution">
           <script>scripts\GMO_setResolution.gml</script>

@@ -6,7 +6,7 @@
 // arg4 int roll
 
 
-r = GMO_getES()/2;
+r = GMO_getIPD()/2;
 hdir = argument3;
 vdir = argument4;
 

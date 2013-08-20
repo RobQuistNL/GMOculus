@@ -101,13 +101,22 @@ FPSController_create();
             <string>/// Draw some debugging text
 draw_set_color(c_gray)
 draw_text(5,5,"GMOculus version " + string(GMO_getVersionString())+
- "##FPS: " + string(fps) +"#IPD: "+string(GMO_getES()) +
+ "#Press F1 for help and controls" +
+ "##FPS: " + string(fps) +
  "#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
  "##Yaw:" +string(obj_camera.yaw)+
  "#Pitch:" +string(obj_camera.pitch)+
- "#Roll:" +string(obj_camera.roll)
+ "#Roll:" +string(obj_camera.roll)+
+ "#Interpupillary Distance" + string(GMO_getIPD())
 )
 
+// Change IPD
+if (keyboard_check_direct(ord("L"))) {
+    GMO_setIPD(GMO_getIPD()+0.01);
+}
+if (keyboard_check_direct(ord("K"))) {
+    GMO_setIPD(GMO_getIPD()-0.01);
+}
 </string>
           </argument>
         </arguments>
