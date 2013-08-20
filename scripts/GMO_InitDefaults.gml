@@ -3,7 +3,7 @@
  * and simply use the setters and getters instead.
  */
 
-global._GMO_VERSION = 0.2;
+global._GMO_VERSION = 0.21;
 global._GMO_VERSION_STRING = string(global._GMO_VERSION)+' (non-stable)';
  
 global._GMO_USE_3D_SOUND = true;
