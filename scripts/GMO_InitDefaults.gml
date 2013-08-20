@@ -8,7 +8,7 @@ global._GMO_VERSION_STRING = string(global._GMO_VERSION)+' (non-stable)';
  
 global._GMO_USE_3D_SOUND = true;
 global._GMO_CAMERA_MODE = 1; //1 = Regular 2 = Oculus
-global._GMO_ES = 0.4;
+global._GMO_ES = 3.2;
 global._GMO_CAMERA_ANGLE = 111; // See GMO_setCameraAngle for documentation.
 global._GMO_CAM_ZNEAR = 1;
 global._GMO_CAM_ZFAR = 2048;

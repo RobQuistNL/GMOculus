@@ -1,6 +1,6 @@
 // Calculate positions
 r = GMO_getES()/2
-hdir = argument3;
+hdir = argument3+90;
 vdir = argument5;
 
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
