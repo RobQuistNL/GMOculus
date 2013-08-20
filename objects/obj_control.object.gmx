@@ -103,6 +103,7 @@ draw_set_color(c_gray)
 draw_text(5,5,"GMOculus version " + string(GMO_getVersionString())+
  "#Press F1 for help and controls" +
  "##FPS: " + string(fps) +
+ "#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +
  "#XY: " + string(obj_camera.x) + "x" + string(obj_camera.y) +
  "##Yaw:" +string(obj_camera.yaw)+
  "#Pitch:" +string(obj_camera.pitch)+
