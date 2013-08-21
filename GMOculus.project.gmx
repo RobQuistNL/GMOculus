@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="85" name="datafiles">
-    <datafiles number="85" name="models">
+  <datafiles number="88" name="datafiles">
+    <datafiles number="88" name="models">
       <datafile>
         <name>fern.d3d</name>
         <exists>-1</exists>
@@ -161,7 +161,7 @@
       <datafile>
         <name>1.d3d</name>
         <exists>-1</exists>
-        <size>74382</size>
+        <size>97441</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -178,7 +178,7 @@
       <datafile>
         <name>2.d3d</name>
         <exists>-1</exists>
-        <size>565897</size>
+        <size>735758</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -195,7 +195,7 @@
       <datafile>
         <name>roof.d3d</name>
         <exists>-1</exists>
-        <size>78688</size>
+        <size>103501</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -210,8 +210,8 @@
         <filename></filename>
       </datafile>
     </datafiles>
-    <datafiles number="85" name="gfx">
-      <datafiles number="85" name="textures">
+    <datafiles number="88" name="gfx">
+      <datafiles number="88" name="textures">
         <datafile>
           <name>firewood.png</name>
           <exists>-1</exists>
@@ -417,7 +417,7 @@
           <filename></filename>
         </datafile>
       </datafiles>
-      <datafiles number="85" name="effects">
+      <datafiles number="88" name="effects">
         <datafile>
           <name>fire_32.png</name>
           <exists>-1</exists>
@@ -471,7 +471,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="85" name="lib">
+    <datafiles number="88" name="lib">
       <datafile>
         <name>RiftSharpDll.dll</name>
         <exists>-1</exists>
