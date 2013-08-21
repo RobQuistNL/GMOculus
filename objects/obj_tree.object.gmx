@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>direction=random(360);
+height=3+random(2)
 </string>
           </argument>
         </arguments>
@@ -50,11 +51,12 @@
             <kind>1</kind>
             <string>maydraw =1;
 if (CAM_FRUSTUM) {
-    maydraw = frustum_culling(x, y, 0, 30*sqrt(3));
+    maydraw = frustum_culling(x, y, 0, 60*sqrt(3));
 }
 
 if (maydraw) {
     d3d_transform_set_identity();
+    d3d_transform_set_scaling(height/2,height/2,height);
     d3d_transform_add_rotation_z(direction);
     d3d_transform_add_translation(x,y,0);
     

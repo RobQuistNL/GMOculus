@@ -33,8 +33,8 @@ if (CAM_FRUSTUM) {
 if (maydraw) {
     d3d_transform_set_identity();
     //d3d_transform_add_rotation_x(-90);
-    d3d_transform_add_scaling(1/1.4,1/1.4,1/1.4);
-    d3d_transform_add_translation(x,y,0);
+    d3d_transform_add_scaling(1.1,1.1,1.1);
+    d3d_transform_add_translation(x,y,2);
 
     d3d_model_draw(global.MODEL[MOD_B1],0,0,0,global.TEX[TEX_B1]);
     d3d_model_draw(global.MODEL[MOD_B2],0,0,0,global.TEX[TEX_B2]);

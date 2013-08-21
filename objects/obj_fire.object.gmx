@@ -35,7 +35,7 @@ maxbright=0.9
 brightspeed=random(100)/10000
 //Create the light
 light = getLightId();
-d3d_light_define_point(light,x,y,40,400,make_color_rgb(255,255,100));
+d3d_light_define_point(light,x,y,40,600,make_color_rgb(255,255,100));
 d3d_light_enable(light, true);
 
 //Create the sound emitter
@@ -138,12 +138,12 @@ if (CAM_FRUSTUM) {
 if (maydraw) {
     //Draw the hay and wood
     d3d_transform_set_identity();
-    d3d_transform_add_scaling(4,4,4);
+    d3d_transform_add_scaling(6,6,6);
     d3d_transform_add_translation(x,y,z);    
     d3d_model_draw(global.MODEL[MOD_FIREHAY],0,0,0,global.TEX[TEX_HAY]);
 
     d3d_transform_set_identity();
-    d3d_transform_add_scaling(2.5,2.5,2.5);
+    d3d_transform_add_scaling(3.5,3.5,3.5);
     d3d_transform_add_translation(x,y,z);    
     d3d_model_draw(global.MODEL[MOD_FIREWOOD],0,0,0,global.TEX[TEX_FIREWOOD]);
     d3d_transform_set_identity();

@@ -26,18 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>
-fireparticles = 40
-smokeparticles= 40
+fireparticles = 100
+smokeparticles= 10
 
-fireheight = 40
+fireheight = 200 / 3  //Height in CM / 3
 firelow = 4
 firespeed = 0.7
 
-smokeheight = 190
-smokelow = 40
+smokeheight = 600 / 3 //Height in CM / 3
+smokelow = 190 / 3
 smokespeed = 0.2
 
-wide = 16
+wide = 26
 
 for (i=0; i&lt;fireparticles; i++) {
     f_part[i,0] = x-wide/2+random(wide) //X
@@ -117,14 +117,14 @@ for (i=0; i&lt;smokeparticles; i++) {
 
         f_part[i,3] = point_direction(x,y,f_part[i,0],f_part[i,1]);
         //Move to direction
-        f_part[i,0]-=lengthdir_x(firespeed/8,f_part[i,3]); 
-        f_part[i,1]-=lengthdir_y(firespeed/8,f_part[i,3]);
+        f_part[i,0]-=lengthdir_x(firespeed/6,f_part[i,3]); 
+        f_part[i,1]-=lengthdir_y(firespeed/6,f_part[i,3]);
         
         if (f_part[i,2] &gt; fireheight) { //If they reach the limit, respawn them down
             f_part[i,0] = x-wide/2+random(wide) //X
             f_part[i,1] = y-wide/2+random(wide) //Y
             f_part[i,2] = firelow //Z
-            f_part[i,3] = point_direction(x,y,f_part[i,0],f_part[i,1]); //We want fire to move to the center
+            f_part[i,3] = point_direction(x,y,f_part[i,0]*1.5,f_part[i,1]); //We want fire to move to the center
             f_part[i,4] = 0.3+(random(70)/100); // Alpha
         }
     }

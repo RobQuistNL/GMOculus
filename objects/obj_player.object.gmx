@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>z = 0; //The feet
-height = 32; //The head
+height = 180 / 3; //The head height in CM / 3 ( 1z ingame == 3cm IRL)
 pitch = 0;
 </string>
           </argument>
@@ -50,7 +50,7 @@ pitch = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playerMovement(F_Speed(1.5*.75),F_Speed(.8*.75),F_Speed(1*.75));
+            <string>playerMovement(F_Speed(1.5),F_Speed(1),F_Speed(1));
 playerMouselook();
 </string>
           </argument>
