@@ -32,7 +32,7 @@ uniform sampler2D passedTextureRight;
 int switchEyes = 1;
 
 // left
-float as = 1.0;
+float as = 0.8/1.0;
 float w = 1.0;
 float h = 1.0;
 float scaleFactor = 1.0;

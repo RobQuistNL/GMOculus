@@ -10,6 +10,10 @@ global.TEX[TEX_GRASS]    = getTexture("grass_hires.png",0);
 global.TEX[TEX_HAY]      = getTexture("hay.png",0);
 global.TEX[TEX_FIREWOOD] = getTexture("firewood2.png",0);
 
+global.TEX[TEX_B1] = getTexture("1.png",0);
+global.TEX[TEX_B2] = getTexture("2.png",0);
+global.TEX[TEX_BROOF] = getTexture("roof.png",0);
+
 global.TEX[TEX_FIRE]    = getEffectTexture("fire_32.png");
 global.TEX[TEX_SMOKE]    = getEffectTexture("smoke_32.png");
 global.TEX[TEX_FLYING_FUZZY] = getEffectTexture("flying_fuzzy.png");

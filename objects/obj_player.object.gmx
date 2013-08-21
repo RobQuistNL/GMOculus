@@ -50,7 +50,7 @@ pitch = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playerMovement(F_Speed(3),F_Speed(2.5),F_Speed(2));
+            <string>playerMovement(F_Speed(1.5*.75),F_Speed(.8*.75),F_Speed(1*.75));
 playerMouselook();
 </string>
           </argument>

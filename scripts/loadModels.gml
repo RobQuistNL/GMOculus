@@ -13,6 +13,10 @@ global.MODEL[MOD_EFFECT_PLANE_DETAIL] = d3d_model_create();
 global.MODEL[MOD_WOODSTACK] = d3d_model_create();
 global.MODEL[MOD_BENCH] = d3d_model_create();
 
+global.MODEL[MOD_B1] = d3d_model_create();
+global.MODEL[MOD_B2] = d3d_model_create();
+global.MODEL[MOD_BROOF] = d3d_model_create();
+
 
 /* Create on the fly */
 size=10
@@ -37,4 +41,8 @@ d3d_model_load(global.MODEL[MOD_FIREWOOD],working_directory + "\models\firewood.
 
 d3d_model_load(global.MODEL[MOD_BENCH],working_directory + "\models\1_bench.d3d");
 d3d_model_load(global.MODEL[MOD_WOODSTACK],working_directory + "\models\2_woodstack.d3d");
+
+d3d_model_load(global.MODEL[MOD_B1],working_directory + "\models\1.d3d");
+d3d_model_load(global.MODEL[MOD_B2],working_directory + "\models\2.d3d");
+d3d_model_load(global.MODEL[MOD_BROOF],working_directory + "\models\roof.d3d");
 
