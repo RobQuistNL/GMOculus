@@ -629,7 +629,9 @@
     </scripts>
   </scripts>
   <shaders name="shaders">
-    <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
+    <shaders name="GMOculus">
+      <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
+    </shaders>
   </shaders>
   <objects name="objects">
     <objects name="GMOculus">
