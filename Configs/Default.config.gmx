@@ -59,7 +59,7 @@
     <option_android_texture_page>1024</option_android_texture_page>
     <option_android_use_test_ads>0</option_android_use_test_ads>
     <option_argumenterrors>True</option_argumenterrors>
-    <option_author></option_author>
+    <option_author>Rob Quist &amp; Christopher Legasse</option_author>
     <option_backimage>nil</option_backimage>
     <option_changed>false</option_changed>
     <option_changeresolution>false</option_changeresolution>
@@ -228,15 +228,15 @@
     <option_tizen_usesplash>False</option_tizen_usesplash>
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
-    <option_version>100</option_version>
+    <option_version>0.22</option_version>
     <option_version_build>0</option_version_build>
-    <option_version_company>GMOculus</option_version_company>
+    <option_version_company>GameMakerVR</option_version_company>
     <option_version_copyright></option_version_copyright>
-    <option_version_description>www.gmoculus.com</option_version_description>
+    <option_version_description>www.gamemakervr.com</option_version_description>
     <option_version_major>0</option_version_major>
     <option_version_minor>2</option_version_minor>
     <option_version_product></option_version_product>
-    <option_version_release>0</option_version_release>
+    <option_version_release>2</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -274,9 +274,9 @@
     <option_win8_wide_logo>Configs\Default\Windows8\logos\logo310.png</option_win8_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
     <option_windows_build_version>0</option_windows_build_version>
-    <option_windows_company_info>GMOculus</option_windows_company_info>
+    <option_windows_company_info>GameMakerVR</option_windows_company_info>
     <option_windows_copyright_info></option_windows_copyright_info>
-    <option_windows_description_info>www.gmoculus.com</option_windows_description_info>
+    <option_windows_description_info>www.gamemakervr.com</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
@@ -284,7 +284,7 @@
     <option_windows_major_version>0</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info></option_windows_product_info>
-    <option_windows_release_version>0</option_windows_release_version>
+    <option_windows_release_version>2</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>
