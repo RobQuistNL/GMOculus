@@ -106,7 +106,7 @@ GMO_drawCameraSurface();
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to regular
-GMO_setCameraMode(1);
+GMO_setCameraMode(CAM_MODE_REGULAR);
 </string>
           </argument>
         </arguments>
@@ -130,7 +130,79 @@ GMO_setCameraMode(1);
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
-GMO_setCameraMode(2);
+GMO_setCameraMode(CAM_MODE_OCULUS);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="78">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set camera mode to anaglyph red blue
+GMO_setCameraMode(CAM_MODE_ANA_R_B);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="77">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set camera mode to anaglyph red green
+GMO_setCameraMode(CAM_MODE_ANA_R_G);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="66">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set camera mode to anaglyph red cyan
+GMO_setCameraMode(CAM_MODE_ANA_R_C);
 </string>
           </argument>
         </arguments>

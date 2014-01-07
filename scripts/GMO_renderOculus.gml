@@ -44,7 +44,7 @@ draw_clear(c_black);
     spr_TextureRight = surface_get_texture(GMO_getSurface(SURF_LEFT));
 
     // Apply shader
-    shader_set(hmdwarp_shader);
+    shader_set(GMO_hmdwarp_shader);
         texture_set_stage(global._GMO_passedTextureLeft, spr_TextureLeft);
         texture_set_stage(global._GMO_passedTextureRight, spr_TextureRight);
         draw_sprite_stretched(blank_spr,0,0,0,w,h)

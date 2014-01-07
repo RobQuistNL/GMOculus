@@ -543,6 +543,7 @@
             <script>scripts\GMO_renderCamera.gml</script>
             <script>scripts\GMO_renderRegular.gml</script>
             <script>scripts\GMO_renderOculus.gml</script>
+            <script>scripts\GMO_renderAnaglyph.gml</script>
           </scripts>
           <scripts name="Getters and Setters">
             <script>scripts\GMO_getCameraZFar.gml</script>
@@ -630,7 +631,8 @@
   </scripts>
   <shaders name="shaders">
     <shaders name="GMOculus">
-      <shader type="GLSLES">shaders\hmdwarp_shader.shader</shader>
+      <shader type="GLSLES">shaders\GMO_hmdwarp_shader.shader</shader>
+      <shader type="GLSLES">shaders\GMO_colorFilter_shader.shader</shader>
     </shaders>
   </shaders>
   <objects name="objects">
@@ -668,8 +670,15 @@
     <room>rooms\room_menu</room>
     <room>rooms\rm_fps</room>
   </rooms>
-  <constants number="37">
+  <constants number="44">
+    <constant name="CAM_MODE_ANA_R_B">5</constant>
+    <constant name="CAM_MODE_ANA_R_G">4</constant>
+    <constant name="CAM_MODE_ANA_R_C">3</constant>
+    <constant name="CAM_MODE_OCULUS">2</constant>
+    <constant name="CAM_MODE_REGULAR">1</constant>
     <constant name="CAM_FRUSTUM">1</constant>
+    <constant name="SURF_REG_LEFT">5</constant>
+    <constant name="SURF_REG_RIGHT">4</constant>
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
     <constant name="SURF_REGULAR">3</constant>

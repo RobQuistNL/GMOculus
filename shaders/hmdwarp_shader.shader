@@ -32,18 +32,19 @@ uniform sampler2D passedTextureRight;
 int switchEyes = 1;
 
 // left
-float as = 0.8/1.0;
+float as = 0.9/1.0;
 float w = 1.0;
 float h = 1.0;
 float scaleFactor = 1.0;
 
-vec2 leftLensCenter      = vec2((w + 0.25 * 0.5)*0.5, h*0.5);
-vec2 Scale         = vec2((w/2.0) * scaleFactor, (h/2.0) * scaleFactor * as);
-vec2 ScaleIn      = vec2((1.6), (1.6) / as);
-vec4 HmdWarpParam   = vec4(1, 0.22, 0.24, 0);
+vec2 leftLensCenter  = vec2((w -0.2 * 0.5)*0.5, h*0.5);
+vec2 rightLensCenter = vec2((w + 0.2 * 0.5)*0.5, h*0.5);
 
-// right
-vec2 rightLensCenter      = vec2((w + -0.25 * 0.5)*0.5, h*0.5);
+vec2 Scale        = vec2((w/2.0) * scaleFactor, (h/2.0) * scaleFactor * as);
+vec2 ScaleIn      = vec2((1.4), (1.4) / as);
+vec4 HmdWarpParam = vec4(1, 0.22, 0.24, 0);
+
+
 
 vec2 screenCenter   = vec2(0.5, 0.5);
 
@@ -68,7 +69,7 @@ void main()
       texcoord.x *= 2.0;
 
       if (v_vTexcoord.x > 0.5) {
-        texcoord.x += 0.075;
+        texcoord.x += 0.015;
          vec2 texcoord = HmdWarp(texcoord, rightLensCenter);
           if (any(bvec2(clamp(texcoord,screenCenter-vec2(0.5,0.5), screenCenter+vec2(0.5,0.5)) - texcoord)))
           {
@@ -84,7 +85,7 @@ void main()
          
          
       } else {
-        texcoord.x -= 0.075;
+        texcoord.x -= 0.015;
          vec2 texcoord = HmdWarp(texcoord, leftLensCenter);
           if (any(bvec2(clamp(texcoord,screenCenter-vec2(0.5,0.5), screenCenter+vec2(0.5,0.5)) - texcoord)))
           {
