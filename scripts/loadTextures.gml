@@ -18,5 +18,7 @@ global.TEX[TEX_FIRE]    = getEffectTexture("fire_32.png");
 global.TEX[TEX_SMOKE]    = getEffectTexture("smoke_32.png");
 global.TEX[TEX_FLYING_FUZZY] = getEffectTexture("flying_fuzzy.png");
 
+
 global.TEX[TEX_WOODSTACK] = getTexture("woodstack.png",0);
 global.TEX[TEX_BENCH] = getTexture("1_bench.png",0);
+global.TEX[TEX_SOLDIER] = background_get_texture(bak_soldier);

@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="88" name="datafiles">
-    <datafiles number="88" name="models">
+  <datafiles number="96" name="datafiles">
+    <datafiles number="96" name="models">
       <datafile>
         <name>fern.d3d</name>
         <exists>-1</exists>
@@ -209,9 +209,26 @@
         </ConfigOptions>
         <filename></filename>
       </datafile>
+      <datafile>
+        <name>soldier_wip.d3d</name>
+        <exists>-1</exists>
+        <size>2865876</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>soldier_wip.d3d</filename>
+      </datafile>
     </datafiles>
-    <datafiles number="88" name="gfx">
-      <datafiles number="88" name="textures">
+    <datafiles number="96" name="gfx">
+      <datafiles number="96" name="textures">
         <datafile>
           <name>firewood.png</name>
           <exists>-1</exists>
@@ -417,7 +434,7 @@
           <filename></filename>
         </datafile>
       </datafiles>
-      <datafiles number="88" name="effects">
+      <datafiles number="96" name="effects">
         <datafile>
           <name>fire_32.png</name>
           <exists>-1</exists>
@@ -471,7 +488,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="88" name="lib">
+    <datafiles number="96" name="lib">
       <datafile>
         <name>RiftSharpDll.dll</name>
         <exists>-1</exists>
@@ -519,6 +536,7 @@
     <background>background\tex_test</background>
     <background>background\tex_arrow</background>
     <background>background\tex_sky_day</background>
+    <background>background\bak_soldier</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -621,6 +639,11 @@
         <script>scripts\disableLights.gml</script>
         <script>scripts\enableLights.gml</script>
       </scripts>
+      <scripts name="Ratio">
+        <script>scripts\GR_meterToPixel.gml</script>
+        <script>scripts\GR_cmToPixel.gml</script>
+        <script>scripts\GR_init.gml</script>
+      </scripts>
     </scripts>
     <scripts name="FPS_Based_Speed">
       <script>scripts\FPSController_create.gml</script>
@@ -658,6 +681,7 @@
         <object>objects\obj_bench</object>
         <object>objects\obj_woodstack</object>
         <object>objects\obj_lantern</object>
+        <object>objects\obj_soldier</object>
         <object>objects\obj_master_outside_night</object>
         <object>objects\obj_fire_particle_emitter</object>
         <object>objects\obj_fuzzies</object>
@@ -670,7 +694,7 @@
     <room>rooms\room_menu</room>
     <room>rooms\rm_fps</room>
   </rooms>
-  <constants number="44">
+  <constants number="46">
     <constant name="CAM_MODE_ANA_R_B">5</constant>
     <constant name="CAM_MODE_ANA_R_G">4</constant>
     <constant name="CAM_MODE_ANA_R_C">3</constant>
@@ -697,6 +721,7 @@
     <constant name="MOD_B1">13</constant>
     <constant name="MOD_B2">14</constant>
     <constant name="MOD_BROOF">15</constant>
+    <constant name="MOD_SOLDIER">16</constant>
     <constant name="TEX_BARK">1</constant>
     <constant name="TEX_FERN">2</constant>
     <constant name="TEX_LEAVES">3</constant>
@@ -715,6 +740,7 @@
     <constant name="TEX_B1">16</constant>
     <constant name="TEX_B2">17</constant>
     <constant name="TEX_BROOF">18</constant>
+    <constant name="TEX_SOLDIER">19</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

@@ -2,7 +2,7 @@
 r = GMO_getIPD()/2
 hdir = argument3+90;
 vdir = argument5;
-
+a = argument7
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
 yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
 zadd = r*sin(degtorad(vdir));

@@ -1,5 +1,8 @@
 // find_height(x,y,tri_id)
 
+a = argument0
+a = argument1
+
 var points = ds_list_find_value(obj_room.list,argument2);
 
 x0 = ds_list_find_value(points,0);

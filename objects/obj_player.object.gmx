@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>z = 0; //The feet
-height = 180 / 3; //The head height in CM / 3 ( 1z ingame == 3cm IRL)
+height = GR_meterToPixel(1.8) //The head height in CM / 3 ( 1z ingame == 3cm IRL)
 pitch = 0;
 </string>
           </argument>
@@ -50,8 +50,38 @@ pitch = 0;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>  </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>playerMovement(F_Speed(1.5),F_Speed(1),F_Speed(1));
 playerMouselook();
+
+z-=keyboard_check_pressed(vk_down)*2;
+z+=keyboard_check_pressed(vk_up)*2;
+
+ipd = GMO_getIPD();
+ipd-=keyboard_check_pressed(vk_left)*0.1;
+ipd+=keyboard_check_pressed(vk_right)*0.1;
+
+
+GMO_setIPD(ipd)
 </string>
           </argument>
         </arguments>

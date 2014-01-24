@@ -43,11 +43,11 @@
     <option_android_licensing_key></option_android_licensing_key>
     <option_android_major_version>1</option_android_major_version>
     <option_android_minor_version>0</option_android_minor_version>
-    <option_android_mobage>false</option_android_mobage>
+    <option_android_mobage>0</option_android_mobage>
     <option_android_mobage_appkey></option_android_mobage_appkey>
     <option_android_mobage_extension_location></option_android_mobage_extension_location>
     <option_android_mobage_key></option_android_mobage_key>
-    <option_android_mobage_sandbox>false</option_android_mobage_sandbox>
+    <option_android_mobage_sandbox>0</option_android_mobage_sandbox>
     <option_android_mobage_secret></option_android_mobage_secret>
     <option_android_mobage_version></option_android_mobage_version>
     <option_android_orient_landscape>true</option_android_orient_landscape>
@@ -103,7 +103,7 @@
     <option_html5_index>-1</option_html5_index>
     <option_html5_interpolate>-1</option_html5_interpolate>
     <option_html5_jsprepend></option_html5_jsprepend>
-    <option_html5_loadingbar></option_html5_loadingbar>
+    <option_html5_loadingbar>-1</option_html5_loadingbar>
     <option_html5_outputdebugtoconsole>False</option_html5_outputdebugtoconsole>
     <option_html5_outputname>index.html</option_html5_outputname>
     <option_html5_scale>-1</option_html5_scale>
@@ -300,7 +300,7 @@
     <option_windows_save_location>0</option_windows_save_location>
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>0</option_windows_steam_app_id>
-    <option_windows_texture_page>2048</option_windows_texture_page>
+    <option_windows_texture_page>8192</option_windows_texture_page>
     <option_winphone_480_splash_image>Configs\Default\WinPhone\SplashScreenImage480.jpg</option_winphone_480_splash_image>
     <option_winphone_720_splash_image>Configs\Default\WinPhone\SplashScreenImage720.jpg</option_winphone_720_splash_image>
     <option_winphone_768_splash_image>Configs\Default\WinPhone\SplashScreenImage.jpg</option_winphone_768_splash_image>

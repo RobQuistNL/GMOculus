@@ -8,7 +8,7 @@ global.MODEL[MOD_FIREHAY] = d3d_model_create();
 global.MODEL[MOD_FIREWOOD] = d3d_model_create();
 global.MODEL[MOD_EFFECT_PLANE] = d3d_model_create();
 global.MODEL[MOD_EFFECT_PLANE_DETAIL] = d3d_model_create();
-
+global.MODEL[MOD_SOLDIER] = d3d_model_create();
 
 global.MODEL[MOD_WOODSTACK] = d3d_model_create();
 global.MODEL[MOD_BENCH] = d3d_model_create();
@@ -45,4 +45,5 @@ d3d_model_load(global.MODEL[MOD_WOODSTACK],working_directory + "\models\2_woodst
 d3d_model_load(global.MODEL[MOD_B1],working_directory + "\models\1.d3d");
 d3d_model_load(global.MODEL[MOD_B2],working_directory + "\models\2.d3d");
 d3d_model_load(global.MODEL[MOD_BROOF],working_directory + "\models\roof.d3d");
+d3d_model_load(global.MODEL[MOD_SOLDIER],working_directory + "\models\soldier_wip.d3d");
 

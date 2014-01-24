@@ -1,4 +1,5 @@
 GMO_initDefaults(); //Load default settings
+GR_init(); //Init game ratios
 
 if (OVR_Init()) { //Check wether the oculus can actually be used.
     GMO_initShaders(); //Initialize shaders
