@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>GMO_initCamera();
+            <string>enablehud = 0;
+
+GMO_initCamera();
 GMO_setResolution(display_get_width(), display_get_height());
 </string>
           </argument>
@@ -179,6 +181,29 @@ GMO_setCameraMode(CAM_MODE_ANA_R_B);
             <kind>1</kind>
             <string>/// Set camera mode to anaglyph red green
 GMO_setCameraMode(CAM_MODE_ANA_R_G);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>enablehud = !enablehud;
 </string>
           </argument>
         </arguments>
