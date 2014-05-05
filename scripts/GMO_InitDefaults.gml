@@ -12,11 +12,11 @@ global._GMO_IPD = 5.3;
 global._GMO_CAMERA_ANGLE = 111; // See GMO_setCameraAngle for documentation.
 global._GMO_CAM_ZNEAR = 1;
 global._GMO_CAM_ZFAR = 2048;
+global._GMO_HUD_DEPTH = 15;
 global._GMO_WRES = 1920;
 global._GMO_HRES = 1080;
 global._GMO_DLL_LOADED = false;
 global._GMO_DLL_FILENAME = 'lib\RiftSharpDll.dll'
 
 GMO_initSurfaces(); //Create surfaces
-
 
