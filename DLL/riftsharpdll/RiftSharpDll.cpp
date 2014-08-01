@@ -41,57 +41,38 @@ Scene*             pRoomScene = 0;
 
 #define RAD2DEG (57.2957795)
 
-using namespace OVR;
-
-Ptr<DeviceManager>	pManager;
-Ptr<HMDDevice>		pHMD;
-Ptr<SensorDevice>	pSensor;
-SensorFusion		FusionResult;
-HMDInfo			Info;
-bool			InfoLoaded;
-
 RIFTSHARPDLL_API double Initialize()
 {
-	System::Init();
-
-	double result=0;
-
-	pManager = *DeviceManager::Create();
-
-	pHMD = *pManager->EnumerateDevices<HMDDevice>().CreateDevice();
-
-	if (pHMD)
-	{	
-		result=1;
-		InfoLoaded = pHMD->GetDeviceInfo(&Info);
-
-		pSensor = *pHMD->GetSensor();
-	}
-	else
-	{
-		pSensor = *pManager->EnumerateDevices<SensorDevice>().CreateDevice();
-	}
-	
-	if (pSensor)
-	{
-		FusionResult.AttachToSensor(pSensor);
+	ovr_Initialize();
+	HMD = ovrHmd_Create(0);
+    if (!HMD) {
+        //MessageBoxA(NULL,"Oculus Rift not detected.","", MB_OK);
+        return 0;
+    }
+	if (HMD->ProductName[0] == '\0') {
+        //MessageBoxA(NULL,"Rift detected, display not enabled.","", MB_OK);
+		return 2;
 	}
 
-	return result;
+	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);
+
+	// Start the sensor which informs of the Rift's pose and motion
+    ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
+                            ovrTrackingCap_MagYawCorrection |
+                            ovrTrackingCap_Position, 0);
+
+	return 1;
 }
 
 RIFTSHARPDLL_API double Uninitialize()
 {
-	pSensor.Clear();
-	pHMD.Clear();
-	pManager.Clear();
-
-	System::Destroy();
-
-	return -1;
+	ovrHmd_Destroy(HMD);
+    Util_ReleaseWindowAndGraphics(pRender);
+	ovr_Shutdown(); 
+	return 1;
 }
 
-RIFTSHARPDLL_API double GetYawPitchRoll(float* yaw, float* pitch, float* roll)
+/*RIFTSHARPDLL_API double GetYawPitchRoll(float* yaw, float* pitch, float* roll)
 {
 	if (pSensor)
 	{
@@ -101,10 +82,13 @@ RIFTSHARPDLL_API double GetYawPitchRoll(float* yaw, float* pitch, float* roll)
 	}
 	else
 		return -1;
-}
+}*/
 
+/* WORKING ON THE YAW PITCH ROLL FETCHING. Check out the 0.4.0 demo SDK with the RoomTiny example,
+Many pretty things there.
 RIFTSHARPDLL_API double GetYaw(void)
 {
+	ovrHmd
 	Quatf quaternion = FusionResult.GetOrientation();
 	float yaw = quaternion.y;
 	float pitch = quaternion.x;
@@ -113,18 +97,6 @@ RIFTSHARPDLL_API double GetYaw(void)
 	return yaw*RAD2DEG;
 
 }
-/*
-RIFTSHARPDLL_API double GetPitch(void)
-{
-	Quatf quaternion = FusionResult.GetOrientation();
-	float yaw = quaternion.y;
-	float pitch = quaternion.x;
-	float roll = quaternion.z;
-	quaternion.GetEulerAngles<Axis_Y, Axis_X, Axis_Z>(&yaw, &pitch, &roll);
-	return pitch*57.2957795;
-
-}
-*/
 
 RIFTSHARPDLL_API double GetPitch(void)
 {
@@ -136,14 +108,12 @@ RIFTSHARPDLL_API double GetPitch(void)
 
 RIFTSHARPDLL_API double GetRoll(void)
 {
-
 	Quatf quaternion = FusionResult.GetOrientation();
 	float yaw = quaternion.y;
 	float pitch = quaternion.x;
 	float roll = quaternion.z;
 	quaternion.GetEulerAngles<Axis_Y, Axis_X, Axis_Z>(&yaw, &pitch, &roll);
 	return roll*RAD2DEG;
-
 }
 
 
@@ -161,4 +131,4 @@ RIFTSHARPDLL_API double GetQuaternion(float* x, float* y, float* z, float* w)
 	else
 		return -1;
 }
-
+*/
