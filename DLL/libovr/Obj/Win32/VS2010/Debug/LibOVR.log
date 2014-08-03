@@ -1,0 +1,160 @@
+﻿Build started 8/1/2014 6:09:01 PM.
+     1>Project "G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Projects\Win32\VS2010\LibOVR.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "../../../Obj/Win32/VS2010/Debug/LibOVR.unsuccessfulbuild".
+       CustomBuild:
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionChroma_ps.psh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "DistortionChroma_ps" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for DistortionChroma_ps
+     1>CUSTOMBUILD : error : File not found: DistortionChroma_ps
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionChroma_ps niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionChroma_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "DistortionChroma_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for DistortionChroma_vs
+     1>CUSTOMBUILD : error : File not found: DistortionChroma_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionChroma_vs niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionTimewarpChroma_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "DistortionTimewarpChroma_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for DistortionTimewarpChroma_vs
+     1>CUSTOMBUILD : error : File not found: DistortionTimewarpChroma_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionTimewarpChroma_vs niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionTimewarp_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "DistortionTimewarp_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for DistortionTimewarp_vs
+     1>CUSTOMBUILD : error : File not found: DistortionTimewarp_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\DistortionTimewarp_vs niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\Distortion_ps.psh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "Distortion_ps" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for Distortion_ps
+     1>CUSTOMBUILD : error : File not found: Distortion_ps
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\Distortion_ps niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\Distortion_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "Distortion_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for Distortion_vs
+     1>CUSTOMBUILD : error : File not found: Distortion_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\Distortion_vs niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleQuad_ps.psh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "SimpleQuad_ps" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for SimpleQuad_ps
+     1>CUSTOMBUILD : error : File not found: SimpleQuad_ps
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleQuad_ps niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleQuad_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "SimpleQuad_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for SimpleQuad_vs
+     1>CUSTOMBUILD : error : File not found: SimpleQuad_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleQuad_vs niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleTexturedQuad_ps.psh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "SimpleTexturedQuad_ps" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for SimpleTexturedQuad_ps
+     1>CUSTOMBUILD : error : File not found: SimpleTexturedQuad_ps
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleTexturedQuad_ps niet vinden
+         Performing Custom Build Tools
+         Compiling shader and packing into header: G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleTexturedQuad_vs.vsh
+         fxc.exe wordt niet herkend als een interne
+         of externe opdracht, programma of batchbestand.
+         
+         File: "SimpleTexturedQuad_vs" does not exist
+         
+         bin2header version 0.0.1
+         2011 Jordan Irwin <antumdeluge@gmail.com>
+         
+         	Usage:	bin2header.exe file
+         
+         Generating shader reflection data for SimpleTexturedQuad_vs
+     1>CUSTOMBUILD : error : File not found: SimpleTexturedQuad_vs
+         Kan G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Src\CAPI\Shaders\SimpleTexturedQuad_vs niet vinden
+     1>Done Building Project "G:\OCULUS\ovr_sdk_win_0.4.0\OculusSDK\LibOVR\Projects\Win32\VS2010\LibOVR.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.74
