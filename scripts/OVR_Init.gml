@@ -20,7 +20,7 @@ if (global._GMO_DLL_LOADED == false) {
     //DK2 (New DLL) functions;
     global.oc_getVersion = external_define(dllfile, 'getVersion', dll_cdecl, ty_real, 0);
     global.oc_getHMDName = external_define(dllfile, 'getHMDName', dll_cdecl, ty_string, 0);
-    global.oc_linkWindowHandle = external_define(dllfile, 'linkWindowHandle', dll_cdecl, ty_real, 1, ty_real);
+    global.oc_linkWindowHandle = external_define(dllfile, "linkWindowHandle", dll_cdecl, ty_real, 1, ty_string);  
     
     global._GMO_DLL_LOADED = true;
 }

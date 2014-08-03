@@ -4,7 +4,8 @@
 
 if (argument0 == 2) {
    show_debug_message('Linking window handle');
-   show_debug_message(string(OVR_linkWindowHandle()));
+   link = OVR_linkWindowHandle();
+   show_debug_message("Receive:" + string(link));
 }
 
 if (argument0 == 2 && global._GMO_DLL_LOADED == false) {

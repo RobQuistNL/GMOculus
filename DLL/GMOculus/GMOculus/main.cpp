@@ -12,14 +12,15 @@ double VERSION = 2;
 
 #define SDK_RENDERING = 1;
 
-//#include <d3d11.h>
+#include <d3d11.h>
 #include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
 #include "windows.h"
+
 //#include "..\..\LibOVR\Src\Kernel\OVR_Array.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_String.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_Color.h"
 #include "..\..\LibOVR\Src\OVR_CAPI.h"
-//#include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
+#include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
 
 //ovrD3D11Texture    EyeTexture[2];
 ovrHmd HMD;
@@ -61,7 +62,7 @@ GMO double initialize() {
 	}
 
 	// Some settings might be changed here lateron.
-	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);
+	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);// | ovrHmdCap_ExtendDesktop);
 
 	// Start the sensor which informs of the Rift's pose and motion
     ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
@@ -109,10 +110,18 @@ GMO double getEyePos(double eyeIndexInput) {
 	return 1;
 }
 
-GMO double linkWindowHandle(double windowHandle) {
+GMO double linkWindowHandle(void* windowHandle) {
+	//HWND handle = GetWindow((HWND)(int)windowHandle, GW_OWNER);
 	//HWND handle = (HWND) (int) windowHandle;
-	HWND handle = GetWindow((HWND) (int) windowHandle, GW_OWNER);
-	//ShowWindow(handle, SW_MINIMIZE);
+	HWND handle = (HWND) windowHandle;
+
+	/*
+	 * This function returns the passed windows' title. Just to debug / test
+	LPWSTR title;
+	GetWindowText(handle, title, GetWindowTextLength(handle) + 1);
+	MessageBox(NULL, (LPCWSTR)title, (LPCWSTR)title, MB_ICONWARNING);
+	MessageBoxA(NULL, (LPCSTR)title, (LPCSTR)title, MB_ICONWARNING);
+	*/
 
 	return ovrHmd_AttachToWindow(HMD, handle, NULL, NULL);
 }

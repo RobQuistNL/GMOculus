@@ -1,13 +1,13 @@
-﻿Build started 8/4/2014 12:27:24 AM.
+﻿Build started 8/4/2014 1:06:21 AM.
      1>Project "G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\GMOculus\GMOculus.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\GMOculus.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D GMOCULUS_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>main.cpp(38): warning C4305: '*=' : truncation from 'double' to 'float'
      1>main.cpp(39): warning C4305: '*=' : truncation from 'double' to 'float'
      1>main.cpp(40): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>main.cpp(41): warning C4305: '*=' : truncation from 'double' to 'float'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Release\GMOculus.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:../../LibOVR/Lib/Win32/VS2010/ /LIBPATH:/Lib/x86 ws2_32.lib libovr.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\GMOculus.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Release\GMOculus.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Release\GMOculus.lib" /MACHINE:X86 /DLL Release\main.obj
             Creating library G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Release\GMOculus.lib and object G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Release\GMOculus.exp
@@ -23,4 +23,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.55
+Time Elapsed 00:00:01.93
