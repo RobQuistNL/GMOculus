@@ -100,7 +100,8 @@ FPSController_create();
             <kind>1</kind>
             <string>/// Draw some debugging text
 draw_set_color(c_gray)
-draw_text(5,5,"GMOculus version " + string(GMO_getVersionString())+
+draw_text(5,5,"GMOculus version " + string(GMO_getVersionString()) + " - DLL: " + string(string(global._GMO_DLL_VERSION)) +
+ "#Device: " + string(global._GMO_DEVICE_NAME) +
  "#Press F1 for help and controls" +
  "##FPS: " + string(fps) +
  "#Resolution: " + string(GMO_getResolutionWidth()) + "x" + string(GMO_getResolutionHeight()) +

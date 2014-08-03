@@ -16,6 +16,12 @@ if (global._GMO_DLL_LOADED == false) {
     global.oc_GetYaw = external_define(dllfile, 'getYaw', dll_cdecl, ty_real, 0); // Real
     global.oc_GetPitch = external_define(dllfile, 'getPitch', dll_cdecl, ty_real, 0); // Real
     global.oc_GetRoll = external_define(dllfile, 'getRoll', dll_cdecl, ty_real, 0); // Real
+    
+    //DK2 (New DLL) functions;
+    global.oc_getVersion = external_define(dllfile, 'getVersion', dll_cdecl, ty_real, 0);
+    global.oc_getHMDName = external_define(dllfile, 'getHMDName', dll_cdecl, ty_string, 0);
+    global.oc_linkWindowHandle = external_define(dllfile, 'linkWindowHandle', dll_cdecl, ty_real, 1, ty_real);
+    
     global._GMO_DLL_LOADED = true;
 }
 
@@ -31,5 +37,9 @@ switch (initDevice) {
             show_debug_message('Oculus device found but display disabled');
             break;
 }
+
+global._GMO_DEVICE_NAME = OVR_getHMDName();
+global._GMO_DLL_VERSION = OVR_getVersion();
+show_debug_message('Found device: ' + string(global._GMO_DEVICE_NAME) + ' - DLL Version:' + string(global._GMO_DLL_VERSION));
 
 return initDevice;

@@ -1,10 +1,20 @@
 #define GMO extern "C" __declspec (dllexport)
 #define OVR_D3D_VERSION 11
 #define RAD2DEG (57.2957795)
+
+#ifdef _UNICODE
+typedef const wchar_t* LPCTSTR;
+#else
+typedef const char* LPCTSTR;
+#endif
+
 double VERSION = 2;
+
+#define SDK_RENDERING = 1;
 
 //#include <d3d11.h>
 #include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
+#include "windows.h"
 //#include "..\..\LibOVR\Src\Kernel\OVR_Array.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_String.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_Color.h"
@@ -14,6 +24,8 @@ double VERSION = 2;
 //ovrD3D11Texture    EyeTexture[2];
 ovrHmd HMD;
 OVR::Posef currentPose;
+ovrFrameTiming hmdFrameTiming;
+ovrPosef headPose[2];
 float currentYaw, currentPitch, currentRoll;
 
 
@@ -79,3 +91,33 @@ GMO double getRoll() {
 	getTrackingData();
 	return currentRoll;
 }
+
+GMO double beginFrame() {
+	ovrHmd_BeginFrame(HMD, 0);
+	return 1;
+}
+
+GMO double endFrame() {
+	ovrHmd_EndFrame(HMD, headPose, 0);
+	return 1;
+}
+
+GMO double getEyePos(double eyeIndexInput) {
+	int eyeIndex = (int) eyeIndexInput;
+	ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
+	headPose[eye] = ovrHmd_GetEyePose(HMD, eye);
+	return 1;
+}
+
+GMO double linkWindowHandle(double windowHandle) {
+	//HWND handle = (HWND) (int) windowHandle;
+	HWND handle = GetWindow((HWND) (int) windowHandle, GW_OWNER);
+	//ShowWindow(handle, SW_MINIMIZE);
+
+	return ovrHmd_AttachToWindow(HMD, handle, NULL, NULL);
+}
+
+GMO const char* getHMDName() {
+	return HMD->ProductName;
+}
+
