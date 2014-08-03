@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RiftSharpDll", "RiftSharpDll.vcxproj", "{7979AA2E-6507-47BA-97E6-534290D9943C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{934B40C7-F40A-4E4C-97A7-B9659BE0A441} = {934B40C7-F40A-4E4C-97A7-B9659BE0A441}

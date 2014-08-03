@@ -14,7 +14,7 @@ extern "C" RIFTSHARPDLL_API double Initialize(void);
 
 extern "C" RIFTSHARPDLL_API double Uninitialize(void);
 
-extern "C" RIFTSHARPDLL_API double GetYawPitchRoll(float* yaw, float* pitch, float* roll);
+//extern "C" RIFTSHARPDLL_API double GetYawPitchRoll(float* yaw, float* pitch, float* roll);
 
 extern "C" RIFTSHARPDLL_API double GetYaw(void);
 
@@ -22,4 +22,4 @@ extern "C" RIFTSHARPDLL_API double GetPitch(void);
 
 extern "C" RIFTSHARPDLL_API double GetRoll(void);
 
-extern "C" RIFTSHARPDLL_API double GetQuaternion(float* x, float* y, float* z, float* w);
+//extern "C" RIFTSHARPDLL_API double GetQuaternion(float* x, float* y, float* z, float* w);
