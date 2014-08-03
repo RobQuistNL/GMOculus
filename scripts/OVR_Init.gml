@@ -16,18 +16,20 @@ if (global._GMO_DLL_LOADED == false) {
     global.oc_GetYaw = external_define(dllfile, 'getYaw', dll_cdecl, ty_real, 0); // Real
     global.oc_GetPitch = external_define(dllfile, 'getPitch', dll_cdecl, ty_real, 0); // Real
     global.oc_GetRoll = external_define(dllfile, 'getRoll', dll_cdecl, ty_real, 0); // Real
-
-    if (OVR_Device_init() == false) {
-        show_debug_message("Oculus Rift Device not found.");
-        show_message("Oculus Rift Device not found.");
-        return false;
-    } else {
-        show_debug_message("Oculus Rift DLL loaded and initialized!");
-        global._GMO_DLL_LOADED = true;
-        return true;
-    }
-} else {
-    show_debug_message("The Oculus Rift DLL is already loaded and initialized.");
-    return true;
+    global._GMO_DLL_LOADED = true;
 }
 
+initDevice = OVR_Device_init();
+switch (initDevice) {
+       case 0:
+            show_debug_message('No oculus device found');
+            break;
+       case 1:
+            show_debug_message('Oculus device found and working!');
+            break;
+       case 2:
+            show_debug_message('Oculus device found but display disabled');
+            break;
+}
+
+return initDevice;

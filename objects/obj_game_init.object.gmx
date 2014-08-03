@@ -35,6 +35,7 @@ loadModels();
 // Preload lights
 initLights();
 
+alarm[0]=room_speed*3
 </string>
           </argument>
         </arguments>
@@ -60,6 +61,7 @@ initLights();
             <string>if (!oculus_enabled) {
    oculus_enabled = GMO_init();
 }
+alarm[0]=room_speed*3
 </string>
           </argument>
         </arguments>
@@ -85,7 +87,7 @@ initLights();
             <string>draw_text(10,10,"Press space to start 3D world.##CONTROLS:##Walk with WASD#Use mouse to look around#P - Regular view#O - Oculus view");
 draw_sprite(spr_logo,0,room_width/2,room_height/2);
 
-if (oculus_enabled) {
+if (oculus_enabled == 1) {
     pitch = OVR_Device_getPitch();
     yaw = OVR_Device_getYaw();
     roll = OVR_Device_getRoll();
@@ -95,7 +97,9 @@ if (oculus_enabled) {
     draw_sprite_ext(spr_angle, 0, 400, 50, 1, 1, roll, c_white, 1);
     
     draw_text(300,100, "Pitch: " + string(pitch) + "#Yaw: " + string(yaw) + "#Roll: " + string(roll));
-} else {
+} else if (oculus_enabled == 2) {
+    draw_text(300,100, "Oculus device found, but display is disabled.");
+} else if (oculus_enabled == 0) {
     draw_text(300,100, "Oculus device not found.");
 }
 </string>

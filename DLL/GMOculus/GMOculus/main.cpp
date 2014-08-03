@@ -1,5 +1,6 @@
 #define GMO extern "C" __declspec (dllexport)
 #define OVR_D3D_VERSION 11
+#define RAD2DEG (57.2957795)
 double VERSION = 2;
 
 //#include <d3d11.h>
@@ -22,17 +23,14 @@ void getTrackingData() {
 	if (ts.StatusFlags & (ovrStatus_OrientationTracked | ovrStatus_PositionTracked)) {
 		currentPose = ts.HeadPose.ThePose;
 		currentPose.Rotation.GetEulerAngles<OVR::Axis_Y, OVR::Axis_X, OVR::Axis_Z>(&currentYaw, &currentPitch, &currentRoll);
+		currentYaw *= RAD2DEG;
+		currentPitch *= RAD2DEG;
+		currentRoll *= RAD2DEG;
+	} else {
+		currentYaw = -1;
+		currentPitch = -1;
+		currentRoll = -1;
 	}
-}
-
-void setupDevice() {
-	// Some settings might be changed here lateron.
-	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);
-
-	// Start the sensor which informs of the Rift's pose and motion
-    ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
-                            ovrTrackingCap_MagYawCorrection |
-                            ovrTrackingCap_Position, 0);
 }
 
 GMO double getVersion() {
@@ -49,7 +47,13 @@ GMO double initialize() {
 		return 2; //Rift deetected, display disabled
 	}
 
-	setupDevice();
+	// Some settings might be changed here lateron.
+	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);
+
+	// Start the sensor which informs of the Rift's pose and motion
+    ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
+                            ovrTrackingCap_MagYawCorrection |
+                            ovrTrackingCap_Position, 0);
 
 	return 1;
 }
@@ -61,13 +65,16 @@ GMO double uninitialize() {
 }
 
 GMO double getYaw() {
+	getTrackingData();
 	return currentYaw;
 }
 
 GMO double getPitch() {
+	getTrackingData();
 	return currentPitch;
 }
 
 GMO double getRoll() {
+	getTrackingData();
 	return currentRoll;
 }
