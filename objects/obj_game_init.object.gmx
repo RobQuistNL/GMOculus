@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// Initialize GMOculus
-GMO_init(); 
+oculus_enabled = GMO_init(); 
 
 // Load external files
 loadTextures();
@@ -35,6 +35,31 @@ loadModels();
 // Preload lights
 initLights();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!oculus_enabled) {
+   oculus_enabled = GMO_init();
+}
 </string>
           </argument>
         </arguments>
@@ -59,6 +84,20 @@ initLights();
             <kind>1</kind>
             <string>draw_text(10,10,"Press space to start 3D world.##CONTROLS:##Walk with WASD#Use mouse to look around#P - Regular view#O - Oculus view");
 draw_sprite(spr_logo,0,room_width/2,room_height/2);
+
+if (oculus_enabled) {
+    pitch = OVR_Device_getPitch();
+    yaw = OVR_Device_getYaw();
+    roll = OVR_Device_getRoll();
+    
+    draw_sprite_ext(spr_angle, 0, 300, 50, 1, 1, pitch, c_white, 1);
+    draw_sprite_ext(spr_angle, 0, 350, 50, 1, 1, yaw, c_white, 1);
+    draw_sprite_ext(spr_angle, 0, 400, 50, 1, 1, roll, c_white, 1);
+    
+    draw_text(300,100, "Pitch: " + string(pitch) + "#Yaw: " + string(yaw) + "#Roll: " + string(roll));
+} else {
+    draw_text(300,100, "Oculus device not found.");
+}
 </string>
           </argument>
         </arguments>

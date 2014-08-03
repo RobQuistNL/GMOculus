@@ -10,12 +10,12 @@ if (global._GMO_DLL_LOADED == false) {
         return false;
     }
     
-    global.oc_Initialize = external_define(dllfile, 'Initialize', dll_cdecl, ty_real, 0); // Bool
-    global.oc_Destroy = external_define(dllfile, 'Uninitialize', dll_cdecl, ty_real, 0); // Bool
+    global.oc_Initialize = external_define(dllfile, 'initialize', dll_cdecl, ty_real, 0); // Bool
+    global.oc_Destroy = external_define(dllfile, 'uninitialize', dll_cdecl, ty_real, 0); // Bool
 
-    global.oc_GetYaw = external_define(dllfile, 'GetYaw', dll_cdecl, ty_real, 0); // Real
-    global.oc_GetPitch = external_define(dllfile, 'GetPitch', dll_cdecl, ty_real, 0); // Real
-    global.oc_GetRoll = external_define(dllfile, 'GetRoll', dll_cdecl, ty_real, 0); // Real
+    global.oc_GetYaw = external_define(dllfile, 'getYaw', dll_cdecl, ty_real, 0); // Real
+    global.oc_GetPitch = external_define(dllfile, 'getPitch', dll_cdecl, ty_real, 0); // Real
+    global.oc_GetRoll = external_define(dllfile, 'getRoll', dll_cdecl, ty_real, 0); // Real
 
     if (OVR_Device_init() == false) {
         show_debug_message("Oculus Rift Device not found.");
