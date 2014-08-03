@@ -26,6 +26,7 @@ void getTrackingData() {
 		currentYaw *= RAD2DEG;
 		currentPitch *= RAD2DEG;
 		currentRoll *= RAD2DEG;
+		currentRoll = -currentRoll;
 	} else {
 		currentYaw = -1;
 		currentPitch = -1;
