@@ -15,18 +15,22 @@ double VERSION = 2;
 #include <d3d11.h>
 #include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
 #include "windows.h"
-
 //#include "..\..\LibOVR\Src\Kernel\OVR_Array.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_String.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_Color.h"
 #include "..\..\LibOVR\Src\OVR_CAPI.h"
 #include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
+#include "RenderTiny_D3D11_Device.h"
 
-//ovrD3D11Texture    EyeTexture[2];
-ovrHmd HMD;
-OVR::Posef currentPose;
-ovrFrameTiming hmdFrameTiming;
-ovrPosef headPose[2];
+ovrHmd             HMD;
+OVR::Posef         currentPose;
+ovrFrameTiming     hmdFrameTiming;
+ovrD3D11Texture    EyeTexture[2];
+ovrEyeRenderDesc   EyeRenderDesc[2];
+ovrRecti           EyeRenderViewport[2];
+ovrPosef           headPose[2];
+RenderDevice*      pRender = 0;
+Texture*           pRendertargetTexture = 0;
 float currentYaw, currentPitch, currentRoll;
 
 
@@ -54,12 +58,62 @@ GMO double getVersion() {
 GMO double initialize() {
 	ovr_Initialize();
 	HMD = ovrHmd_Create(0);
+	const int backBufferMultisample = 1;
 	if (!HMD) {
 		return 0; //No device found
 	}
 	if (HMD->ProductName[0] == '\0') {
 		return 2; //Rift deetected, display disabled
 	}
+MessageBoxA(NULL, "1", "1", MB_ICONWARNING);
+	Sizei recommenedTex0Size = ovrHmd_GetFovTextureSize(HMD, ovrEye_Left,  HMD->DefaultEyeFov[0], 1.0f);
+    Sizei recommenedTex1Size = ovrHmd_GetFovTextureSize(HMD, ovrEye_Right, HMD->DefaultEyeFov[1], 1.0f);
+	Sizei RenderTargetSize;
+    RenderTargetSize.w = recommenedTex0Size.w + recommenedTex1Size.w;
+    RenderTargetSize.h = max ( recommenedTex0Size.h, recommenedTex1Size.h );
+MessageBoxA(NULL, "2", "2", MB_ICONWARNING);
+    const int eyeRenderMultisample = 1;
+    pRendertargetTexture = pRender->CreateTexture(Texture_RGBA | Texture_RenderTarget |
+                                                  eyeRenderMultisample,
+                                                  RenderTargetSize.w, RenderTargetSize.h, NULL);
+MessageBoxA(NULL, "3", "3", MB_ICONWARNING);
+    // The actual RT size may be different due to HW limits.
+    RenderTargetSize.w = pRendertargetTexture->GetWidth();
+    RenderTargetSize.h = pRendertargetTexture->GetHeight();
+
+    // Initialize eye rendering information.
+    // The viewport sizes are re-computed in case RenderTargetSize changed due to HW limitations.
+    ovrFovPort eyeFov[2] = { HMD->DefaultEyeFov[0], HMD->DefaultEyeFov[1] } ;
+MessageBoxA(NULL, "4", "4", MB_ICONWARNING);
+    EyeRenderViewport[0].Pos  = Vector2i(0,0);
+    EyeRenderViewport[0].Size = Sizei(RenderTargetSize.w / 2, RenderTargetSize.h);
+    EyeRenderViewport[1].Pos  = Vector2i((RenderTargetSize.w + 1) / 2, 0);
+    EyeRenderViewport[1].Size = EyeRenderViewport[0].Size;
+MessageBoxA(NULL, "5", "5", MB_ICONWARNING);
+	EyeTexture[0].D3D11.Header.API            = ovrRenderAPI_D3D11;
+    EyeTexture[0].D3D11.Header.TextureSize    = RenderTargetSize;
+    EyeTexture[0].D3D11.Header.RenderViewport = EyeRenderViewport[0];
+    EyeTexture[0].D3D11.pTexture              = pRendertargetTexture->Tex.GetPtr();
+    EyeTexture[0].D3D11.pSRView               = pRendertargetTexture->TexSv.GetPtr();
+MessageBoxA(NULL, "6", "6", MB_ICONWARNING);
+    // Right eye uses the same texture, but different rendering viewport.
+    EyeTexture[1] = EyeTexture[0];
+    EyeTexture[1].D3D11.Header.RenderViewport = EyeRenderViewport[1];
+MessageBoxA(NULL, "7", "7", MB_ICONWARNING);
+    // Configure d3d11.
+    ovrD3D11Config d3d11cfg;
+    d3d11cfg.D3D11.Header.API         = ovrRenderAPI_D3D11;
+    d3d11cfg.D3D11.Header.RTSize      = Sizei(HMD->Resolution.w, HMD->Resolution.h);
+    d3d11cfg.D3D11.Header.Multisample = backBufferMultisample;
+    d3d11cfg.D3D11.pDevice            = pRender->Device;
+    d3d11cfg.D3D11.pDeviceContext     = pRender->Context;
+    d3d11cfg.D3D11.pBackBufferRT      = pRender->BackBufferRT;
+    d3d11cfg.D3D11.pSwapChain         = pRender->SwapChain;
+	
+    if (!ovrHmd_ConfigureRendering(HMD, &d3d11cfg.Config,
+		                           ovrDistortionCap_Chromatic | ovrDistortionCap_Vignette |
+                                   ovrDistortionCap_TimeWarp | ovrDistortionCap_Overdrive,
+								   eyeFov, EyeRenderDesc)) return -2;
 
 	// Some settings might be changed here lateron.
 	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);// | ovrHmdCap_ExtendDesktop);
@@ -99,7 +153,7 @@ GMO double beginFrame() {
 }
 
 GMO double endFrame() {
-	ovrHmd_EndFrame(HMD, headPose, 0);
+	ovrHmd_EndFrame(HMD, headPose, &EyeTexture[0].Texture);
 	return 1;
 }
 

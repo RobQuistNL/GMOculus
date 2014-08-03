@@ -22,6 +22,10 @@ if (global._GMO_DLL_LOADED == false) {
     global.oc_getHMDName = external_define(dllfile, 'getHMDName', dll_cdecl, ty_string, 0);
     global.oc_linkWindowHandle = external_define(dllfile, "linkWindowHandle", dll_cdecl, ty_real, 1, ty_string);  
     
+    global.oc_beginFrame = external_define(dllfile, 'beginFrame', dll_cdecl, ty_real, 0);
+    global.oc_endFrame = external_define(dllfile, 'endFrame', dll_cdecl, ty_real, 0);
+    global.oc_getEyePos = external_define(dllfile, 'getEyePos', dll_cdecl, ty_real, 1, ty_real);
+    
     global._GMO_DLL_LOADED = true;
 }
 
