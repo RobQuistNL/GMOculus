@@ -73,6 +73,7 @@ MessageBoxA(NULL, "1", "1", MB_ICONWARNING);
     RenderTargetSize.h = max ( recommenedTex0Size.h, recommenedTex1Size.h );
 MessageBoxA(NULL, "2", "2", MB_ICONWARNING);
     const int eyeRenderMultisample = 1;
+	//CRASH HERE...
     pRendertargetTexture = pRender->CreateTexture(Texture_RGBA | Texture_RenderTarget |
                                                   eyeRenderMultisample,
                                                   RenderTargetSize.w, RenderTargetSize.h, NULL);

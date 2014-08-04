@@ -1,18 +1,26 @@
-﻿Build started 8/4/2014 1:26:49 AM.
+﻿Build started 8/4/2014 2:01:33 AM.
      1>Project "G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\GMOculus\GMOculus.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\GMOculus.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\GMOculus.unsuccessfulbuild".
        ClCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
          All outputs are up-to-date.
        Link:
-         All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.dll" /INCREMENTAL /NOLOGO /LIBPATH:../../LibOVR/Lib/Win32/VS2010/ /LIBPATH:/Lib/x86 ws2_32.lib opengl32.lib Dbghelp.lib libovrd.lib d3dx11.lib dxgi.lib dxguid.lib d3d10.lib d3d11.lib d3dcompiler.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\GMOculus.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.lib" /MACHINE:X86 /DLL Debug\GMOculus.dll.embed.manifest.res
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.dll" /INCREMENTAL /NOLOGO /LIBPATH:../../LibOVR/Lib/Win32/VS2010/ /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\/Lib/x86" ws2_32.lib opengl32.lib Dbghelp.lib libovrd.lib d3dx11.lib dxgi.lib dxguid.lib d3d10.lib d3d11.lib d3dcompiler.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\GMOculus.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.lib" /MACHINE:X86 /DLL Debug\GMOculus.dll.embed.manifest.res
          Debug\main.obj
-     1>LINK : fatal error LNK1104: cannot open file 'd3dx11.lib'
-     1>Done Building Project "G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\GMOculus\GMOculus.vcxproj" (build target(s)) -- FAILED.
+            Creating library G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.lib and object G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.exp
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\GMOculus.dll.embed.manifest" /manifest Debug\GMOculus.dll.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         GMOculus.vcxproj -> G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.dll
+       FinalizeBuildStatus:
+         Deleting file "Debug\GMOculus.unsuccessfulbuild".
+         Touching "Debug\GMOculus.lastbuildstate".
+     1>Done Building Project "G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\GMOculus\GMOculus.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.28
+Time Elapsed 00:00:05.43
