@@ -110,6 +110,8 @@ GMO double getRoll() {
 GMO double beginFrame() {
 	ovrHmd_BeginFrame(HMD, 0);
 	pRender->BeginScene();
+	pRender->SetDefaultRenderTarget();
+	pRender->SetFullViewport();
 	return 1;
 }
 
@@ -119,7 +121,8 @@ GMO double endFrame() {
 	static Vector3f HeadPos(0.0f, 1.6f, -5.0f);
 	HeadPos.y = ovrHmd_GetFloat(HMD, OVR_KEY_EYE_HEIGHT, HeadPos.y);
 
-    pRender->SetRenderTarget ( pRendertargetTexture );
+    //pRender->SetRenderTarget ( pRendertargetTexture );
+	
     //pRender->SetViewport (Recti(0,0, pRendertargetTexture->GetWidth(),
     //                                    pRendertargetTexture->GetHeight() ));  
     //pRender->Clear();
@@ -139,14 +142,15 @@ GMO double endFrame() {
 
 		//pRender->SetViewport(Recti(EyeRenderViewport[eye]));
 		//pRender->SetProjection(proj);
-		//pRender->SetDepthMode(true, true);
+		pRender->SetDepthMode(true, true);
+		
 		//pRoomScene->Render(pRender, Matrix4f::Translation(EyeRenderDesc[eye].ViewAdjust) * view);
 	}
 	//pRender->BlendState
-	pRender->SetDefaultRenderTarget();
-	pRender->SetFullViewport();
+	
 	//pRender->Clear(0.0f, 0.0f, 0.0f, 0.0f);
-
+	//pRender->Present( true );
+	pRender->UpdateMonitorOutputs();
     pRender->FinishScene();
 	ovrHmd_EndFrame(HMD, headPose, &EyeTexture[0].Texture);
 	return 1;
@@ -183,7 +187,7 @@ GMO double linkWindowHandle(void* windowHandle) {
     RenderTargetSize.w = recommenedTex0Size.w + recommenedTex1Size.w;
     RenderTargetSize.h = max ( recommenedTex0Size.h, recommenedTex1Size.h );
 
-	bool UseAppWindowFrame = (HMD->HmdCaps & ovrHmdCap_ExtendDesktop) ? false : true;
+	bool UseAppWindowFrame = true;//(HMD->HmdCaps & ovrHmdCap_ExtendDesktop) ? false : true;
 	HWND window = Util_InitWindowAndGraphics(Recti(HMD->WindowsPos, HMD->Resolution), FullScreen, backBufferMultisample, 1,&pRender, handle);
     pRendertargetTexture = pRender->CreateTexture(Texture_RGBA | Texture_RenderTarget |
                                                   eyeRenderMultisample,

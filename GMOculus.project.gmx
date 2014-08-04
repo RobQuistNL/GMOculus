@@ -765,7 +765,7 @@
     <constant name="TEX_B2">17</constant>
     <constant name="TEX_BROOF">18</constant>
     <constant name="TEX_SOLDIER">19</constant>
-    <constant name="GM_build_date">41855,6793139815</constant>
+    <constant name="GM_build_date">41855,7436067245</constant>
     <constant name="GM_version">'0.2.2.0'</constant>
   </constants>
   <help>
