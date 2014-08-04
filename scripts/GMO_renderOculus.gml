@@ -6,8 +6,7 @@ a = argument7
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
 yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
 zadd = r*sin(degtorad(vdir));
-OVR_beginFrame();
-OVR_getEyePos(0);
+
 aspect = (GMO_getResolutionWidth()/2) / GMO_getResolutionHeight();
 //Draw all the 3D instances for the left eye
 surface_set_target(GMO_getSurface(SURF_LEFT));
@@ -31,7 +30,7 @@ surface_set_target(GMO_getSurface(SURF_RIGHT));
 //d3d_set_projection_ortho(0,0,window_get_width(),window_get_height(),0);
 d3d_set_lighting(false);
 draw_set_alpha(1);
-OVR_getEyePos(1);
+
 surface_reset_target();
 //Draw both surfaces on the regular surface
 surface_set_target(GMO_getSurface(SURF_REGULAR));
@@ -57,4 +56,3 @@ d3d_transform_set_identity();
 d3d_set_lighting(false);
 draw_set_alpha(1);
 d3d_set_projection_ortho(0,0,window_get_width(),window_get_height(),0);
-OVR_endFrame();
