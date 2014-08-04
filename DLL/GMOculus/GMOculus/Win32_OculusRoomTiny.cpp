@@ -28,7 +28,7 @@ limitations under the License.
 // The world right handed coordinate system is defined as  Y -> Up, Z -> Back, X -> Right
 
 // Include the OculusVR SDK
-#include "OVR_CAPI.h"
+#include "..\..\LibOVR\Src\OVR_CAPI.h"
 
 // Choose whether the SDK performs rendering/distortion, or the application. 
 #define          SDK_RENDER 1  //Do NOT switch until you have viewed and understood the Health and Safety message.
@@ -54,7 +54,7 @@ Scene*             pRoomScene = 0;
 // Specifics for whether the SDK or the APP is doing the distortion.
 #if SDK_RENDER
 	#define OVR_D3D_VERSION 11
-	#include "OVR_CAPI_D3D.h"
+	#include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
 	ovrD3D11Texture    EyeTexture[2];
 #else
 	ShaderSet *         Shaders;  

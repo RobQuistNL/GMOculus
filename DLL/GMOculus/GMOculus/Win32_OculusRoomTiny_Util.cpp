@@ -20,7 +20,7 @@ limitations under the License.
 *************************************************************************************/
 
 #include "RenderTiny_D3D11_Device.h"
-#include "OVR_CAPI.h"
+#include "..\..\LibOVR\Src\OVR_CAPI.h"
 
 // Win32 System Variables
 HWND                hWnd = NULL;
@@ -180,7 +180,7 @@ LRESULT CALLBACK systemWindowProc(HWND arg_hwnd, UINT msg, WPARAM wp, LPARAM lp)
 }
 
 
-HWND Util_InitWindowAndGraphics(Recti vp, int fullscreen, int multiSampleCount, bool UseAppWindowFrame, RenderDevice ** returnedDevice)
+HWND Util_InitWindowAndGraphics(Recti vp, int fullscreen, int multiSampleCount, bool UseAppWindowFrame, RenderDevice ** returnedDevice, HWND currentHWND)
 {
     RendererParams  renderParams;
 
@@ -207,11 +207,11 @@ HWND Util_InitWindowAndGraphics(Recti vp, int fullscreen, int multiSampleCount, 
 
 	RECT winSize = { 0, 0, vp.w / sizeDivisor, vp.h / sizeDivisor};
     AdjustWindowRect(&winSize, wsStyle, false);
-    hWnd = CreateWindowA("OVRAppWindow", "OculusRoomTiny",
+    hWnd = currentHWND;/*CreateWindowA("OVRAppWindow", "OculusRoomTiny",
                          wsStyle |WS_VISIBLE,
 		                 vp.x, vp.y,
                          winSize.right-winSize.left, winSize.bottom-winSize.top,
-                         NULL, NULL, hInstance, NULL);
+                         NULL, NULL, hInstance, NULL);*/
 
     POINT center = { vp.w / 2 / sizeDivisor, vp.h / 2 / sizeDivisor};
     ::ClientToScreen(hWnd, &center);

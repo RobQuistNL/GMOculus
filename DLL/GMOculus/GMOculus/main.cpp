@@ -2,6 +2,7 @@
 #define OVR_D3D_VERSION 11
 #define RAD2DEG (57.2957795)
 
+
 #ifdef _UNICODE
 typedef const wchar_t* LPCTSTR;
 #else
@@ -9,19 +10,26 @@ typedef const char* LPCTSTR;
 #endif
 
 double VERSION = 2;
+#define SDK_RENDER = 1;
+#define OVR_D3D_VERSION 11
 
-#define SDK_RENDERING = 1;
-
-#include <d3d11.h>
-#include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
-#include "windows.h"
 //#include "..\..\LibOVR\Src\Kernel\OVR_Array.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_String.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_Color.h"
 #include "..\..\LibOVR\Src\OVR_CAPI.h"
-#include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
 #include "RenderTiny_D3D11_Device.h"
+HWND Util_InitWindowAndGraphics    (Recti vp, int fullscreen, int multiSampleCount, bool UseAppWindowFrame, RenderDevice ** pDevice, HWND handle);
+//void Util_ReleaseWindowAndGraphics (RenderDevice* pRender);
+//bool Util_RespondToControls        (float & EyeYaw, Vector3f & EyePos, Quatf PoseOrientation);
+//void PopulateRoomScene             (Scene* scene, RenderDevice* render);
 
+#include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
+#include <d3d11.h>
+#include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
+#include "windows.h"
+
+extern HWND hWnd;
+bool			   FullScreen = true;
 ovrHmd             HMD;
 OVR::Posef         currentPose;
 ovrFrameTiming     hmdFrameTiming;
@@ -32,7 +40,6 @@ ovrPosef           headPose[2];
 RenderDevice*      pRender = 0;
 Texture*           pRendertargetTexture = 0;
 float currentYaw, currentPitch, currentRoll;
-
 
 void getTrackingData() {
 	// Query the HMD for the current tracking state.
@@ -51,6 +58,11 @@ void getTrackingData() {
 	}
 }
 
+int Init() { return 1; };
+void ProcessAndRender() {};
+void Release() {};
+
+
 GMO double getVersion() {
 	return VERSION;
 }
@@ -58,26 +70,89 @@ GMO double getVersion() {
 GMO double initialize() {
 	ovr_Initialize();
 	HMD = ovrHmd_Create(0);
-	const int backBufferMultisample = 1;
 	if (!HMD) {
+		#if DEBUG
+			MessageBoxA(NULL, "No oculus device found", "No oculus device found", MB_ICONWARNING);
+		#endif
 		return 0; //No device found
 	}
 	if (HMD->ProductName[0] == '\0') {
+		#if DEBUG
+			MessageBoxA(NULL, "Rift detected, display disabled", "Rift detected, display disabled", MB_ICONWARNING);
+		#endif
 		return 2; //Rift deetected, display disabled
 	}
-MessageBoxA(NULL, "1", "1", MB_ICONWARNING);
+
+	return 1;
+}
+
+GMO double uninitialize() {
+	ovrHmd_Destroy(HMD);
+	ovr_Shutdown();
+	return 1;
+}
+
+GMO double getYaw() {
+	getTrackingData();
+	return currentYaw;
+}
+
+GMO double getPitch() {
+	getTrackingData();
+	return currentPitch;
+}
+
+GMO double getRoll() {
+	getTrackingData();
+	return currentRoll;
+}
+
+GMO double beginFrame() {
+	ovrHmd_BeginFrame(HMD, 0);
+	return 1;
+}
+
+GMO double endFrame() {
+	ovrHmd_EndFrame(HMD, headPose, &EyeTexture[0].Texture);
+	return 1;
+}
+
+GMO double getEyePos(double eyeIndexInput) {
+	int eyeIndex = (int) eyeIndexInput;
+	ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
+	headPose[eye] = ovrHmd_GetEyePose(HMD, eye);
+	return 1;
+}
+
+GMO double linkWindowHandle(void* windowHandle) {
+	const int eyeRenderMultisample = 1;
+	const int backBufferMultisample = 1;
+
+	//HWND handle = GetWindow((HWND)(int)windowHandle, GW_OWNER);
+	//HWND handle = (HWND) (int) windowHandle;
+	HWND handle = (HWND) windowHandle;
+
+	/*
+	 * This function returns the passed windows' title. Just to debug / test
+	LPWSTR title;
+	GetWindowText(handle, title, GetWindowTextLength(handle) + 1);
+	MessageBox(NULL, (LPCWSTR)title, (LPCWSTR)title, MB_ICONWARNING);
+	MessageBoxA(NULL, (LPCSTR)title, (LPCSTR)title, MB_ICONWARNING);
+	*/
+	hWnd = handle;
+	ovrHmd_AttachToWindow(HMD, handle, NULL, NULL);
+
 	Sizei recommenedTex0Size = ovrHmd_GetFovTextureSize(HMD, ovrEye_Left,  HMD->DefaultEyeFov[0], 1.0f);
     Sizei recommenedTex1Size = ovrHmd_GetFovTextureSize(HMD, ovrEye_Right, HMD->DefaultEyeFov[1], 1.0f);
 	Sizei RenderTargetSize;
     RenderTargetSize.w = recommenedTex0Size.w + recommenedTex1Size.w;
     RenderTargetSize.h = max ( recommenedTex0Size.h, recommenedTex1Size.h );
-MessageBoxA(NULL, "2", "2", MB_ICONWARNING);
-    const int eyeRenderMultisample = 1;
-	//CRASH HERE...
+
+	bool UseAppWindowFrame = (HMD->HmdCaps & ovrHmdCap_ExtendDesktop) ? false : true;
+	HWND window = Util_InitWindowAndGraphics(Recti(HMD->WindowsPos, HMD->Resolution), FullScreen, backBufferMultisample, UseAppWindowFrame,&pRender, handle);
     pRendertargetTexture = pRender->CreateTexture(Texture_RGBA | Texture_RenderTarget |
                                                   eyeRenderMultisample,
                                                   RenderTargetSize.w, RenderTargetSize.h, NULL);
-MessageBoxA(NULL, "3", "3", MB_ICONWARNING);
     // The actual RT size may be different due to HW limits.
     RenderTargetSize.w = pRendertargetTexture->GetWidth();
     RenderTargetSize.h = pRendertargetTexture->GetHeight();
@@ -123,62 +198,6 @@ MessageBoxA(NULL, "7", "7", MB_ICONWARNING);
     ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
                             ovrTrackingCap_MagYawCorrection |
                             ovrTrackingCap_Position, 0);
-
-	return 1;
-}
-
-GMO double uninitialize() {
-	ovrHmd_Destroy(HMD);
-	ovr_Shutdown();
-	return 1;
-}
-
-GMO double getYaw() {
-	getTrackingData();
-	return currentYaw;
-}
-
-GMO double getPitch() {
-	getTrackingData();
-	return currentPitch;
-}
-
-GMO double getRoll() {
-	getTrackingData();
-	return currentRoll;
-}
-
-GMO double beginFrame() {
-	ovrHmd_BeginFrame(HMD, 0);
-	return 1;
-}
-
-GMO double endFrame() {
-	ovrHmd_EndFrame(HMD, headPose, &EyeTexture[0].Texture);
-	return 1;
-}
-
-GMO double getEyePos(double eyeIndexInput) {
-	int eyeIndex = (int) eyeIndexInput;
-	ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
-	headPose[eye] = ovrHmd_GetEyePose(HMD, eye);
-	return 1;
-}
-
-GMO double linkWindowHandle(void* windowHandle) {
-	//HWND handle = GetWindow((HWND)(int)windowHandle, GW_OWNER);
-	//HWND handle = (HWND) (int) windowHandle;
-	HWND handle = (HWND) windowHandle;
-
-	/*
-	 * This function returns the passed windows' title. Just to debug / test
-	LPWSTR title;
-	GetWindowText(handle, title, GetWindowTextLength(handle) + 1);
-	MessageBox(NULL, (LPCWSTR)title, (LPCWSTR)title, MB_ICONWARNING);
-	MessageBoxA(NULL, (LPCSTR)title, (LPCSTR)title, MB_ICONWARNING);
-	*/
-
-	return ovrHmd_AttachToWindow(HMD, handle, NULL, NULL);
 }
 
 GMO const char* getHMDName() {

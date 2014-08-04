@@ -50,6 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GMOCULUS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../LibOVR/Include;../../LibOVR/Src;$(DXSDK_DIR)/Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -82,6 +83,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OculusRoomModel.cpp" />
+    <ClCompile Include="RenderTiny_D3D11_Device.cpp" />
+    <ClCompile Include="Win32_OculusRoomTiny_Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OSX_OculusRoomTiny2.h" />
+    <ClInclude Include="RenderTiny_D3D11_Device.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OculusRoomTiny2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

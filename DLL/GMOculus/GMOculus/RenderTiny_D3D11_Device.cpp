@@ -22,7 +22,7 @@ limitations under the License.
 ************************************************************************************/
 
 #include "RenderTiny_D3D11_Device.h"
-#include "Kernel/OVR_Log.h"
+#include "..\..\LibOVR\Src\Kernel/OVR_Log.h"
 #include <d3dcompiler.h>
 
 
