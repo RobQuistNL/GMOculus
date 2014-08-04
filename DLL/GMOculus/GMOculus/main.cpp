@@ -160,22 +160,22 @@ GMO double linkWindowHandle(void* windowHandle) {
     // Initialize eye rendering information.
     // The viewport sizes are re-computed in case RenderTargetSize changed due to HW limitations.
     ovrFovPort eyeFov[2] = { HMD->DefaultEyeFov[0], HMD->DefaultEyeFov[1] } ;
-MessageBoxA(NULL, "4", "4", MB_ICONWARNING);
+
     EyeRenderViewport[0].Pos  = Vector2i(0,0);
     EyeRenderViewport[0].Size = Sizei(RenderTargetSize.w / 2, RenderTargetSize.h);
     EyeRenderViewport[1].Pos  = Vector2i((RenderTargetSize.w + 1) / 2, 0);
     EyeRenderViewport[1].Size = EyeRenderViewport[0].Size;
-MessageBoxA(NULL, "5", "5", MB_ICONWARNING);
+
 	EyeTexture[0].D3D11.Header.API            = ovrRenderAPI_D3D11;
     EyeTexture[0].D3D11.Header.TextureSize    = RenderTargetSize;
     EyeTexture[0].D3D11.Header.RenderViewport = EyeRenderViewport[0];
     EyeTexture[0].D3D11.pTexture              = pRendertargetTexture->Tex.GetPtr();
     EyeTexture[0].D3D11.pSRView               = pRendertargetTexture->TexSv.GetPtr();
-MessageBoxA(NULL, "6", "6", MB_ICONWARNING);
+
     // Right eye uses the same texture, but different rendering viewport.
     EyeTexture[1] = EyeTexture[0];
     EyeTexture[1].D3D11.Header.RenderViewport = EyeRenderViewport[1];
-MessageBoxA(NULL, "7", "7", MB_ICONWARNING);
+
     // Configure d3d11.
     ovrD3D11Config d3d11cfg;
     d3d11cfg.D3D11.Header.API         = ovrRenderAPI_D3D11;
@@ -198,6 +198,7 @@ MessageBoxA(NULL, "7", "7", MB_ICONWARNING);
     ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
                             ovrTrackingCap_MagYawCorrection |
                             ovrTrackingCap_Position, 0);
+	return 1;
 }
 
 GMO const char* getHMDName() {

@@ -1,16 +1,10 @@
-﻿Build started 8/4/2014 5:25:35 PM.
+﻿Build started 8/4/2014 5:38:50 PM.
      1>Project "G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\GMOculus\GMOculus.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\GMOculus.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../LibOVR/Include /I../../LibOVR/Src /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\/Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D GMOCULUS_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Win32_OculusRoomTiny_Util.cpp main.cpp
-         main.cpp
-     1>g:\gmstudio\git\gmoculus.gmx\dll\gmoculus\gmoculus\main.cpp(50): warning C4305: '*=' : truncation from 'double' to 'float'
-     1>g:\gmstudio\git\gmoculus.gmx\dll\gmoculus\gmoculus\main.cpp(51): warning C4305: '*=' : truncation from 'double' to 'float'
-     1>g:\gmstudio\git\gmoculus.gmx\dll\gmoculus\gmoculus\main.cpp(52): warning C4305: '*=' : truncation from 'double' to 'float'
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../LibOVR/Include /I../../LibOVR/Src /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\/Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D GMOCULUS_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Win32_OculusRoomTiny_Util.cpp
          Win32_OculusRoomTiny_Util.cpp
-         Generating Code...
-     1>g:\gmstudio\git\gmoculus.gmx\dll\gmoculus\gmoculus\main.cpp(201): warning C4715: 'linkWindowHandle' : not all control paths return a value
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -22,7 +16,6 @@
          Debug\OculusRoomModel.obj
          Debug\RenderTiny_D3D11_Device.obj
          Debug\Win32_OculusRoomTiny_Util.obj
-            Creating library G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.lib and object G:\GMSTUDIO\GIT\GMOculus.gmx\DLL\GMOculus\Debug\GMOculus.exp
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\GMOculus.dll.embed.manifest" /manifest Debug\GMOculus.dll.intermediate.manifest
          All outputs are up-to-date.
@@ -36,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.73
+Time Elapsed 00:00:01.82

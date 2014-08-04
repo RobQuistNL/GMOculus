@@ -25,9 +25,6 @@ limitations under the License.
 #include "..\..\LibOVR\Src\Kernel/OVR_Log.h"
 #include <d3dcompiler.h>
 
-
-
-
 namespace OVR { namespace RenderTiny {
 
 

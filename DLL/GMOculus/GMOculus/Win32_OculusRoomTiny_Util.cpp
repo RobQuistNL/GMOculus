@@ -48,11 +48,11 @@ const float         MoveSpeed   = 3.0f;
 extern ovrHmd       HMD;
 
 // Functions from Win32_OculusRoomTiny.cpp
-int     Init();
-void    ProcessAndRender();
-void    Release();
+//int     Init();
+//void    ProcessAndRender();
+//void    Release();
 
-
+/*
 //-------------------------------------------------------------------------------------
 
 void OnKey(unsigned vk, bool down)
@@ -177,7 +177,7 @@ LRESULT CALLBACK systemWindowProc(HWND arg_hwnd, UINT msg, WPARAM wp, LPARAM lp)
     }
 
     return DefWindowProc(hWnd, msg, wp, lp);
-}
+}*/
 
 
 HWND Util_InitWindowAndGraphics(Recti vp, int fullscreen, int multiSampleCount, bool UseAppWindowFrame, RenderDevice ** returnedDevice, HWND currentHWND)
@@ -185,37 +185,37 @@ HWND Util_InitWindowAndGraphics(Recti vp, int fullscreen, int multiSampleCount, 
     RendererParams  renderParams;
 
 	// Window
-    WNDCLASS wc;
-    memset(&wc, 0, sizeof(wc));
-    wc.lpszClassName = L"OVRAppWindow";
-    wc.style         = CS_OWNDC;
-    wc.lpfnWndProc   = systemWindowProc;
-    wc.cbWndExtra    = NULL;
-    RegisterClass(&wc);
+    //WNDCLASS wc;
+    //memset(&wc, 0, sizeof(wc));
+    //wc.lpszClassName = L"OVRAppWindow";
+    //wc.style         = CS_OWNDC;
+    //wc.lpfnWndProc   = systemWindowProc;
+    //wc.cbWndExtra    = NULL;
+    //RegisterClass(&wc);
 
-    DWORD wsStyle = WS_POPUP;
-    DWORD sizeDivisor = 1;
+    //DWORD wsStyle = WS_POPUP;
+    //DWORD sizeDivisor = 1;
    
-    if (UseAppWindowFrame)
-    {
+    //if (UseAppWindowFrame)
+    //{
         // If using our driver, displaya window frame with a smaller window.
         // Original HMD resolution is still passed into the renderer for proper swap chain.
-        wsStyle |= WS_OVERLAPPEDWINDOW;
-        renderParams.Resolution = vp.GetSize();
-        sizeDivisor = 2;
-    }
+        //wsStyle |= WS_OVERLAPPEDWINDOW;
+        //renderParams.Resolution = vp.GetSize();
+        //sizeDivisor = 2;
+    //}
 
-	RECT winSize = { 0, 0, vp.w / sizeDivisor, vp.h / sizeDivisor};
-    AdjustWindowRect(&winSize, wsStyle, false);
+	//RECT winSize = { 0, 0, vp.w / sizeDivisor, vp.h / sizeDivisor};
+    //AdjustWindowRect(&winSize, wsStyle, false);
     hWnd = currentHWND;/*CreateWindowA("OVRAppWindow", "OculusRoomTiny",
                          wsStyle |WS_VISIBLE,
 		                 vp.x, vp.y,
                          winSize.right-winSize.left, winSize.bottom-winSize.top,
                          NULL, NULL, hInstance, NULL);*/
 
-    POINT center = { vp.w / 2 / sizeDivisor, vp.h / 2 / sizeDivisor};
-    ::ClientToScreen(hWnd, &center);
-    WindowCenter = center;
+    //POINT center = { vp.w / 2 / sizeDivisor, vp.h / 2 / sizeDivisor};
+    //::ClientToScreen(hWnd, &center);
+    //WindowCenter = center;
 
 	if (!hWnd) return(NULL);
 
@@ -246,6 +246,7 @@ void Util_ReleaseWindowAndGraphics(RenderDevice * prender)
 //-------------------------------------------------------------------------------------
 // ***** Program Startup
 // 
+/*
 int WINAPI WinMain(HINSTANCE hinst, HINSTANCE, LPSTR , int)
 {
 	hInstance = hinst;
@@ -274,4 +275,4 @@ int WINAPI WinMain(HINSTANCE hinst, HINSTANCE, LPSTR , int)
     OVR_ASSERT(!_CrtDumpMemoryLeaks());
     return (0);
 }
-
+*/
