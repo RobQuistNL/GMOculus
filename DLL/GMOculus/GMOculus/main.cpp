@@ -109,10 +109,45 @@ GMO double getRoll() {
 
 GMO double beginFrame() {
 	ovrHmd_BeginFrame(HMD, 0);
+	pRender->BeginScene();
 	return 1;
 }
 
 GMO double endFrame() {
+	static ovrPosef eyeRenderPose[2]; 
+	static float    BodyYaw(3.141592f);
+	static Vector3f HeadPos(0.0f, 1.6f, -5.0f);
+	HeadPos.y = ovrHmd_GetFloat(HMD, OVR_KEY_EYE_HEIGHT, HeadPos.y);
+
+    pRender->SetRenderTarget ( pRendertargetTexture );
+    //pRender->SetViewport (Recti(0,0, pRendertargetTexture->GetWidth(),
+    //                                    pRendertargetTexture->GetHeight() ));  
+    //pRender->Clear();
+	for (int eyeIndex = 0; eyeIndex < ovrEye_Count; eyeIndex++)
+	{
+        ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
+        eyeRenderPose[eye] = ovrHmd_GetEyePose(HMD, eye);
+
+        // Get view and projection matrices
+		Matrix4f rollPitchYaw       = Matrix4f::RotationY(BodyYaw);
+		Matrix4f finalRollPitchYaw  = rollPitchYaw * Matrix4f(eyeRenderPose[eye].Orientation);
+		Vector3f finalUp            = finalRollPitchYaw.Transform(Vector3f(0,1,0));
+		Vector3f finalForward       = finalRollPitchYaw.Transform(Vector3f(0,0,-1));
+		Vector3f shiftedEyePos      = HeadPos + rollPitchYaw.Transform(eyeRenderPose[eye].Position);
+        Matrix4f view = Matrix4f::LookAtRH(shiftedEyePos, shiftedEyePos + finalForward, finalUp); 
+		Matrix4f proj = ovrMatrix4f_Projection(EyeRenderDesc[eye].Fov, 0.01f, 10000.0f, true);
+
+		//pRender->SetViewport(Recti(EyeRenderViewport[eye]));
+		//pRender->SetProjection(proj);
+		//pRender->SetDepthMode(true, true);
+		//pRoomScene->Render(pRender, Matrix4f::Translation(EyeRenderDesc[eye].ViewAdjust) * view);
+	}
+	//pRender->BlendState
+	pRender->SetDefaultRenderTarget();
+	pRender->SetFullViewport();
+	//pRender->Clear(0.0f, 0.0f, 0.0f, 0.0f);
+
+    pRender->FinishScene();
 	ovrHmd_EndFrame(HMD, headPose, &EyeTexture[0].Texture);
 	return 1;
 }
@@ -149,7 +184,7 @@ GMO double linkWindowHandle(void* windowHandle) {
     RenderTargetSize.h = max ( recommenedTex0Size.h, recommenedTex1Size.h );
 
 	bool UseAppWindowFrame = (HMD->HmdCaps & ovrHmdCap_ExtendDesktop) ? false : true;
-	HWND window = Util_InitWindowAndGraphics(Recti(HMD->WindowsPos, HMD->Resolution), FullScreen, backBufferMultisample, UseAppWindowFrame,&pRender, handle);
+	HWND window = Util_InitWindowAndGraphics(Recti(HMD->WindowsPos, HMD->Resolution), FullScreen, backBufferMultisample, 1,&pRender, handle);
     pRendertargetTexture = pRender->CreateTexture(Texture_RGBA | Texture_RenderTarget |
                                                   eyeRenderMultisample,
                                                   RenderTargetSize.w, RenderTargetSize.h, NULL);
