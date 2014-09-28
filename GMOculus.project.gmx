@@ -548,6 +548,7 @@
     <sprite>sprites\spr_rectangle</sprite>
     <sprite>sprites\spr_logo</sprite>
     <sprite>sprites\spr_angle</sprite>
+    <sprite>sprites\spr_testdevice</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tex_sky</background>
@@ -633,6 +634,9 @@
           <script>scripts\OVR_Device_init.gml</script>
           <script>scripts\OVR_Device_getYaw.gml</script>
           <script>scripts\OVR_Device_getRoll.gml</script>
+          <script>scripts\OVR_Device_getX.gml</script>
+          <script>scripts\OVR_Device_getY.gml</script>
+          <script>scripts\OVR_Device_getZ.gml</script>
           <script>scripts\OVR_beginFrame.gml</script>
           <script>scripts\OVR_endFrame.gml</script>
           <script>scripts\OVR_Device_getPitch.gml</script>
@@ -640,6 +644,8 @@
           <script>scripts\OVR_getHMDName.gml</script>
           <script>scripts\OVR_linkWindowHandle.gml</script>
           <script>scripts\OVR_getEyePos.gml</script>
+          <script>scripts\OVR_moveWindow.gml</script>
+          <script>scripts\OVR_enableTextureFiltering.gml</script>
         </scripts>
       </scripts>
     </scripts>
@@ -765,7 +771,7 @@
     <constant name="TEX_B2">17</constant>
     <constant name="TEX_BROOF">18</constant>
     <constant name="TEX_SOLDIER">19</constant>
-    <constant name="GM_build_date">41855,7436067245</constant>
+    <constant name="GM_build_date">41910,7790663079</constant>
     <constant name="GM_version">'0.2.2.0'</constant>
   </constants>
   <help>

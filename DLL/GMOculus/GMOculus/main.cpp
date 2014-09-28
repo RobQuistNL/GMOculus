@@ -2,7 +2,6 @@
 #define OVR_D3D_VERSION 11
 #define RAD2DEG (57.2957795)
 
-
 #ifdef _UNICODE
 typedef const wchar_t* LPCTSTR;
 #else
@@ -12,12 +11,17 @@ typedef const char* LPCTSTR;
 double VERSION = 2;
 #define SDK_RENDER = 1;
 #define OVR_D3D_VERSION 11
+bool NON_HMD = true;
 
 //#include "..\..\LibOVR\Src\Kernel\OVR_Array.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_String.h"
 //#include "..\..\LibOVR\Src\Kernel/OVR_Color.h"
 #include "..\..\LibOVR\Src\OVR_CAPI.h"
 #include "RenderTiny_D3D11_Device.h"
+#include <windows.h>
+#include <windowsx.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 HWND Util_InitWindowAndGraphics    (Recti vp, int fullscreen, int multiSampleCount, bool UseAppWindowFrame, RenderDevice ** pDevice, HWND handle);
 //void Util_ReleaseWindowAndGraphics (RenderDevice* pRender);
 //bool Util_RespondToControls        (float & EyeYaw, Vector3f & EyePos, Quatf PoseOrientation);
@@ -26,7 +30,7 @@ HWND Util_InitWindowAndGraphics    (Recti vp, int fullscreen, int multiSampleCou
 #include "..\..\LibOVR\Src\OVR_CAPI_D3D.h"
 #include <d3d11.h>
 #include "..\..\LibOVR\Src\Kernel\OVR_Math.h"
-#include "windows.h"
+//#include "windows.h"
 
 extern HWND hWnd;
 bool			   FullScreen = true;
@@ -40,21 +44,23 @@ ovrPosef           headPose[2];
 RenderDevice*      pRender = 0;
 Texture*           pRendertargetTexture = 0;
 float currentYaw, currentPitch, currentRoll;
+double currentX, currentY, currentZ;
 
 void getTrackingData() {
+	currentYaw, currentPitch,currentRoll, currentX, currentY, currentZ = -1;
+
 	// Query the HMD for the current tracking state.
 	ovrTrackingState ts = ovrHmd_GetTrackingState(HMD, ovr_GetTimeInSeconds());
 	if (ts.StatusFlags & (ovrStatus_OrientationTracked | ovrStatus_PositionTracked)) {
 		currentPose = ts.HeadPose.ThePose;
-		currentPose.Rotation.GetEulerAngles<OVR::Axis_Y, OVR::Axis_X, OVR::Axis_Z>(&currentYaw, &currentPitch, &currentRoll);
+				currentPose.Rotation.GetEulerAngles<OVR::Axis_Y, OVR::Axis_X, OVR::Axis_Z>(&currentYaw, &currentPitch, &currentRoll);
 		currentYaw *= RAD2DEG;
 		currentPitch *= RAD2DEG;
 		currentRoll *= RAD2DEG;
 		currentRoll = -currentRoll;
-	} else {
-		currentYaw = -1;
-		currentPitch = -1;
-		currentRoll = -1;
+		currentX = currentPose.Translation.x + ts.HeadPose.ThePose.Position.x;
+		currentY = currentPose.Translation.y + ts.HeadPose.ThePose.Position.y;
+		currentZ = currentPose.Translation.z + ts.HeadPose.ThePose.Position.z;
 	}
 }
 
@@ -83,6 +89,14 @@ GMO double initialize() {
 		return 2; //Rift deetected, display disabled
 	}
 
+	// Some settings might be changed here lateron.
+	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);// | ovrHmdCap_ExtendDesktop);
+
+	// Start the sensor which informs of the Rift's pose and motion
+    ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
+                            ovrTrackingCap_MagYawCorrection |
+                            ovrTrackingCap_Position, 0);
+
 	return 1;
 }
 
@@ -107,7 +121,23 @@ GMO double getRoll() {
 	return currentRoll;
 }
 
+GMO double getX() {
+	getTrackingData();
+	return -currentZ * 100;
+}
+
+GMO double getY() {
+	getTrackingData();
+	return currentY * 100; //Y and Z are swapped in GM
+}
+
+GMO double getZ() {
+	getTrackingData();
+	return currentY * 100; //Y and Z are swapped in GM
+}
+
 GMO double beginFrame() {
+	if (NON_HMD) { return 1; }
 	ovrHmd_BeginFrame(HMD, 0);
 	pRender->BeginScene();
 	pRender->SetDefaultRenderTarget();
@@ -116,6 +146,7 @@ GMO double beginFrame() {
 }
 
 GMO double endFrame() {
+	if (NON_HMD) { return 1; }
 	static ovrPosef eyeRenderPose[2]; 
 	static float    BodyYaw(3.141592f);
 	static Vector3f HeadPos(0.0f, 1.6f, -5.0f);
@@ -157,13 +188,33 @@ GMO double endFrame() {
 }
 
 GMO double getEyePos(double eyeIndexInput) {
-	int eyeIndex = (int) eyeIndexInput;
-	ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
-	headPose[eye] = ovrHmd_GetEyePose(HMD, eye);
+	//int eyeIndex = (int) eyeIndexInput;
+	//ovrEyeType eye = HMD->EyeRenderOrder[eyeIndex];
+	//headPose[eye] = ovrHmd_GetEyePose(HMD, eye);
 	return 1;
 }
 
+GMO double moveWindow(void* windowHandle, double x, double y) {
+	HWND handle = (HWND) windowHandle;
+    SetWindowPos(handle, 0, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	return 1;
+}
+
+GMO double enableTextureFiltering( long devicepointer ){
+    LPDIRECT3DDEVICE9 device = (LPDIRECT3DDEVICE9)devicepointer;
+
+    // Enable 8x Anisotropic Filtering
+    device->SetSamplerState(0, D3DSAMP_MAXANISOTROPY, 8);
+    device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_ANISOTROPIC);
+
+    // Enable Linear Filtering
+    device->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+    device->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+    return 1.0;
+}
+
 GMO double linkWindowHandle(void* windowHandle) {
+	if (NON_HMD) { return 1; }
 	const int eyeRenderMultisample = 1;
 	const int backBufferMultisample = 1;
 
@@ -230,13 +281,7 @@ GMO double linkWindowHandle(void* windowHandle) {
                                    ovrDistortionCap_TimeWarp | ovrDistortionCap_Overdrive,
 								   eyeFov, EyeRenderDesc)) return -2;
 
-	// Some settings might be changed here lateron.
-	ovrHmd_SetEnabledCaps(HMD, ovrHmdCap_LowPersistence | ovrHmdCap_DynamicPrediction);// | ovrHmdCap_ExtendDesktop);
-
-	// Start the sensor which informs of the Rift's pose and motion
-    ovrHmd_ConfigureTracking(HMD, ovrTrackingCap_Orientation |
-                            ovrTrackingCap_MagYawCorrection |
-                            ovrTrackingCap_Position, 0);
+	
 	return 1;
 }
 

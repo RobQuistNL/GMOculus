@@ -10,4 +10,3 @@ if (OVR_Init()) { //Check wether the oculus can actually be used.
     //show_debug_message("GMOculus could not be initialized.");
     return false;
 }
-

@@ -16,11 +16,18 @@ if (global._GMO_DLL_LOADED == false) {
     global.oc_GetYaw = external_define(dllfile, 'getYaw', dll_cdecl, ty_real, 0); // Real
     global.oc_GetPitch = external_define(dllfile, 'getPitch', dll_cdecl, ty_real, 0); // Real
     global.oc_GetRoll = external_define(dllfile, 'getRoll', dll_cdecl, ty_real, 0); // Real
+
+    global.oc_GetX = external_define(dllfile, 'getX', dll_cdecl, ty_real, 0); // Real
+    global.oc_GetY = external_define(dllfile, 'getY', dll_cdecl, ty_real, 0); // Real
+    global.oc_GetZ = external_define(dllfile, 'getZ', dll_cdecl, ty_real, 0); // Real    
     
     //DK2 (New DLL) functions;
     global.oc_getVersion = external_define(dllfile, 'getVersion', dll_cdecl, ty_real, 0);
     global.oc_getHMDName = external_define(dllfile, 'getHMDName', dll_cdecl, ty_string, 0);
     global.oc_linkWindowHandle = external_define(dllfile, "linkWindowHandle", dll_cdecl, ty_real, 1, ty_string);  
+
+    global.oc_moveWindow = external_define(dllfile, "moveWindow", dll_cdecl, ty_real, 3, ty_string, ty_real, ty_real);
+    global.oc_enableTextureFiltering = external_define(dllfile, "enableTextureFiltering", dll_cdecl, ty_real, 1, ty_real);      
     
     global.oc_beginFrame = external_define(dllfile, 'beginFrame', dll_cdecl, ty_real, 0);
     global.oc_endFrame = external_define(dllfile, 'endFrame', dll_cdecl, ty_real, 0);

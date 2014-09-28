@@ -50,7 +50,7 @@ GMO_setResolution(display_get_width(), display_get_height());
           <argument>
             <kind>1</kind>
             <string>if (GMO_getCameraMode() == 2) {
-   OVR_endFrame();
+   //OVR_endFrame();
 }
 </string>
           </argument>
@@ -75,7 +75,7 @@ GMO_setResolution(display_get_width(), display_get_height());
           <argument>
             <kind>1</kind>
             <string>if (GMO_getCameraMode() == 2) {
-   OVR_beginFrame();
+   //OVR_beginFrame();
 }
 </string>
           </argument>
@@ -106,7 +106,9 @@ GMO_followObject(obj_player);
 aspect = GMO_getResolutionWidth() / GMO_getResolutionHeight();
 znear = GMO_getCameraZNear();
 zfar = GMO_getCameraZFar();
-
+prex = x
+prey = y
+prez = z
 // Check if we're viewing by Oculus. If so, we must change the roll, pitch and yaw.
 
 if (GMO_getCameraMode() == 2) { //2 = oculus, 1 = regular.
@@ -116,9 +118,19 @@ if (GMO_getCameraMode() == 2) { //2 = oculus, 1 = regular.
     pitch = OVR_Device_getPitch();
     yaw = OVR_Device_getYaw();
     roll = OVR_Device_getRoll();
+    dx = OVR_Device_getY() / 5;
+    dy = OVR_Device_getX() / 5 ;
+    dz = OVR_Device_getZ() / 5;
+
+    
+    x += dx * cos(degtorad(obj_player.direction)) + dy * sin(degtorad(obj_player.direction))
+    y += dx * -sin(degtorad(obj_player.direction)) + dy * cos(degtorad(obj_player.direction))
+    
     //We want to "add" the head rotation to the body;
     yaw = yaw + obj_player.direction;
     
+    z += dz;
+
     angle = GMO_getCameraAngle(); // The oculus actually needs a wider angle
     
 } else { 
@@ -133,7 +145,9 @@ if (GMO_getCameraMode() == 2) { //2 = oculus, 1 = regular.
 GMO_renderCamera(x, y, z, yaw, pitch, roll, angle, aspect, znear, zfar); // Renders our image to the surface.
 
 GMO_drawCameraSurface();
-
+x = prex
+y = prey
+z = prez
 
 </string>
           </argument>
@@ -182,6 +196,9 @@ GMO_setCameraMode(CAM_MODE_REGULAR);
           <argument>
             <kind>1</kind>
             <string>/// Set camera mode to oculus!
+//window_set_size(display_get_width(), display_get_height());
+surface_resize(application_surface, display_get_width(), display_get_height());
+OVR_moveWindow(display_get_width(), 0); //Move it to the right.
 GMO_setCameraMode(CAM_MODE_OCULUS);
 </string>
           </argument>
@@ -231,6 +248,29 @@ GMO_setCameraMode(CAM_MODE_ANA_R_B);
             <kind>1</kind>
             <string>/// Set camera mode to anaglyph red green
 GMO_setCameraMode(CAM_MODE_ANA_R_G);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="70">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>OVR_enableTextureFiltering();
 </string>
           </argument>
         </arguments>

@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.5.1:PlatformToolSet=v120:EnableManagedIncrementalBuild=true:VCToolArchitecture=Native32Bit
+Debug|Win32|C:\Projects\Voxel\Dev\Libs\OculusRift\OculusSharp\|

@@ -85,18 +85,37 @@ alarm[0]=room_speed*3
           <argument>
             <kind>1</kind>
             <string>draw_text(10,10,"Press space to start 3D world.##CONTROLS:##Walk with WASD#Use mouse to look around#P - Regular view#O - Oculus view");
-draw_sprite(spr_logo,0,room_width/2,room_height/2);
+draw_sprite(spr_logo,0,room_width/2,room_height-100);
 
 if (oculus_enabled == 1) {
     pitch = OVR_Device_getPitch();
     yaw = OVR_Device_getYaw();
     roll = OVR_Device_getRoll();
+    xx = OVR_Device_getX();
+    yy = OVR_Device_getY();
+    zz = OVR_Device_getZ();
     
     draw_sprite_ext(spr_angle, 0, 300, 50, 1, 1, pitch, c_white, 1);
     draw_sprite_ext(spr_angle, 0, 350, 50, 1, 1, yaw, c_white, 1);
     draw_sprite_ext(spr_angle, 0, 400, 50, 1, 1, roll, c_white, 1);
     
-    draw_text(300,100, "Pitch: " + string(pitch) + "#Yaw: " + string(yaw) + "#Roll: " + string(roll));
+    px = 400;
+    py = 200;
+    draw_sprite_ext(spr_player, 0, px, py, 1, 1, yaw, c_white, 1);
+    dx = xx/5;
+    dy = yy/5;
+    dz = zz/100;
+    
+    py -= dx * cos(degtorad(yaw)) + dy * sin(degtorad(yaw))
+    px += dx * -sin(degtorad(yaw)) + dy * cos(degtorad(yaw))
+
+    if (keyboard_check(vk_left)) { direction -= 5 }
+    if (keyboard_check(vk_right)) { direction += 5 }
+
+    
+    draw_sprite_ext(spr_testdevice, 0, px, py, 1+dz, 1+dz, yaw, c_white, 1);
+       
+    draw_text(300,100, "Pitch: " + string(pitch) + "#Yaw: " + string(yaw) + "#Roll: " + string(roll) + "##X:" + string(xx) + "#Y:" + string(yy) + "#Z:" + string(zz));
 } else if (oculus_enabled == 2) {
     draw_text(300,100, "Oculus device found, but display is disabled.");
 } else if (oculus_enabled == 0) {
