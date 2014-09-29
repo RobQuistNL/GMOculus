@@ -2,13 +2,12 @@
 r = GMO_getIPD()/2
 hdir = argument3+90;
 vdir = argument5;
-
+a = argument7
 xadd = r*cos(degtorad(hdir))*cos(degtorad(vdir));
 yadd = -r*sin(degtorad(hdir))*cos(degtorad(vdir));
 zadd = r*sin(degtorad(vdir));
 
 aspect = (GMO_getResolutionWidth()/2) / GMO_getResolutionHeight();
-
 //Draw all the 3D instances for the left eye
 surface_set_target(GMO_getSurface(SURF_LEFT));
     draw_clear(c_white);
@@ -18,7 +17,6 @@ surface_set_target(GMO_getSurface(SURF_LEFT));
     GMO_draw3DInstances(); // Take a look at this function.
     d3d_transform_set_identity();
 surface_reset_target();
-    
 //Draw all the 3D instances for the right eye
 surface_set_target(GMO_getSurface(SURF_RIGHT));
     draw_clear(c_white);
@@ -27,16 +25,16 @@ surface_set_target(GMO_getSurface(SURF_RIGHT));
     d3d_set_projection_simple(argument0-xadd,argument1-yadd,argument2-zadd,argument3,argument4,argument5, argument6, aspect, argument8, argument9);
     GMO_draw3DInstances(); // Take a look at this function.
     d3d_transform_set_identity();
-surface_reset_target();   
-
+    
 //Reset some settings
 //d3d_set_projection_ortho(0,0,window_get_width(),window_get_height(),0);
 d3d_set_lighting(false);
 draw_set_alpha(1);
 
-//Draw HUD
+surface_reset_target();
+
+//Draw the HUD to the eye surfaces
 GMO_drawHud();
-    
 
 //Draw both surfaces on the regular surface
 surface_set_target(GMO_getSurface(SURF_REGULAR));

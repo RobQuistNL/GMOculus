@@ -8,4 +8,3 @@ draw_text(960/2-150,1080/2-25,"Pitch: "+string(pitch)+
                     ", Yaw: "+string(yaw)+
                     ", Roll: "+string(roll)+
                     "##This is an example of a simple HUD");
-

@@ -6,6 +6,8 @@
   <italic>0</italic>
   <charset>1</charset>
   <aa>3</aa>
+  <includeTTF>0</includeTTF>
+  <TTFName></TTFName>
   <texgroups>
     <texgroup0>0</texgroup0>
   </texgroups>
