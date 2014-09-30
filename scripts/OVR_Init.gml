@@ -51,6 +51,6 @@ switch (initDevice) {
 
 global._GMO_DEVICE_NAME = OVR_getHMDName();
 global._GMO_DLL_VERSION = OVR_getVersion();
-show_debug_message('Found device: ' + string(global._GMO_DEVICE_NAME) + ' - DLL Version:' + string(global._GMO_DLL_VERSION));
+show_debug_message('Device name: ' + string(global._GMO_DEVICE_NAME) + ' - DLL Version:' + string(global._GMO_DLL_VERSION));
 
 return initDevice;

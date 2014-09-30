@@ -344,7 +344,7 @@ GMO_setCameraMode(CAM_MODE_ANA_R_C);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()+display_get_width(), -26); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()+display_get_width(), 0); //Move to next screen to the left
 </string>
           </argument>
         </arguments>
@@ -368,7 +368,7 @@ GMO_setCameraMode(CAM_MODE_ANA_R_C);
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check(vk_control))
-    OVR_moveWindow(window_get_x()-display_get_width(), -26); //Move to next screen to the left
+    OVR_moveWindow(window_get_x()-display_get_width(),0); //Move to next screen to the left
 </string>
           </argument>
         </arguments>

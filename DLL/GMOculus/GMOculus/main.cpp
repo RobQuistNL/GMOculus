@@ -47,6 +47,8 @@ float currentYaw, currentPitch, currentRoll;
 double currentX, currentY, currentZ;
 
 void getTrackingData() {
+	if (!HMD) { return; }
+
 	currentYaw, currentPitch,currentRoll, currentX, currentY, currentZ = -1;
 
 	// Query the HMD for the current tracking state.
@@ -101,7 +103,9 @@ GMO double initialize() {
 }
 
 GMO double uninitialize() {
-	ovrHmd_Destroy(HMD);
+	if (HMD) {
+		ovrHmd_Destroy(HMD);
+	}
 	ovr_Shutdown();
 	return 1;
 }
@@ -138,6 +142,7 @@ GMO double getZ() {
 
 GMO double beginFrame() {
 	if (NON_HMD) { return 1; }
+	if (!HMD) { return 0; }
 	ovrHmd_BeginFrame(HMD, 0);
 	pRender->BeginScene();
 	pRender->SetDefaultRenderTarget();
@@ -147,6 +152,7 @@ GMO double beginFrame() {
 
 GMO double endFrame() {
 	if (NON_HMD) { return 1; }
+	if (!HMD) { return 0; }
 	static ovrPosef eyeRenderPose[2]; 
 	static float    BodyYaw(3.141592f);
 	static Vector3f HeadPos(0.0f, 1.6f, -5.0f);
@@ -196,7 +202,10 @@ GMO double getEyePos(double eyeIndexInput) {
 
 GMO double moveWindow(void* windowHandle, double x, double y) {
 	HWND handle = (HWND) windowHandle;
-    SetWindowPos(handle, 0, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+	LONG lStyle = GetWindowLong(handle, GWL_STYLE);
+	lStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU);
+	SetWindowLong(handle, GWL_STYLE, lStyle);
+    SetWindowPos(handle, HWND_TOPMOST, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE  );
 	return 1;
 }
 
@@ -215,6 +224,7 @@ GMO double enableTextureFiltering( long devicepointer ){
 
 GMO double linkWindowHandle(void* windowHandle) {
 	if (NON_HMD) { return 1; }
+	if (!HMD) { return 0; }
 	const int eyeRenderMultisample = 1;
 	const int backBufferMultisample = 1;
 
@@ -286,6 +296,7 @@ GMO double linkWindowHandle(void* windowHandle) {
 }
 
 GMO const char* getHMDName() {
+	if (!HMD) { return "unknown"; }
 	return HMD->ProductName;
 }
 
