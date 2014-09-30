@@ -11,17 +11,13 @@ surface_set_target(GMO_getSurface(SURF_HUD));
     GMO_hudContent();
 surface_reset_target();
 
-hud_sprite = sprite_create_from_surface(GMO_getSurface(SURF_HUD),0,0,960,1080,0,0,960/2,1080/2);
-
 surface_set_target(GMO_getSurface(SURF_RIGHT));
-    draw_sprite_ext(hud_sprite,0,960/2-global._GMO_HUD_DEPTH,1080/2,1,1,0,c_white,1);
+    draw_surface_ext(GMO_getSurface(SURF_HUD), 2-global._GMO_HUD_DEPTH, 0, 1, 1, 0, c_white, 1);
 surface_reset_target();
 
 surface_set_target(GMO_getSurface(SURF_LEFT));
-    draw_sprite_ext(hud_sprite,0,960/2+global._GMO_HUD_DEPTH,1080/2,1,1,0,c_white,1);
+    draw_surface_ext(GMO_getSurface(SURF_HUD), 2+global._GMO_HUD_DEPTH, 0, 1, 1, 0, c_white, 1);
 surface_reset_target();
 
 d3d_set_hidden(1);
 d3d_set_lighting(1);
-sprite_delete(hud_sprite);
-
