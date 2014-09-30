@@ -591,6 +591,10 @@
             <script>scripts\GMO_getCameraMode.gml</script>
             <script>scripts\GMO_setCameraMode.gml</script>
           </scripts>
+          <scripts name="HUD">
+            <script>scripts\GMO_drawHud.gml</script>
+            <script>scripts\GMO_hudContent.gml</script>
+          </scripts>
         </scripts>
         <scripts name="Audio">
           <script>scripts\GMO_setUse3DSound.gml</script>
@@ -688,6 +692,9 @@
       <shader type="GLSLES">shaders\GMO_colorFilter_shader.shader</shader>
     </shaders>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\fnt_hud</font>
+  </fonts>
   <objects name="objects">
     <objects name="GMOculus">
       <objects name="Test objects">
@@ -724,7 +731,7 @@
     <room>rooms\room_menu</room>
     <room>rooms\rm_fps</room>
   </rooms>
-  <constants number="48">
+  <constants number="49">
     <constant name="CAM_MODE_ANA_R_B">5</constant>
     <constant name="CAM_MODE_ANA_R_G">4</constant>
     <constant name="CAM_MODE_ANA_R_C">3</constant>
@@ -735,6 +742,7 @@
     <constant name="SURF_REG_RIGHT">4</constant>
     <constant name="SURF_RIGHT">1</constant>
     <constant name="SURF_LEFT">2</constant>
+    <constant name="SURF_HUD">6</constant>
     <constant name="SURF_REGULAR">3</constant>
     <constant name="MOD_TREE_LEAVES">1</constant>
     <constant name="MOD_TREE_TRUNK">2</constant>
@@ -771,7 +779,7 @@
     <constant name="TEX_B2">17</constant>
     <constant name="TEX_BROOF">18</constant>
     <constant name="TEX_SOLDIER">19</constant>
-    <constant name="GM_build_date">41910,7790663079</constant>
+    <constant name="GM_build_date">41912,4391922685</constant>
     <constant name="GM_version">'0.2.2.0'</constant>
   </constants>
   <help>

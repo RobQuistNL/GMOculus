@@ -18,5 +18,6 @@ global._GMO_HRES = 1080;
 global._GMO_DLL_LOADED = false;
 global._GMO_DLL_FILENAME = 'lib\GMOculus.dll'
 global._GMO_DEVICE_NAME = 'Unknown Device';
+global._GMO_HUD_DEPTH = 15; //How near or far the HUD appears to the player
 
 GMO_initSurfaces(); //Create surfaces
