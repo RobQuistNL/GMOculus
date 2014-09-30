@@ -123,12 +123,12 @@ GMO double getRoll() {
 
 GMO double getX() {
 	getTrackingData();
-	return -currentZ * 100;
+	return currentX * 100;
 }
 
 GMO double getY() {
 	getTrackingData();
-	return currentY * 100; //Y and Z are swapped in GM
+	return -currentZ * 100; //Y and Z are swapped in GM
 }
 
 GMO double getZ() {

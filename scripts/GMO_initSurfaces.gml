@@ -10,3 +10,6 @@ global._GMO_SURFACE[SURF_REG_LEFT]=surface_create(GMO_getResolutionWidth(),GMO_g
 // The regular surface holds the single-eyed camera, or a morphed version of the 2 cameras.
 // Basically makes it easier to handle.
 global._GMO_SURFACE[SURF_REGULAR]=surface_create(GMO_getResolutionWidth(),GMO_getResolutionHeight());
+
+//HUD surface
+global._GMO_SURFACE[SURF_HUD]=surface_create(GMO_getResolutionWidth()/2,GMO_getResolutionHeight());

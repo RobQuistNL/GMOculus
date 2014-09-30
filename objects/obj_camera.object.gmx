@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>GMO_initCamera();
 GMO_setResolution(display_get_width(), display_get_height());
+
+enablehud = 0;
 </string>
           </argument>
         </arguments>
@@ -198,7 +200,7 @@ GMO_setCameraMode(CAM_MODE_REGULAR);
             <string>/// Set camera mode to oculus!
 //window_set_size(display_get_width(), display_get_height());
 surface_resize(application_surface, display_get_width(), display_get_height());
-OVR_moveWindow(display_get_width(), 0); //Move it to the right.
+OVR_moveWindow(display_get_width()-3, -26); //Move it to the right.
 GMO_setCameraMode(CAM_MODE_OCULUS);
 </string>
           </argument>
@@ -253,6 +255,30 @@ GMO_setCameraMode(CAM_MODE_ANA_R_G);
         </arguments>
       </action>
     </event>
+    <event eventtype="9" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//toggles the HUD
+enablehud = !enablehud;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="70">
       <action>
         <libid>1</libid>
@@ -295,6 +321,54 @@ GMO_setCameraMode(CAM_MODE_ANA_R_G);
             <kind>1</kind>
             <string>/// Set camera mode to anaglyph red cyan
 GMO_setCameraMode(CAM_MODE_ANA_R_C);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check(vk_control))
+    OVR_moveWindow(window_get_x()+display_get_width(), -26); //Move to next screen to the left
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (keyboard_check(vk_control))
+    OVR_moveWindow(window_get_x()-display_get_width(), -26); //Move to next screen to the left
 </string>
           </argument>
         </arguments>

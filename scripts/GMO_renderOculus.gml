@@ -32,6 +32,10 @@ d3d_set_lighting(false);
 draw_set_alpha(1);
 
 surface_reset_target();
+
+//Draw the HUD to the eye surfaces
+GMO_drawHud();
+
 //Draw both surfaces on the regular surface
 surface_set_target(GMO_getSurface(SURF_REGULAR));
 draw_clear(c_black);
